@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bad92ef6530cd0d4c8fce796408201df
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182877
+  packageName: 'Java: Low Poly Islands'
+  packageVersion: 1.0
+  assetPath: Assets/Java - Low Poly Islands/Contents/Animation/BirdFollow.cs
+  uploadId: 401034
