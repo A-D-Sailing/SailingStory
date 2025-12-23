@@ -1,0 +1,62 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UIRuntime/SailingCompass/SailingCompass.uss?fileID=7433441132597879392&amp;guid=521fa9eda3a437143a8986fc7c241c0c&amp;type=3#SailingCompass" />
+    <ui:VisualElement name="compass-root" class="compass-root">
+        <ui:VisualElement name="compass-outer-ring" class="compass-outer-ring">
+            <ui:VisualElement name="compass-body" class="compass-body">
+                <ui:VisualElement name="compass-dial" class="compass-dial">
+                    <ui:VisualElement name="tick-marks" class="tick-marks">
+                        <ui:VisualElement class="tick-mark tick-major" style="rotate: 0;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 15deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 30deg;" />
+                        <ui:VisualElement class="tick-mark tick-medium" style="rotate: 45deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 60deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 75deg;" />
+                        <ui:VisualElement class="tick-mark tick-major" style="rotate: 90deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 105deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 120deg;" />
+                        <ui:VisualElement class="tick-mark tick-medium" style="rotate: 135deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 150deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 165deg;" />
+                        <ui:VisualElement class="tick-mark tick-major" style="rotate: 180deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 195deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 210deg;" />
+                        <ui:VisualElement class="tick-mark tick-medium" style="rotate: 225deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 240deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 255deg;" />
+                        <ui:VisualElement class="tick-mark tick-major" style="rotate: 270deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 285deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 300deg;" />
+                        <ui:VisualElement class="tick-mark tick-medium" style="rotate: 315deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 330deg;" />
+                        <ui:VisualElement class="tick-mark tick-minor" style="rotate: 345deg;" />
+                    </ui:VisualElement>
+                    <ui:Label name="label-north" text="N" class="cardinal-label cardinal-north" />
+                    <ui:Label name="label-east" text="E" class="cardinal-label cardinal-east" />
+                    <ui:Label name="label-south" text="S" class="cardinal-label cardinal-south" />
+                    <ui:Label name="label-west" text="W" class="cardinal-label cardinal-west" />
+                    <ui:Label text="NE" class="intercardinal-label intercardinal-ne" />
+                    <ui:Label text="SE" class="intercardinal-label intercardinal-se" />
+                    <ui:Label text="SW" class="intercardinal-label intercardinal-sw" />
+                    <ui:Label text="NW" class="intercardinal-label intercardinal-nw" />
+                </ui:VisualElement>
+                <ui:VisualElement name="target-indicator" class="target-indicator">
+                    <ui:VisualElement class="target-arrow" />
+                    <ui:VisualElement class="target-dot" />
+                </ui:VisualElement>
+                <ui:VisualElement name="boat-icon" class="boat-icon">
+                    <ui:VisualElement class="boat-hull" />
+                    <ui:VisualElement class="boat-sail" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="heading-pointer" class="heading-pointer" />
+        <ui:VisualElement name="heading-display" class="heading-display">
+            <ui:Label name="heading-value" text="0°" class="heading-value" />
+            <ui:Label name="heading-label" text="HEADING" class="heading-label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="target-display" class="target-display">
+            <ui:Label name="target-distance" text="-- m" class="target-distance" />
+            <ui:Label name="target-label" text="TARGET" class="target-label" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

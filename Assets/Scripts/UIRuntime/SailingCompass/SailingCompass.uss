@@ -1,0 +1,364 @@
+/* ========================================
+   SAILING COMPASS - Nautical Theme
+   ======================================== */
+
+:root {
+    /* Color palette - Deep ocean nautical */
+    --color-bg-dark: rgb(12, 20, 31);
+    --color-bg-medium: rgb(22, 35, 52);
+    --color-brass: rgb(205, 165, 90);
+    --color-brass-light: rgb(235, 200, 130);
+    --color-brass-dark: rgb(140, 110, 55);
+    --color-ivory: rgb(245, 240, 225);
+    --color-ivory-dim: rgba(245, 240, 225, 0.6);
+    --color-north: rgb(220, 60, 60);
+    --color-target: rgb(50, 205, 155);
+    --color-target-glow: rgba(50, 205, 155, 0.4);
+    --color-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   ROOT CONTAINER
+   ======================================== */
+
+.compass-root {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 220px;
+    height: 280px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* ========================================
+   OUTER DECORATIVE RING
+   ======================================== */
+
+.compass-outer-ring {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background-color: var(--color-brass);
+    align-items: center;
+    justify-content: center;
+    border-width: 3px;
+    border-color: var(--color-brass-dark);
+    /* Metallic gradient effect via border */
+    transition-property: scale;
+    transition-duration: 0.2s;
+}
+
+.compass-outer-ring:hover {
+    scale: 1.02;
+}
+
+/* ========================================
+   COMPASS BODY
+   ======================================== */
+
+.compass-body {
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    background-color: var(--color-bg-dark);
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    border-color: var(--color-brass-dark);
+    overflow: hidden;
+}
+
+/* ========================================
+   ROTATING DIAL
+   ======================================== */
+
+.compass-dial {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 85px;
+    align-items: center;
+    justify-content: center;
+    /* This rotates based on boat heading */
+    transition-property: rotate;
+    transition-duration: 0.1s;
+}
+
+/* ========================================
+   TICK MARKS
+   ======================================== */
+
+.tick-marks {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tick-mark {
+    position: absolute;
+    width: 2px;
+    background-color: var(--color-ivory-dim);
+    top: 8px;
+    left: 84px;
+    transform-origin: center 77px;
+}
+
+.tick-major {
+    height: 14px;
+    width: 3px;
+    left: 83.5px;
+    background-color: var(--color-ivory);
+}
+
+.tick-medium {
+    height: 10px;
+    background-color: var(--color-ivory);
+}
+
+.tick-minor {
+    height: 6px;
+}
+
+/* ========================================
+   CARDINAL DIRECTION LABELS
+   ======================================== */
+
+.cardinal-label {
+    position: absolute;
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: var(--color-ivory);
+    -unity-text-align: middle-center;
+    text-shadow: 1px 1px 2px var(--color-shadow);
+}
+
+.cardinal-north {
+    top: 24px;
+    color: var(--color-north);
+    font-size: 22px;
+}
+
+.cardinal-south {
+    bottom: 24px;
+}
+
+.cardinal-east {
+    right: 24px;
+}
+
+.cardinal-west {
+    left: 24px;
+}
+
+/* ========================================
+   INTERCARDINAL LABELS
+   ======================================== */
+
+.intercardinal-label {
+    position: absolute;
+    font-size: 11px;
+    color: var(--color-ivory-dim);
+    -unity-text-align: middle-center;
+}
+
+.intercardinal-ne {
+    top: 38px;
+    right: 38px;
+}
+
+.intercardinal-se {
+    bottom: 38px;
+    right: 38px;
+}
+
+.intercardinal-sw {
+    bottom: 38px;
+    left: 38px;
+}
+
+.intercardinal-nw {
+    top: 38px;
+    left: 38px;
+}
+
+/* ========================================
+   TARGET INDICATOR
+   ======================================== */
+
+.target-indicator {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    align-items: center;
+    justify-content: flex-start;
+    /* Rotates to point at target */
+    transition-property: rotate, opacity;
+    transition-duration: 0.15s;
+}
+
+.target-arrow {
+    position: absolute;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 14px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: var(--color-target);
+    /* Glow effect */
+    background-color: transparent;
+}
+
+.target-dot {
+    position: absolute;
+    top: 20px;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--color-target);
+}
+
+/* ========================================
+   CENTER BOAT ICON
+   ======================================== */
+
+.boat-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.boat-hull {
+    position: absolute;
+    width: 16px;
+    height: 28px;
+    background-color: var(--color-brass);
+    border-radius: 2px 2px 8px 8px;
+    bottom: 4px;
+}
+
+.boat-sail {
+    position: absolute;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-left-width: 0;
+    border-right-width: 12px;
+    border-bottom-width: 20px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: var(--color-ivory);
+    rotate: 0deg;
+}
+
+/* ========================================
+   HEADING POINTER (Fixed at top)
+   ======================================== */
+
+.heading-pointer {
+    position: absolute;
+    top: -6px;
+    width: 0;
+    height: 0;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 16px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: var(--color-brass-light);
+    border-bottom-color: transparent;
+}
+
+/* ========================================
+   HEADING DISPLAY
+   ======================================== */
+
+.heading-display {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 90px;
+    height: 50px;
+    background-color: rgba(12, 20, 31, 0.9);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: var(--color-brass-dark);
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+}
+
+.heading-value {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: var(--color-ivory);
+    -unity-text-align: middle-center;
+    margin: 0;
+    padding: 0;
+}
+
+.heading-label {
+    font-size: 9px;
+    color: var(--color-brass);
+    -unity-text-align: middle-center;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 0;
+}
+
+/* ========================================
+   TARGET DISPLAY
+   ======================================== */
+
+.target-display {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    width: 90px;
+    height: 50px;
+    background-color: rgba(12, 20, 31, 0.9);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: var(--color-target);
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+}
+
+.target-distance {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: var(--color-target);
+    -unity-text-align: middle-center;
+    margin: 0;
+    padding: 0;
+}
+
+.target-label {
+    font-size: 9px;
+    color: var(--color-target);
+    -unity-text-align: middle-center;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 0;
+}
+
+/* ========================================
+   ANIMATIONS & STATES
+   ======================================== */
+
+/* Hide target indicator when no target */
+.target-indicator.hidden {
+    opacity: 0;
+}
+
+.target-display.hidden {
+    opacity: 0.3;
+}
