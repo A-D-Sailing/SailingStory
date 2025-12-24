@@ -32,6 +32,7 @@ public class WindFieldController : MonoBehaviour
         {
             if (item)
             {
+                // 仅对被推动物体的forward方向生效
                 Vector3 boatDirection = item.transform.forward;
                 float actualForce = forceIntensity *
                                     Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(boatDirection, forceDirection.normalized));
@@ -54,6 +55,7 @@ public class WindFieldController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // 画条gizmos指示一下方向
         Gizmos.DrawLine(transform.position, transform.position + forceDirection.normalized * 5f);
         foreach (var item in effectObjects)
         {
