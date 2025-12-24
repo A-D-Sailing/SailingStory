@@ -1,3 +1,5 @@
+using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,6 +39,8 @@ public class BoatController : MonoBehaviour
     private Rigidbody rb;
     private float targetYawRateRad;
 
+    private MMF_Player _cameraShakePlayer;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -44,6 +48,8 @@ public class BoatController : MonoBehaviour
         // Cancel out the preset damping
         rb.linearDamping = 0f;
         rb.angularDamping = 0f;
+        
+        _cameraShakePlayer = GetComponent<MMF_Player>();
     }
 
     private void FixedUpdate()
@@ -178,5 +184,17 @@ public class BoatController : MonoBehaviour
 
         #endregion
 
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (_cameraShakePlayer && other.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Play Feedback");
+            if (!_cameraShakePlayer.IsPlaying)
+            {
+                _cameraShakePlayer.PlayFeedbacks();   
+            }
+        }
     }
 }    
