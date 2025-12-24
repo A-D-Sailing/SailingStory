@@ -6,11 +6,11 @@ using UnityEngine;
 public class WindFieldController : MonoBehaviour
 {
     [SerializeField] 
-    [Header("风力大小")]
+    [Tooltip("Wind Intensity")]
     private float forceIntensity;
     
     [SerializeField] 
-    [Header("风力方向")]
+    [Tooltip("Wind Direction")]
     private Vector3 forceDirection;
     
     List<GameObject> effectObjects = new List<GameObject>();
