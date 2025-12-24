@@ -1,25 +1,37 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BoatController : MonoBehaviour
 {
-    [Header("Speed")] public float maxForwardSpeed;
+    [Header("Speed")] 
+    [Tooltip("Maximum speed that a boat can achieve in velocity, with direction of local front")]
+    public float maxForwardSpeed;
+    [Tooltip("Maximum speed that a boat can achieve in velocity, with direction of local back")]
     public float maxReverseSpeed;
+    [Tooltip("Acceleration adding to forward velocity")]
     public float forwardAcceleration;
+    [Tooltip("Acceleration adding to backward velocity")]
     public float reverseAcceleration;
 
     [Header("Turning")] 
+    [Tooltip("Maximum turning speed of the boat")]
     public float maxTurnRate;
+    [Tooltip("The acceleration adding to turning speed")]
     public float turnAcceleration;
 
-    [Header("Water Drag")] 
+    [Header("Water Drag")]
+    [Tooltip("The initial drag adding to all direction to the boat to simulate water friction")]
     public float linearDrag;
+    [Tooltip("Second level dragging force adding, only affect when boat in high speed movement")]
     public float quadraticDrag;
+    [Tooltip("The dragging force adding to the boat's sideway movement")]
     public float lateralExtraDrag;
+    [Tooltip("The dragging force adding to the boat's turning force")]
     public float angularDrag;
+    [Tooltip("Second level dragging force adding, only affect when boat in high speed rotation")]
     public float angularQuadraticDrag;
+    [Tooltip("The threshold value to apply dragging, to prevent visual vibration when boat is in still")]
     public float stopThreshold;
     
     private Rigidbody rb;
@@ -41,7 +53,7 @@ public class BoatController : MonoBehaviour
         #region Temp Input Check
 
         // TEMP CODE SECTION
-        // TO-DO: Adding into input actions
+        // TODO: Adding into input actions
         var throttle = 0f;
         var steer =  0f;
         
