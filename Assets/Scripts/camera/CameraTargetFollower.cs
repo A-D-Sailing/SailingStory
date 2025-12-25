@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// A "Ghost Target" script that follows the boat's position but ignores its rotation.
+/// This allows the camera to follow the boat without spinning around when the boat turns.
+/// </summary>
+
 public class CameraTargetFollower : MonoBehaviour
 {
     public Transform targetBoat; // 把船拖进来
@@ -8,10 +13,11 @@ public class CameraTargetFollower : MonoBehaviour
     {
         if (targetBoat == null) return;
 
-        // 只复制位置
+        // Sync position with the boat
         transform.position = targetBoat.position;
         
-        // 强制锁定旋转为 0 (世界坐标系正方向)
+        // Force rotation to identity (World Zero) to prevent the camera from rotating with the boat.
+        // This ensures a fixed viewing angle regardless of the boat's heading.
         transform.rotation = Quaternion.identity; 
     }
 }
