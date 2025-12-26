@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CameraTargetFollower : MonoBehaviour
 {
-    public Transform targetBoat; // 把船拖进来
+    public Transform targetBoat; 
 
     void LateUpdate()
     {

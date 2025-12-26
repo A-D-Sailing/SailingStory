@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &232600737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2124682009380103867, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-  m_PrefabInstance: {fileID: 1160615844}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &509824608
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,74 +428,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1438885133475211725, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2124682009380103867, guid: 644534228739d8f4780e50032d152d6e, type: 3}
       propertyPath: m_Name
       value: Boat
       objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: linearDrag
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: angularDrag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: maxTurnRate
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: stopThreshold
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: maxForwardSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: maxReverseSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: angularWaterDrag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: lateralExtraDrag
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: turnAcceleration
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: forwardAcceleration
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: reverseAcceleration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174473225615690256, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: angularQuadraticDrag
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8275238862024768119, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 8275238862024768119, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5323732
-      objectReference: {fileID: 0}
-    - target: {fileID: 8275238862024768119, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5.478799
-      objectReference: {fileID: 0}
+    - target: {fileID: 2871855371719217497, guid: 644534228739d8f4780e50032d152d6e, type: 3}
+      propertyPath: sailingCamera
+      value: 
+      objectReference: {fileID: 1194878437}
     - target: {fileID: 8275238862024768119, guid: 644534228739d8f4780e50032d152d6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3142
@@ -541,46 +476,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8275238862024768119, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2124682009380103867, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1160615851}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644534228739d8f4780e50032d152d6e, type: 3}
 --- !u!4 &1160615845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8275238862024768119, guid: 644534228739d8f4780e50032d152d6e, type: 3}
   m_PrefabInstance: {fileID: 1160615844}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1160615847 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1438885133475211725, guid: 644534228739d8f4780e50032d152d6e, type: 3}
-  m_PrefabInstance: {fileID: 1160615844}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1160615851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232600737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5271f576eb0c647a8885ddb7c7e215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sailingCamera: {fileID: 1194878437}
-  shipRigidbody: {fileID: 1160615847}
-  baseDistance: 25
-  maxDistance: 100
-  maxSpeed: 50
-  zoomSpeed: 0.7
 --- !u!1 &1194878435
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +588,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: -26.2, y: 21.4, z: -25}
-  Damping: {x: 1, y: 1, z: 1}
+  Damping: {x: 0, y: 0, z: 0}
   Lookahead:
     Enabled: 0
     Time: 0
