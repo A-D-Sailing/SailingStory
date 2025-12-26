@@ -478,7 +478,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1756866000047148231, guid: 46fd3b34ca2dab84689ded445f83589f, type: 3}
       propertyPath: m_Name
-      value: wind_field
+      value: WindField
       objectReference: {fileID: 0}
     - target: {fileID: 2016604022220162022, guid: 46fd3b34ca2dab84689ded445f83589f, type: 3}
       propertyPath: m_LocalPosition.x
