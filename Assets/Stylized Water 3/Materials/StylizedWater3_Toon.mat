@@ -251,8 +251,8 @@ Material:
     - _ReflectionDistortion: 0.093
     - _ReflectionFresnel: 5
     - _ReflectionFresnelMode: 0
-    - _ReflectionLighting: 0
-    - _ReflectionStrength: 0.724
+    - _ReflectionLighting: 0.107
+    - _ReflectionStrength: 0.655
     - _Reflectivity: 1
     - _RefractionAmount: 0.05
     - _RefractionChromaticAberration: 1
@@ -285,7 +285,7 @@ Material:
     - _SunReflectionDistortion: 2
     - _SunReflectionPerturbance: 1
     - _SunReflectionSharp: 0
-    - _SunReflectionSize: 0.894
+    - _SunReflectionSize: 0.879
     - _SunReflectionStrength: 0.3
     - _Surface: 0
     - _TEXTURE_INTERSECTIONOn: 1
