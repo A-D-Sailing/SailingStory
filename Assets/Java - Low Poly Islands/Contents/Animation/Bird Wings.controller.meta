@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5c14ce3956e9e745ac7acccb356041f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182877
+  packageName: 'Java: Low Poly Islands'
+  packageVersion: 1.0
+  assetPath: Assets/Java - Low Poly Islands/Contents/Animation/Bird Wings.controller
+  uploadId: 401034
