@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7510463117662133888}
   m_Layer: 0
   m_Name: CinemachineCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7123694263226535888}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24243425, y: 0.3795538, z: -0.10376388, w: 0.88679063}
+  m_LocalRotation: {x: 0.24243191, y: 0.37955666, z: -0.10376372, w: 0.8867901}
   m_LocalPosition: {x: -27.259834, y: 25.76663, z: -21.049364}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30.58, y: 46.343, z: 0}
 --- !u!114 &7231997340689678743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: -26.2, y: 21.4, z: -25}
+  TargetOffset: {x: -95, y: 81, z: -46}
   Damping: {x: 0, y: 0, z: 0}
   Lookahead:
     Enabled: 0

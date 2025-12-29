@@ -75,8 +75,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7779260724950383544}
   - {fileID: 2219647028454301248}
@@ -111,7 +111,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124682009380103867}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -128,7 +128,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &5174473225615690256
 MonoBehaviour:
@@ -142,16 +142,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02bdf709a47f894d91f9e86c57cb14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForwardSpeed: 50
+  maxForwardSpeed: 60
   maxReverseSpeed: 50
-  forwardAcceleration: 30
+  forwardAcceleration: 35
   reverseAcceleration: 0.5
-  maxTurnRate: 100
+  maxTurnRate: 60
   turnAcceleration: 30
-  linearDrag: 0.5
+  linearDrag: 1
   quadraticDrag: 0.2
   lateralExtraDrag: 1.5
-  angularDrag: 2
+  angularDrag: 1.5
   angularQuadraticDrag: 0.8
   stopThreshold: 0.01
 --- !u!114 &2871855371719217497
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sailingCamera: {fileID: 0}
   shipRigidbody: {fileID: 1438885133475211725}
-  baseDistance: 25
-  maxDistance: 100
-  maxSpeed: 50
+  baseDistance: 46
+  maxDistance: 200
+  maxSpeed: 60
   zoomDamping: 2
   speedSmoothTime: 0.5
   rotationThreshold: 0.2
@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 36.557423
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -200,19 +200,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9993662
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.0005168174
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.03559334
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -229,8 +229,60 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7674743392637193678}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2161645833781014064}
   m_SourcePrefab: {fileID: 100100000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
+--- !u!1 &2219647028454130272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
+  m_PrefabInstance: {fileID: 2219647028454163648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7674743392637193678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219647028454130272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95144392e6eede14cafa2d339e5c1ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightInterface:
+    method: 0
+    waterObject: {fileID: 0}
+    autoFind: 1
+    waveProfile: {fileID: 0}
+    waterLevelSource: 1
+    waterLevelTransform: {fileID: 0}
+    waterLevel: 0
+  surfaceSize: {x: 638, y: 573.5}
+  followTarget: {fileID: 8275238862024768119}
+  heightOffset: -0.08
+  rollAmount: 1.5
+  rotation: 0
+  smoothing: 1.5
+  heightValue: 0
+  rigidbody: {fileID: 0}
+--- !u!114 &2161645833781014064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219647028454130272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6854378febcfe64a8147f596cf5a937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetParent: {fileID: 8275238862024768119}
 --- !u!4 &2219647028454301248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
