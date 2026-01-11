@@ -12,18 +12,20 @@ public class WindFieldController : MonoBehaviour
     [SerializeField] 
     [Header("风力方向")]
     private Vector3 forceDirection;
+
+    private Transform windRoot;
     
     List<GameObject> effectObjects = new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        windRoot = transform.Find("wind_root");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        windRoot.rotation = Quaternion.LookRotation(forceDirection);
     }
 
     private void FixedUpdate()
