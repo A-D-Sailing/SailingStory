@@ -1,5 +1,5 @@
+using KToolkit;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BoatController : MonoBehaviour
@@ -34,8 +34,23 @@ public class BoatController : MonoBehaviour
     [Tooltip("The threshold value to apply dragging, to prevent visual vibration when boat is in still")]
     public float stopThreshold;
     
+    [Header("Docking")]
+    
+    [Tooltip("The distance limit when the boat should start auto docking"), Range(0f, 200f)]
+    public float autoDockDistance = 50;
+    
+    // Components
     private Rigidbody rb;
-    private float targetYawRateRad;
+    
+    // Feel Feedbacks
+    private CameraShakeFeedbacks _cameraShakePlayer;
+    private DockingFeedbacks _dockingPlayer;
+    
+    // State Machine
+    private KStateMachine<BoatController> _stateMachine;
+    
+    // Public accessors for states
+    public Rigidbody Rigidbody => rb;
 
     private void Awake()
     {
@@ -44,139 +59,69 @@ public class BoatController : MonoBehaviour
         // Cancel out the preset damping
         rb.linearDamping = 0f;
         rb.angularDamping = 0f;
+        
+        _cameraShakePlayer = transform.GetComponentInChildren<CameraShakeFeedbacks>();
+        _dockingPlayer = transform.GetComponentInChildren<DockingFeedbacks>();
+        
+        if (_dockingPlayer == null)
+        {
+            Debug.LogError("[BoatController] DockingFeedbacks component not found in children!");
+        }
+        
+        // Initialize state machine with Normal Control as the initial state
+        _stateMachine = new KStateMachine<BoatController>(this, new BoatNormalControlState(), _cameraShakePlayer);
     }
 
     private void FixedUpdate()
     {
-        var dt = Time.fixedDeltaTime;
-
-        #region Temp Input Check
-
-        // TEMP CODE SECTION
-        // TODO: Adding into input actions
-        var throttle = 0f;
-        var steer =  0f;
-        
-        var kb = Keyboard.current;
-        if (kb != null)
-        {
-            if (kb.wKey.isPressed) throttle += 1f;
-            if (kb.sKey.isPressed) throttle -= 1f;
-
-            if (kb.dKey.isPressed) steer += 1f;
-            if (kb.aKey.isPressed) steer -= 1f;
-        }
-
-        #endregion
-        
-        
-        // Getting vectors for boat status
-        var v = rb.linearVelocity;
-        var forward = transform.forward;
-        var right = transform.right;
-        
-        var forwardSpeed = Vector3.Dot(v, forward);
-        var lateralSpeed = Vector3.Dot(v, right);
-        
-        ApplyThrust(throttle, forwardSpeed);
-        
-        ApplySteering(steer, dt);
-        
-        ApplyWaterDrag();
-        
+        _stateMachine.currentState?.HandleFixedUpdate(this);
+    }
+    
+    private void Update()
+    {
+        _stateMachine.currentState?.HandleUpdate(this);
     }
 
-    private void ApplyThrust(float throttle, float forwardSpeed)
+    private void OnCollisionEnter(Collision other)
     {
-        if (Mathf.Approximately(throttle, 0f)) return;
-        
-        // Setting max speeds
-        var isForward = throttle > 0f;
-        var accel = isForward ? forwardAcceleration : reverseAcceleration;
-        var maxSpeed = isForward ? maxForwardSpeed : maxReverseSpeed;
-        
-        // if reaching/near max speed, linearly slow speed down
-        var speed01 = Mathf.Clamp01(Mathf.Abs(forwardSpeed) / maxSpeed);
-        var throttleScale = 1f - speed01;
-        throttleScale = Mathf.Clamp(throttleScale, 0f, 1f);
-
-        var force = transform.forward * (throttle * accel * throttleScale);
-        rb.AddForce(force, ForceMode.Acceleration);
+        // HandleCollisionEnter is not defined in the KBaseState interface
+        if (_stateMachine.currentState is BoatBaseState baseState)
+        {
+            baseState.HandleCollisionEnter(this, other);
+        }
     }
-
-    private void ApplySteering(float steer, float dt)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        var desiredYawRateRad = Mathf.Deg2Rad * (steer * maxTurnRate);
-        var yawAccelRad = Mathf.Deg2Rad * turnAcceleration;
-
-        targetYawRateRad = Mathf.MoveTowards(
-            targetYawRateRad, 
-            desiredYawRateRad, 
-            yawAccelRad * dt
-            );
-        
-        rb.AddTorque(Vector3.up * targetYawRateRad, ForceMode.Acceleration);
+        // Forward trigger to current state
+        if (_stateMachine.currentState is BoatBaseState baseState)
+        {
+            baseState.HandleTriggerEnter(this, other);
+        }
     }
-
-    private void ApplyWaterDrag()
+    
+    #region State Transitions
+    
+    /// <summary>
+    /// Transition to normal sailing control state
+    /// </summary>
+    public void TransitionToNormalControl()
     {
-        #region LinearDrag
+        _stateMachine.TransitState<BoatNormalControlState>(_cameraShakePlayer);
+    }
+    
+    /// <summary>
+    /// Transition to docking state
+    /// </summary>
+    public void TransitionToDocking(Transform dockTransform)
+    {
+        _stateMachine.TransitState<BoatDockingState>(_dockingPlayer, dockTransform);
+    }
+    
+    #endregion
 
-        var v = rb.linearVelocity;
-        var speed = v.magnitude;
-
-        if (speed > stopThreshold)
-        {
-            var fLinear = -v * linearDrag;
-
-            var quadFactor = speed * quadraticDrag;
-            var fQuadratic = -v * quadFactor;
-            
-            rb.AddForce(fLinear + fQuadratic, ForceMode.Acceleration);
-        }
-        else
-        {
-            rb.linearVelocity = Vector3.zero;
-        }
-
-        #endregion
-
-        #region LateralDamping
-
-        var right = transform.right;
-        var lateralSpeed = Vector3.Dot(v, right);
-
-        if (Mathf.Abs(lateralSpeed) > stopThreshold)
-        {
-            var lateralVel = right * lateralSpeed;
-            var fLateral = -lateralVel * lateralExtraDrag;
-            rb.AddForce(fLateral, ForceMode.Acceleration);
-        }
-
-        #endregion
-
-        #region AngularDrag
-
-        var w = rb.angularVelocity;
-        var wMag = w.magnitude;
-
-        if (wMag > stopThreshold)
-        {
-            var tLinear = -w * angularDrag;
-            var tQuadratic = Vector3.zero;
-            if (angularQuadraticDrag > 0f)
-            {
-                var angularQuadFactor = wMag * angularQuadraticDrag;
-                tQuadratic = -w * angularQuadFactor;
-            }
-            rb.AddTorque(tLinear + tQuadratic, ForceMode.Acceleration);
-        }
-        else
-        {
-            rb.angularVelocity = Vector3.zero;
-        }
-
-        #endregion
-
+    private void OnDestroy()
+    {
+        _stateMachine.DestroySelf();
     }
 }    
