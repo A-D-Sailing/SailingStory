@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 29995032368709364}
   - component: {fileID: 8470519775829482606}
   m_Layer: 0
-  m_Name: wind_field
+  m_Name: WindField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
