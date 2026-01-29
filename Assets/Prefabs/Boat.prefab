@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -58.000004
+      value: -118.26247
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1028,11 +1028,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9969106
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.071437396
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1040,7 +1040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.03265084
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a732c15e4060ed45ba4e2d161fcb5e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1083,19 +1083,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightInterface:
-    method: 0
+    method: 1
     waterObject: {fileID: 0}
     autoFind: 1
-    waveProfile: {fileID: 0}
+    waveProfile: {fileID: 11400000, guid: 343e9ebae18bc0f48811edac300d64d0, type: 2}
     waterLevelSource: 1
     waterLevelTransform: {fileID: 0}
     waterLevel: 0
-  surfaceSize: {x: 638, y: 573.5}
+  surfaceSize: {x: 738.1, y: 609.9}
   followTarget: {fileID: 8275238862024768119}
-  heightOffset: -0.08
-  rollAmount: 1.5
+  heightOffset: -0.18
+  rollAmount: 1.15
   rotation: 0
-  smoothing: 1.5
+  smoothing: 1.71
   heightValue: 0
   rigidbody: {fileID: 0}
 --- !u!114 &2161645833781014064
