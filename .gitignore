@@ -100,3 +100,12 @@ InitTestScene*.unity*
 
 # Jetbrains Rider
 .idea/
+
+# Wwise
+.backup*
+.cache*
+*.akd
+*.prof
+*.validationcache
+*.wsettings
+IncrementalSoundBankData.xml
