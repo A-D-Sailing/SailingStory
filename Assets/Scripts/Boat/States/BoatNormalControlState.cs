@@ -64,6 +64,10 @@ public class BoatNormalControlState : BoatBaseState
         ApplySteering(owner, steer, dt);
         ApplyWaterDrag(owner);
 
+        if (Mathf.Abs(forwardSpeed) > owner.soundSpeedThreshold)
+        {
+            owner.PlayBoatSound();
+        }
     }
     
     public override void ExitState(BoatController owner)
