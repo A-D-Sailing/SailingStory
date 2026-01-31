@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_BOAT_SAILING_SLOW = 3774150848U;
+        static const AkUniqueID STOP_BOAT_SAILING_SLOW = 602176938U;
     } // namespace EVENTS
 
     namespace BANKS

@@ -6,6 +6,26 @@
 				<Event Name="Play_Boat_Sailing_Slow" ID="{8A7926DB-B7E9-4FDE-A025-1C081005F4A3}">
 					<ChildrenList>
 						<Action Name="" ID="{5A93E70B-72C7-4B23-84F8-2EDE6F09C494}" ShortID="505538342">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Boat_Sailing_Slow" ID="{85AA4BB0-303E-44A9-9B87-2B78711557A5}">
+					<ChildrenList>
+						<Action Name="" ID="{3C3B0205-3EB7-42E6-9D4E-F35E669C407F}" ShortID="98904156">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.4"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>

@@ -14,7 +14,12 @@ public class BoatNormalControlState : BoatBaseState
     private float lastDockCheckTime;
     
     private CameraShakeFeedbacks _cameraShakePlayer;
-    
+
+    // Add Audio Value
+    private AkAmbient _boatMoveSound;  
+    private bool _isMoving = false;
+    private const float MOVE_THRESHOLD = 0.5f;
+
     /// <summary>
     /// Enter the normal control state
     /// </summary>
@@ -32,7 +37,14 @@ public class BoatNormalControlState : BoatBaseState
         {
             _cameraShakePlayer = cameraShake;
         }
-        
+
+        // Get Boat Audio Component
+        _boatMoveSound = owner.GetComponent<AkAmbient>();
+        if (_boatMoveSound == null)
+        {
+            Debug.LogWarning("[BoatSound] AkAmbient component not found on boat!");
+        }
+
         Debug.Log("[BoatState] Entered Normal Control State");
     }
     
@@ -64,16 +76,42 @@ public class BoatNormalControlState : BoatBaseState
         ApplySteering(owner, steer, dt);
         ApplyWaterDrag(owner);
 
-        if (Mathf.Abs(forwardSpeed) > owner.soundSpeedThreshold)
-        {
-            owner.PlayBoatSound();
-        }
+        CheckMovementAndPlaySound(rb);
     }
-    
+
+    private void CheckMovementAndPlaySound(Rigidbody rb)
+    {
+        if (_boatMoveSound == null) return;
+
+        float linearSpeed = rb.linearVelocity.magnitude;
+        float angularSpeed = rb.angularVelocity.magnitude;
+
+        bool isCurrentlyMoving = (linearSpeed > MOVE_THRESHOLD) || (angularSpeed > 0.1f);
+
+        if (isCurrentlyMoving && !_isMoving)
+        {
+            AkUnitySoundEngine.PostEvent("Play_Boat_Sailing_Slow", _boatMoveSound.gameObject);
+            Debug.Log("[BoatSound] Started moving - Playing Play_Boat_Sailing_Slow");
+        }
+        else if (!isCurrentlyMoving && _isMoving)
+        {
+            AkUnitySoundEngine.PostEvent("Stop_Boat_Sailing_Slow", _boatMoveSound.gameObject);
+            Debug.Log("[BoatSound] Stopped moving - Stopping Play_Boat_Sailing_Slow");
+        }
+
+        _isMoving = isCurrentlyMoving;
+    }
     public override void ExitState(BoatController owner)
     {
+        if (_boatMoveSound != null && _isMoving)
+        {
+            AkUnitySoundEngine.PostEvent("Stop_Boat_Sailing_Slow", _boatMoveSound.gameObject);
+            _isMoving = false;
+        }
+
         Debug.Log("[BoatState] Exited Normal Control State");
         _cameraShakePlayer = null;
+        _boatMoveSound = null;
     }
     
     public override void HandleCollisionEnter(BoatController owner, Collision collision)

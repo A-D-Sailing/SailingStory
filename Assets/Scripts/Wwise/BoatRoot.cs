@@ -6,9 +6,14 @@ public class BoatRoot : MonoBehaviour
 {
     public AK.Wwise.Event Boatsailingsound;
 
-    public void Playboatsailingsound ()
+    void Update ()
     {
         Debug.Log("123");
-        Boatsailingsound.Post (gameObject);
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            Boatsailingsound.Post(gameObject);
+
+        }
+            
     }
 }

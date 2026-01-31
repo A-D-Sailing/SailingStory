@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{25DAB77C-74DB-4E52-B00A-E15163D2F37E}",
     "Language": "SFX",
-    "Hash": "{D2207545-A965-9C50-A4BB-067590F75E5B}",
+    "Hash": "{221C4BF6-FD97-9FC4-AB39-0F47A5EC9F70}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -38,10 +38,20 @@
         "Id": "90781119"
        }
       ]
+     },
+     {
+      "Id": "602176938",
+      "Name": "Stop_Boat_Sailing_Slow",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Boat_Sailing_Slow",
+      "GUID": "{85AA4BB0-303E-44A9-9B87-2B78711557A5}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
      }
     ]
    }
   ],
-  "FileHash": "{9280C9BF-25A0-D965-68BA-A7DAE9D6B735}"
+  "FileHash": "{F776705C-39CE-70AA-13EA-3685408EBB08}"
  }
 }

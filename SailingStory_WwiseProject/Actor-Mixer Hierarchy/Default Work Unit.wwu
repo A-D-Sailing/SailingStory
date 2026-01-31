@@ -14,6 +14,9 @@
 					</ReferenceList>
 					<ChildrenList>
 						<AudioFileSource Name="Ship Sailing Slow Loop" ID="{D3DC8ADC-CDB7-42B4-A63D-B60539E1EBF4}">
+							<PropertyList>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+							</PropertyList>
 							<Language>SFX</Language>
 							<AudioFile>Ship Sailing Slow Loop.wav</AudioFile>
 							<MediaIDList>
