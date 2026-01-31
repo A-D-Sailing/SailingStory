@@ -66,11 +66,11 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 766ef3eb87186c44a702ae549ccfb9e3
     GuidInternal: 
-    m_lastTime: -8584317900599877533
+    m_lastTime: -8584317491605774495
     List:
-    - name: Main
-      guid: 7cb7da25db74524eb00ae15163d2f37e
-      id: 3161908922
+    - name: Amb
+      guid: 953894e42f7efc45a2af0292442a3a09
+      id: 1117531639
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -78,10 +78,24 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 766ef3eb87186c44a702ae549ccfb9e3
-      - ElementName: Main
+      - ElementName: Amb
+        ObjectType: 7
+        guid: 953894e42f7efc45a2af0292442a3a09
+      Path: SoundBanks\Default Work Unit\Amb
+    - name: Boat
+      guid: 7cb7da25db74524eb00ae15163d2f37e
+      id: 1795056175
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 766ef3eb87186c44a702ae549ccfb9e3
+      - ElementName: Boat
         ObjectType: 7
         guid: 7cb7da25db74524eb00ae15163d2f37e
-      Path: SoundBanks\Default Work Unit\Main
+      Path: SoundBanks\Default Work Unit\Boat
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -94,8 +108,42 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0a533d8fba77634fa38738b46a754f47
     GuidInternal: 
-    m_lastTime: -8584317900599877533
+    m_lastTime: -8584317491605791197
     List:
+    - name: Ocean_Amb
+      guid: e15e7d87bc6fef46868ad413fbbb2ae9
+      id: 3171782980
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Ocean_Amb
+        ObjectType: 3
+        guid: e15e7d87bc6fef46868ad413fbbb2ae9
+      Path: Events\Default Work Unit\Ocean_Amb
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Play_Ambient_Music
+      guid: 98bbbfe86d17444dafbe4b302e8baae6
+      id: 1238538214
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_Ambient_Music
+        ObjectType: 3
+        guid: 98bbbfe86d17444dafbe4b302e8baae6
+      Path: Events\Default Work Unit\Play_Ambient_Music
+      maxAttenuation: 0
+      maxDuration: 95.63233
+      minDuration: 95.63233
     - name: Play_Boat_Sailing_Slow
       guid: db26798ae9b7de4fa0251c081005f4a3
       id: 3774150848
@@ -113,6 +161,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 34.799366
       minDuration: 34.799366
+    - name: Stop_Boat_Sailing_Slow
+      guid: b04baa853e30a9449b872b78711557a5
+      id: 602176938
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Stop_Boat_Sailing_Slow
+        ObjectType: 3
+        guid: b04baa853e30a9449b872b78711557a5
+      Path: Events\Default Work Unit\Stop_Boat_Sailing_Slow
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -170,7 +235,7 @@ MonoBehaviour:
     m_lastTime: -8584317932732427245
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 050000000600000007000000
+  ExpandedWaapiItemIds: 0500000006000000070000000d0000000e000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

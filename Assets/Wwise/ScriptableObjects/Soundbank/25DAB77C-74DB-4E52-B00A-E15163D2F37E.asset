@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c738ca8444d6e6143abe52f7e08eebaf, type: 3}
   m_Name: 25DAB77C-74DB-4E52-B00A-E15163D2F37E
   m_EditorClassIdentifier: 
-  objectName: Main
-  id: 3161908922
+  objectName: Boat
+  id: 1795056175
   guid: 25DAB77C-74DB-4E52-B00A-E15163D2F37E

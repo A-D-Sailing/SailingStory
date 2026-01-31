@@ -13,6 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID OCEAN_AMB = 3171782980U;
+        static const AkUniqueID PLAY_AMBIENT_MUSIC = 1238538214U;
         static const AkUniqueID PLAY_BOAT_SAILING_SLOW = 3774150848U;
         static const AkUniqueID STOP_BOAT_SAILING_SLOW = 602176938U;
     } // namespace EVENTS
@@ -20,7 +22,8 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID MAIN = 3161908922U;
+        static const AkUniqueID AMB = 1117531639U;
+        static const AkUniqueID BOAT = 1795056175U;
     } // namespace BANKS
 
     namespace BUSSES

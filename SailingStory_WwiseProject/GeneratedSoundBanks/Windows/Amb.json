@@ -1,0 +1,152 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "1117531639",
+    "Type": "User",
+    "GUID": "{E4943895-7E2F-45FC-A2AF-0292442A3A09}",
+    "Language": "SFX",
+    "Hash": "{DF46E843-3B25-C012-557D-36B7DE4164D4}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
+    "ShortName": "Amb",
+    "Path": "Amb.bnk",
+    "Media": [
+     {
+      "Id": "240420475",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Wave_Hit_Small-01.wav",
+      "CachePath": "7F/{7F50FA6C-3221-DA72-3E77-D180356A16E2}.wem"
+     },
+     {
+      "Id": "321921039",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Wave_Hit_Small-03.wav",
+      "CachePath": "5C/{5C5E0B72-1676-1F7D-40F9-FFA0AA319E57}.wem"
+     },
+     {
+      "Id": "360802274",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Wave_Hit_Big-03.wav",
+      "CachePath": "DD/{DDD9FDD8-9585-9E98-E563-9581149D606E}.wem"
+     },
+     {
+      "Id": "400619858",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Wave_Hit_Big-02.wav",
+      "CachePath": "75/{75DBD20F-9043-9CD8-0A45-E0FA83263AFD}.wem"
+     },
+     {
+      "Id": "672192723",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Wave_Hit_Small-02.wav",
+      "CachePath": "03/{03281BC7-F057-507E-7216-903E2A8EC421}.wem"
+     },
+     {
+      "Id": "705253284",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Base.wav",
+      "CachePath": "F8/{F8A5E0FF-BC5D-2E4B-D75E-FCD4108A062C}.wem"
+     },
+     {
+      "Id": "822314929",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Wave_Hit_Big-01.wav",
+      "CachePath": "D2/{D2F0BDF7-8BD1-5B5C-E21D-CFAB7D37D796}.wem"
+     },
+     {
+      "Id": "989565158",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ambient_Music.wav",
+      "CachePath": "F0/{F0568BDA-364C-7551-5E19-99A9124D041B}.wem"
+     }
+    ],
+    "Plugins": {
+     "Custom": [
+      {
+       "Id": "1043767212",
+       "Name": "Silence",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\Ocean_Amb\\Ocean_Wave\\Slience\\Silence",
+       "GUID": "{2B89A91F-0EE5-425F-B159-D08413510689}",
+       "LibName": "Wwise Silence",
+       "LibId": "6619138"
+      }
+     ]
+    },
+    "Events": [
+     {
+      "Id": "3171782980",
+      "Name": "Ocean_Amb",
+      "ObjectPath": "\\Events\\Default Work Unit\\Ocean_Amb",
+      "GUID": "{877D5EE1-6FBC-46EF-868A-D413FBBB2AE9}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "240420475"
+       },
+       {
+        "Id": "321921039"
+       },
+       {
+        "Id": "360802274"
+       },
+       {
+        "Id": "400619858"
+       },
+       {
+        "Id": "672192723"
+       },
+       {
+        "Id": "705253284"
+       },
+       {
+        "Id": "822314929"
+       }
+      ],
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "1043767212"
+        }
+       ]
+      }
+     },
+     {
+      "Id": "1238538214",
+      "Name": "Play_Ambient_Music",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Ambient_Music",
+      "GUID": "{E8BFBB98-176D-4D44-AFBE-4B302E8BAAE6}",
+      "DurationType": "OneShot",
+      "DurationMin": "95.63233",
+      "DurationMax": "95.63233",
+      "MediaRefs": [
+       {
+        "Id": "989565158"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{5DA1D897-00AA-1DF1-5A67-557CBA7B234E}"
+ }
+}

@@ -18,7 +18,7 @@ public class BoatNormalControlState : BoatBaseState
     // Add Audio Value
     private AkAmbient _boatMoveSound;  
     private bool _isMoving = false;
-    private const float MOVE_THRESHOLD = 0.5f;
+    private const float MOVE_THRESHOLD = 0.1f;
 
     /// <summary>
     /// Enter the normal control state

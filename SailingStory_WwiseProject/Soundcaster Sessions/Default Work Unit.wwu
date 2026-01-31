@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{C4535414-54EB-4819-81B5-86812A42FF7B}" SchemaVersion="123">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{C4535414-54EB-4819-81B5-86812A42FF7B}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{C4535414-54EB-4819-81B5-86812A42FF7B}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="Amb" ID="{623FEE7D-14DE-4CA2-8253-53D8EDD8DC89}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Ambient_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Ocean_Amb_Base" ID="{DDFBD44A-E676-40B7-A40F-6CF7B3412CE1}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Ocean_Wave" ID="{B4B76288-CD45-4E38-9926-E1FC744FFF77}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true"/>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>
