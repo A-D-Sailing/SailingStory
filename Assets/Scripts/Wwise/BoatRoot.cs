@@ -9,6 +9,6 @@ public class BoatRoot : MonoBehaviour
     public void Playboatsailingsound ()
     {
         Debug.Log("123");
-
+        Boatsailingsound.Post (gameObject);
     }
 }

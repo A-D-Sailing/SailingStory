@@ -39,6 +39,10 @@ public class BoatController : MonoBehaviour
     [Tooltip("The distance limit when the boat should start auto docking"), Range(0f, 200f)]
     public float autoDockDistance = 50;
 
+    [Header("Audio")]
+    public float soundSpeedThreshold = 3f;
+    private BoatRoot boatRoot;
+    private bool isSoundPlaying = false;
 
     // Components
     private Rigidbody rb;
@@ -56,6 +60,7 @@ public class BoatController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        boatRoot = GetComponent<BoatRoot>();
 
         // Cancel out the preset damping
         rb.linearDamping = 0f;
@@ -72,6 +77,7 @@ public class BoatController : MonoBehaviour
         // Initialize state machine with Normal Control as the initial state
         _stateMachine = new KStateMachine<BoatController>(this, new BoatNormalControlState(), _cameraShakePlayer);
     }
+
 
     private void FixedUpdate()
     {
