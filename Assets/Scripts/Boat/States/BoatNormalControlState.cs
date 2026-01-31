@@ -45,24 +45,25 @@ public class BoatNormalControlState : BoatBaseState
             CheckForNearbyDock(owner);
         }
     }
-    
+
     public override void HandleFixedUpdate(BoatController owner)
     {
         var dt = Time.fixedDeltaTime;
-        
+
         // Get input
         var (throttle, steer) = GetInput();
-        
+
         // Getting vectors for boat status
         var rb = owner.Rigidbody;
         var v = rb.linearVelocity;
         var forward = owner.transform.forward;
-        
+
         var forwardSpeed = Vector3.Dot(v, forward);
-        
+
         ApplyThrust(owner, throttle, forwardSpeed);
         ApplySteering(owner, steer, dt);
         ApplyWaterDrag(owner);
+
     }
     
     public override void ExitState(BoatController owner)

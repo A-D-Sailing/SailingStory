@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}" SchemaVersion="123">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" ShortID="328598082">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Ship Sailing Slow Loop" ID="{D3DC8ADC-CDB7-42B4-A63D-B60539E1EBF4}">
+							<Language>SFX</Language>
+							<AudioFile>Ship Sailing Slow Loop.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="90781119"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Ship Sailing Slow Loop" ID="{D3DC8ADC-CDB7-42B4-A63D-B60539E1EBF4}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

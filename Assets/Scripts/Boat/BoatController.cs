@@ -38,7 +38,8 @@ public class BoatController : MonoBehaviour
     
     [Tooltip("The distance limit when the boat should start auto docking"), Range(0f, 200f)]
     public float autoDockDistance = 50;
-    
+
+
     // Components
     private Rigidbody rb;
     

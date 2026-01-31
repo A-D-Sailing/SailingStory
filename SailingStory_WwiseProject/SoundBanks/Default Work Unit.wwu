@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{EBF36E76-1887-446C-A702-AE549CCFB9E3}" SchemaVersion="123">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{EBF36E76-1887-446C-A702-AE549CCFB9E3}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Main" ID="{25DAB77C-74DB-4E52-B00A-E15163D2F37E}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_Boat_Sailing_Slow" ID="{8A7926DB-B7E9-4FDE-A025-1C081005F4A3}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

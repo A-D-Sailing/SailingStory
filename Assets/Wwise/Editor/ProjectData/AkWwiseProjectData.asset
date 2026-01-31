@@ -66,8 +66,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 766ef3eb87186c44a702ae549ccfb9e3
     GuidInternal: 
-    m_lastTime: -8584317932732498994
-    List: []
+    m_lastTime: -8584317900599877533
+    List:
+    - name: Main
+      guid: 7cb7da25db74524eb00ae15163d2f37e
+      id: 3161908922
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 766ef3eb87186c44a702ae549ccfb9e3
+      - ElementName: Main
+        ObjectType: 7
+        guid: 7cb7da25db74524eb00ae15163d2f37e
+      Path: SoundBanks\Default Work Unit\Main
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -80,8 +94,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0a533d8fba77634fa38738b46a754f47
     GuidInternal: 
-    m_lastTime: -8584317932732975478
-    List: []
+    m_lastTime: -8584317900599877533
+    List:
+    - name: Play_Boat_Sailing_Slow
+      guid: db26798ae9b7de4fa0251c081005f4a3
+      id: 3774150848
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_Boat_Sailing_Slow
+        ObjectType: 3
+        guid: db26798ae9b7de4fa0251c081005f4a3
+      Path: Events\Default Work Unit\Play_Boat_Sailing_Slow
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
