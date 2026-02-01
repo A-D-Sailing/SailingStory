@@ -50,7 +50,7 @@
 						<Action Name="" ID="{9EBEBA30-C908-41F0-AF2E-ED80BEBFFCE7}" ShortID="624805734">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Ambient_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+									<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

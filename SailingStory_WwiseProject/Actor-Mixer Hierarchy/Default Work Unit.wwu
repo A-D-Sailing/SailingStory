@@ -363,7 +363,7 @@
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>-0</YPos>
+																<YPos>0</YPos>
 																<Flags>5</Flags>
 																<SegmentShape>Log1</SegmentShape>
 															</Point>
@@ -383,7 +383,7 @@
 						</ObjectList>
 					</ObjectLists>
 				</BlendContainer>
-				<Sound Name="Ambient_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" ShortID="476953304">
+				<Sound Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" ShortID="476953304">
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
