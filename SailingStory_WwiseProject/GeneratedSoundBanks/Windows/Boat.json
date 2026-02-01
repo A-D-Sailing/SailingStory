@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{25DAB77C-74DB-4E52-B00A-E15163D2F37E}",
     "Language": "SFX",
-    "Hash": "{D7DAFA93-FDEA-8F92-0EED-FE3BDCAD6A92}",
+    "Hash": "{F194B776-7E2B-E999-F5D1-39E6C6051437}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Boat",
     "ShortName": "Boat",
     "Path": "Boat.bnk",
@@ -21,7 +21,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Ship Sailing Slow Loop.wav",
-      "CachePath": "1A/{1A0013F7-E8AB-06C2-7C2F-3758A3E62409}.wem"
+      "CachePath": "66/{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem"
      }
     ],
     "Events": [
@@ -30,9 +30,7 @@
       "Name": "Play_Boat_Sailing_Slow",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Boat_Sailing_Slow",
       "GUID": "{8A7926DB-B7E9-4FDE-A025-1C081005F4A3}",
-      "DurationType": "OneShot",
-      "DurationMin": "34.799366",
-      "DurationMax": "34.799366",
+      "DurationType": "Infinite",
       "MediaRefs": [
        {
         "Id": "90781119"
@@ -52,6 +50,6 @@
     ]
    }
   ],
-  "FileHash": "{566CDCFA-2A9C-DDC6-0E7C-6E590F158D46}"
+  "FileHash": "{638F0113-BC06-AF79-2F68-56D32A550252}"
  }
 }

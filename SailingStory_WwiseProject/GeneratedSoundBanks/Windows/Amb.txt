@@ -2,6 +2,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	1238538214	Play_Ambient_Music			\Default Work Unit\Play_Ambient_Music	
 	3171782980	Ocean_Amb			\Default Work Unit\Ocean_Amb	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1259668694	Ocean_Amb_Control			\Default Work Unit\Ocean_Amb_Control	
+
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	1043767212	Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Wave\Slience\Silence	
 
@@ -11,7 +14,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	360802274	Ocean_Amb_Wave_Hit_Big-03	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\DD\{DDD9FDD8-9585-9E98-E563-9581149D606E}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-03		603676
 	400619858	Ocean_Amb_Wave_Hit_Big-02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\75\{75DBD20F-9043-9CD8-0A45-E0FA83263AFD}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-02		739008
 	672192723	Ocean_Amb_Wave_Hit_Small-02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\03\{03281BC7-F057-507E-7216-903E2A8EC421}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Small-02		679736
-	705253284	Ocean_Amb_Base	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\F8\{F8A5E0FF-BC5D-2E4B-D75E-FCD4108A062C}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Amb_Base		15179852
+	705253284	Ocean_Amb_Base	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\BB\{BBD70E0C-DBE4-4197-64C6-DA1995FB8FE9}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Amb_Base		15179852
 	822314929	Ocean_Amb_Wave_Hit_Big-01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\D2\{D2F0BDF7-8BD1-5B5C-E21D-CFAB7D37D796}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean_Amb\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-01		548832
 	989565158	Ambient_Music	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\F0\{F0568BDA-364C-7551-5E19-99A9124D041B}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambient_Music		18361664
 

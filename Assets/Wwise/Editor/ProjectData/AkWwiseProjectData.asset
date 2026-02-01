@@ -108,7 +108,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0a533d8fba77634fa38738b46a754f47
     GuidInternal: 
-    m_lastTime: -8584317491605791197
+    m_lastTime: -8584317190559677773
     List:
     - name: Ocean_Amb
       guid: e15e7d87bc6fef46868ad413fbbb2ae9
@@ -159,8 +159,8 @@ MonoBehaviour:
         guid: db26798ae9b7de4fa0251c081005f4a3
       Path: Events\Default Work Unit\Play_Boat_Sailing_Slow
       maxAttenuation: 0
-      maxDuration: 34.799366
-      minDuration: 34.799366
+      maxDuration: 0
+      minDuration: 0
     - name: Stop_Boat_Sailing_Slow
       guid: b04baa853e30a9449b872b78711557a5
       id: 602176938
@@ -190,8 +190,22 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: df9a34661854744fab0fe1809a3a2ebc
     GuidInternal: 
-    m_lastTime: -8584317932732809498
-    List: []
+    m_lastTime: -8584317190559724659
+    List:
+    - name: Ocean_Amb_Control
+      guid: 7e5ac00cff92d54281deea4bc9c8884f
+      id: 1259668694
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: df9a34661854744fab0fe1809a3a2ebc
+      - ElementName: Ocean_Amb_Control
+        ObjectType: 13
+        guid: 7e5ac00cff92d54281deea4bc9c8884f
+      Path: Game Parameters\Default Work Unit\Ocean_Amb_Control
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     PathAndIcons:

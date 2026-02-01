@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E4943895-7E2F-45FC-A2AF-0292442A3A09}",
     "Language": "SFX",
-    "Hash": "{DF46E843-3B25-C012-557D-36B7DE4164D4}",
+    "Hash": "{7957B77D-96EB-B859-1684-89E6F034E768}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -61,7 +61,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Ocean_Amb_Base.wav",
-      "CachePath": "F8/{F8A5E0FF-BC5D-2E4B-D75E-FCD4108A062C}.wem"
+      "CachePath": "BB/{BBD70E0C-DBE4-4197-64C6-DA1995FB8FE9}.wem"
      },
      {
       "Id": "822314929",
@@ -144,9 +144,17 @@
        }
       ]
      }
+    ],
+    "GameParameters": [
+     {
+      "Id": "1259668694",
+      "Name": "Ocean_Amb_Control",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Ocean_Amb_Control",
+      "GUID": "{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"
+     }
     ]
    }
   ],
-  "FileHash": "{5DA1D897-00AA-1DF1-5A67-557CBA7B234E}"
+  "FileHash": "{49E3C1D3-EE48-FCD7-6FE7-25E540A3032F}"
  }
 }

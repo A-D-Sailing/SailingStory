@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{44E197F6-30A8-BA16-78EB-D1C59055A356}",
+    "Hash": "{735FFEC2-945E-48C4-D72A-4A82A48AB4C6}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -41,9 +41,17 @@
       "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus",
       "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
      }
+    ],
+    "GameParameters": [
+     {
+      "Id": "1259668694",
+      "Name": "Ocean_Amb_Control",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Ocean_Amb_Control",
+      "GUID": "{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"
+     }
     ]
    }
   ],
-  "FileHash": "{C5AB2688-B222-63E0-7DED-84B5DC5D23D5}"
+  "FileHash": "{D70C9FD8-431B-AF69-89AD-9FBCB4529EEF}"
  }
 }

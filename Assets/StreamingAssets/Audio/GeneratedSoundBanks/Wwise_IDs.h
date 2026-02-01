@@ -19,6 +19,11 @@ namespace AK
         static const AkUniqueID STOP_BOAT_SAILING_SLOW = 602176938U;
     } // namespace EVENTS
 
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID OCEAN_AMB_CONTROL = 1259668694U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;

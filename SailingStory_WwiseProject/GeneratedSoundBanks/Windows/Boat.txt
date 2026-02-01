@@ -3,5 +3,5 @@ Event	ID	Name			Wwise Object Path	Notes
 	3774150848	Play_Boat_Sailing_Slow			\Default Work Unit\Play_Boat_Sailing_Slow	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	90781119	Boat_Sailing_Slow	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\1A\{1A0013F7-E8AB-06C2-7C2F-3758A3E62409}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat_Sailing_Slow		6138704
+	90781119	Boat_Sailing_Slow	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\66\{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat_Sailing_Slow		6138704
 

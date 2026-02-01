@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{66349ADF-5418-4F74-AB0F-E1809A3A2EBC}" SchemaVersion="123">
 	<GameParameters>
-		<WorkUnit Name="Default Work Unit" ID="{66349ADF-5418-4F74-AB0F-E1809A3A2EBC}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{66349ADF-5418-4F74-AB0F-E1809A3A2EBC}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="Ocean_Amb_Control" ID="{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="10"/>
+					</PropertyList>
+				</GameParameter>
+			</ChildrenList>
+		</WorkUnit>
 	</GameParameters>
 </WwiseDocument>
