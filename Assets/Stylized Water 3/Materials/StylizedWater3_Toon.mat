@@ -13,12 +13,12 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADVANCED_SHADING
+  - _DISABLE_DEPTH_TEX
   - _FLAT_SHADING
   - _INTERSECTION_FOAM
   - _NORMALMAP
   - _SURFACE_FOAM_DUAL
   - _SURFACE_FOAM_SINGLE
-  - _UNLIT
   - _WAVES
   m_InvalidKeywords:
   - ADVANCED_LIGHTING
@@ -42,7 +42,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _WaveSteepness
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -169,7 +169,7 @@ Material:
     - _DepthMode: 0
     - _DepthTexture: 1
     - _DepthVertical: 0.01
-    - _DisableDepthTexture: 0
+    - _DisableDepthTexture: 1
     - _DistanceFoamTiling: 0.39999992
     - _DistanceNormalsOn: 0
     - _DistanceNormalsTiling: 0.25
@@ -202,7 +202,7 @@ Material:
     - _FoamWaveAmount: 0
     - _FoamWaveMask: 0
     - _FoamWaveMaskExp: 1
-    - _FogSource: 0
+    - _FogSource: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -217,30 +217,30 @@ Material:
     - _IntersectionRippleStrength: 0.251
     - _IntersectionSharp: 1
     - _IntersectionSize: 0.944
-    - _IntersectionSource: 0
+    - _IntersectionSource: 1
     - _IntersectionSpeed: -0.05
     - _IntersectionStyle: 1
     - _IntersectionTiling: 0.11000057
     - _IntersectionWaveDist: 41.4
-    - _LightingOn: 0
+    - _LightingOn: 1
     - _Metallic: 0
     - _Metallicness: 0.1
     - _NORMALMAPOn: 1
     - _NormalMap: 1
     - _NormalMapOn: 1
     - _NormalSpeed: 0.2
-    - _NormalStrength: 0.371
+    - _NormalStrength: 0.117
     - _NormalSubSpeed: -0.5
     - _NormalSubTiling: 0.5
     - _NormalTiling: 0.3300001
     - _OcclusionStrength: 1
     - _PlanarReflectionsEnabled: 0
     - _PlanarReflectionsParams: 0
-    - _PointSpotLightReflectionDistortion: 0.5
+    - _PointSpotLightReflectionDistortion: 0.552
     - _PointSpotLightReflectionExp: 64
     - _PointSpotLightReflectionSharp: 0
-    - _PointSpotLightReflectionSize: 0
-    - _PointSpotLightReflectionStrength: 10
+    - _PointSpotLightReflectionSize: 0.816
+    - _PointSpotLightReflectionStrength: 6.17
     - _QueueOffset: 0
     - _ReceiveDynamicEffectsFoam: 1
     - _ReceiveDynamicEffectsHeight: 1
@@ -262,7 +262,7 @@ Material:
     - _RiverModeOn: 0
     - _ScreenSpaceReflectionsEnabled: 0
     - _ShadingMode: 1
-    - _ShadowStrength: 1
+    - _ShadowStrength: 0.811
     - _ShoreLineLength: 1.3
     - _ShoreLineWaveDistance: 12
     - _ShoreLineWaveStr: 0.386
@@ -275,28 +275,28 @@ Material:
     - _SlopeThreshold: 0.25
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SparkleIntensity: 6.25
-    - _SparkleSize: 0.662
+    - _SparkleIntensity: 0.83
+    - _SparkleSize: 1
     - _SpecularHighlights: 1
     - _SpecularReflectionsOn: 1
     - _Speed: 1
     - _SrcBlend: 1
-    - _SunReflectionDistortion: 0.1
+    - _SunReflectionDistortion: 0.235
     - _SunReflectionPerturbance: 1
     - _SunReflectionSharp: 0
-    - _SunReflectionSize: 1
-    - _SunReflectionStrength: 0
+    - _SunReflectionSize: 0.983
+    - _SunReflectionStrength: 8.48
     - _Surface: 0
     - _TEXTURE_INTERSECTIONOn: 1
     - _Texture_IntersectionOn: 0
     - _Tiling: 0.5
     - _Translucency: 0.06
     - _TranslucencyCurvatureMask: 0
-    - _TranslucencyExp: 4
+    - _TranslucencyExp: 2.86
     - _TranslucencyOn: 0
     - _TranslucencyReflectionMask: 0
-    - _TranslucencyStrength: 1
-    - _TranslucencyStrengthDirect: 0.05
+    - _TranslucencyStrength: 1.183
+    - _TranslucencyStrengthDirect: 0.087
     - _UnderwaterReflectionStrength: 0.5
     - _UnderwaterRefractionOffset: 0.2
     - _UnderwaterSurfaceSmoothness: 0.8
@@ -304,9 +304,9 @@ Material:
     - _VertexColorTransparency: 0
     - _VertexColorWaveFlattening: 0
     - _WaveDistance: 0.679
-    - _WaveFrequency: 3.0999992
-    - _WaveHeight: 1.16
-    - _WaveMaxLayers: 64
+    - _WaveFrequency: 3.299999
+    - _WaveHeight: 1.61
+    - _WaveMaxLayers: 40
     - _WaveNormalStr: 0
     - _WaveSpeed: 1.6999998
     - _WaveSteepness: 5
@@ -336,7 +336,7 @@ Material:
     - _WaterColor: {r: 0.21176466, g: 0.6745098, b: 1, a: 1}
     - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
     - _WaveDirection: {r: 1, g: 1, b: 1, a: 1}
-    - _WaveFadeDistance: {r: 0, g: 1000, b: 0, a: 0}
+    - _WaveFadeDistance: {r: 0, g: 672.355, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6498140463000427223
