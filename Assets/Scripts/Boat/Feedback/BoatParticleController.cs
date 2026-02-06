@@ -1,26 +1,31 @@
 using UnityEngine;
 
+/// <summary>
+/// The switches of static ripples and dynamic trailing ripples are controlled by calculating the speed threshold of the ship's movement.
+/// When the ship doesn't move, activate the static ripple effect. When the speed of the ship exceeds a certain threshold, the dynamic trailing ripples effect is activated.
+/// The particle system has a built-in "fade out" effect. Therefore, when you set emission.enabled = false to disable it, the particles that have already been generated will not disappear instantly but will naturally complete their lifecycle.
+/// </summary>
+
 public class BoatParticleController : MonoBehaviour
 {
-    [Header("核心设置")]
+    [Header("Core Settings")]
     public Rigidbody boatRB;
-    public float moveThreshold = 1.0f; // 速度超过多少算“动”
+    public float moveThreshold = 1.0f; // how many speed threshold is considered "moving"?
 
-    [Header("特效引用")]
-    // 注意：这里变成了数组 []，意味着你可以拖进去任意多个静态涟漪
+    [Header("VFX References")]
     public ParticleSystem[] stationaryRipples; 
     
-    // 拖尾通常还是一个
+    // RippleTrail
     public ParticleSystem moveTrail;        
 
     void Update()
     {
-        // 1. 计算水平速度
+        // 1. Calculate the horizontal velocity
         float speed = new Vector3(boatRB.linearVelocity.x, 0, boatRB.linearVelocity.z).magnitude;
         bool isMoving = speed > moveThreshold;
 
-        // 2. 控制所有静态涟漪 (遍历数组)
-        // 没动的时候(isMoving=false) -> 开启(!isMoving=true)
+        // 2. Control all static ripples (iterate through the array)
+        // When not moving (isMoving = false) -> Enable (isMoving = true)
         foreach (var ripple in stationaryRipples)
         {
             if (ripple != null)
@@ -30,8 +35,8 @@ public class BoatParticleController : MonoBehaviour
             }
         }
 
-        // 3. 控制动态拖尾
-        // 动的时候(isMoving=true) -> 开启
+        // 3. Control dynamic trailing effect
+        // When moving (isMoving = true) -> Enable
         if (moveTrail != null)
         {
             var trailEmission = moveTrail.emission;
