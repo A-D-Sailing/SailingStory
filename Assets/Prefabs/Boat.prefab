@@ -430,8 +430,8 @@ MonoBehaviour:
   maxReverseSpeed: 50
   forwardAcceleration: 35
   reverseAcceleration: 0.5
-  maxTurnRate: 60
-  turnAcceleration: 30
+  maxTurnRate: 70
+  turnAcceleration: 50
   linearDrag: 1
   quadraticDrag: 0.2
   lateralExtraDrag: 1.5
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boatRB: {fileID: 1438885133475211725}
-  moveThreshold: 1
+  moveThreshold: 0.8
   stationaryRipples:
   - {fileID: 1635416318939978506}
   - {fileID: 9008018620119185499}
@@ -1270,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -53.50632
+      value: -34.300552
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1278,19 +1278,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99966043
+      value: 0.9940412
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.024118286
+      value: -0.108362935
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.008723927
+      value: -0.008674888
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.004619952
+      value: -0.008015104
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1339,15 +1339,15 @@ MonoBehaviour:
   heightInterface:
     method: 1
     waterObject: {fileID: 0}
-    autoFind: 1
+    autoFind: 0
     waveProfile: {fileID: 11400000, guid: 343e9ebae18bc0f48811edac300d64d0, type: 2}
     waterLevelSource: 3
     waterLevelTransform: {fileID: 0}
     waterLevel: 0
-  surfaceSize: {x: 8.6, y: 31.8}
+  surfaceSize: {x: 8.22, y: 27}
   followTarget: {fileID: 8275238862024768119}
   heightOffset: -0.4
-  rollAmount: 0.58
+  rollAmount: 1.31
   rotation: 0
   smoothing: 6
   heightValue: 0

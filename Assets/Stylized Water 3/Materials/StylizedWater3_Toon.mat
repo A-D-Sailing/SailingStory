@@ -306,7 +306,7 @@ Material:
     - _WaveDistance: 0.679
     - _WaveFrequency: 3.299999
     - _WaveHeight: 1.61
-    - _WaveMaxLayers: 40
+    - _WaveMaxLayers: 51
     - _WaveNormalStr: 0
     - _WaveSpeed: 1.6999998
     - _WaveSteepness: 5
