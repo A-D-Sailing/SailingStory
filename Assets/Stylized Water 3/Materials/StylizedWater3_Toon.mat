@@ -169,7 +169,7 @@ Material:
     - _DepthHorizontal: 0.6
     - _DepthMode: 0
     - _DepthTexture: 1
-    - _DepthVertical: 0.01
+    - _DepthVertical: 2.94
     - _DisableDepthTexture: 0
     - _DistanceFoamTiling: 0.39999992
     - _DistanceNormalsOn: 0
@@ -337,7 +337,7 @@ Material:
     - _WaterColor: {r: 0.21176466, g: 0.6745098, b: 1, a: 1}
     - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
     - _WaveDirection: {r: 1, g: 1, b: 1, a: 1}
-    - _WaveFadeDistance: {r: 0, g: 672.355, b: 0, a: 0}
+    - _WaveFadeDistance: {r: 0, g: 744.82764, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6498140463000427223
