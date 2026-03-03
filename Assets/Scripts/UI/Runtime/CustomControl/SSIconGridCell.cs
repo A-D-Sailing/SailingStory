@@ -5,97 +5,78 @@ namespace UI.Runtime.CustomControl
 {
     /// <summary>
     /// A custom UI Toolkit element that displays an icon image within a grid cell.
-    /// Designed to be used as a child of <see cref="SSGridContainer"/>.
+    /// Supports multi-cell spanning via CellWidth and CellHeight properties.
+    /// Designed to be used with <see cref="SSGridContainer"/>.
     /// </summary>
-    /// <remarks>
-    /// Requires the IconGridCell.uss stylesheet to be loaded for proper styling.
-    /// The icon is displayed using an Image element that scales to fit the cell.
-    /// Click events are handled by the parent <see cref="SSGridContainer"/>.
-    /// </remarks>
     [UxmlElement]
     public partial class SSIconGridCell : VisualElement
     {
         private Image _icon;
-        private Texture2D _iconTexture;
+        private Sprite _iconSprite;
 
         /// <summary>
-        /// The texture to display as the icon.
-        /// Can be set via UXML attribute or programmatically.
+        /// Grid X position (column index).
+        /// </summary>
+        public int GridX { get; set; }
+
+        /// <summary>
+        /// Grid Y position (row index).
+        /// </summary>
+        public int GridY { get; set; }
+
+        /// <summary>
+        /// Number of columns this cell spans.
+        /// </summary>
+        public int CellWidth { get; set; } = 1;
+
+        /// <summary>
+        /// Number of rows this cell spans.
+        /// </summary>
+        public int CellHeight { get; set; } = 1;
+
+        /// <summary>
+        /// The sprite to display as the icon.
         /// </summary>
         [UxmlAttribute]
-        public Texture2D iconTexture
+        public Sprite iconSprite
         {
-            get => _iconTexture;
+            get => _iconSprite;
             set
             {
-                _iconTexture = value;
+                _iconSprite = value;
                 if (_icon != null)
                 {
-                    _icon.image = value;
+                    _icon.sprite = value;
                 }
             }
         }
 
-        /// <summary>
-        /// Creates a new IconGridCell without an icon.
-        /// Use <see cref="SetIcon"/> to set the icon later.
-        /// </summary>
         public SSIconGridCell()
         {
             InitializeCell();
         }
 
-        /// <summary>
-        /// Creates a new IconGridCell with the specified icon.
-        /// </summary>
-        /// <param name="icon">The texture to display as the icon.</param>
-        public SSIconGridCell(Texture2D icon)
+        public SSIconGridCell(Sprite icon)
         {
             InitializeCell();
             SetIcon(icon);
         }
 
-        /// <summary>
-        /// Initializes the cell's visual structure and applies USS classes.
-        /// Registers geometry change callback to maintain square aspect ratio.
-        /// </summary>
         private void InitializeCell()
         {
             AddToClassList("icon-grid-cell");
 
-            _icon = new Image();
-            _icon.name = "icon";
+            _icon = new Image { name = "icon" };
             _icon.AddToClassList("icon-grid-icon");
             Add(_icon);
-
-            // Register callback to maintain square aspect ratio
-            RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         }
 
-        /// <summary>
-        /// Called when the cell's geometry changes.
-        /// Sets the height equal to the width to maintain a square shape.
-        /// </summary>
-        private void OnGeometryChanged(GeometryChangedEvent evt)
+        public void SetIcon(Sprite icon)
         {
-            // Set height equal to width to maintain square aspect ratio
-            float width = resolvedStyle.width;
-            if (!float.IsNaN(width) && width > 0)
-            {
-                style.height = width;
-            }
-        }
-
-        /// <summary>
-        /// Sets the icon texture to display.
-        /// </summary>
-        /// <param name="icon">The texture to display, or null to clear the icon.</param>
-        public void SetIcon(Texture2D icon)
-        {
-            _iconTexture = icon;
+            _iconSprite = icon;
             if (_icon != null)
             {
-                _icon.image = icon;
+                _icon.sprite = icon;
             }
         }
     }

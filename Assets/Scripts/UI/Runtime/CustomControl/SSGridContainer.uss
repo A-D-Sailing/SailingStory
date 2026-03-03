@@ -1,14 +1,10 @@
 /*
  * SSGridContainer.uss
  * Base styles for the SSGridContainer custom control.
- * Provides flexbox grid layout with wrap.
+ * Uses relative positioning as parent for absolutely positioned cells.
  */
 
 .grid-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: center;
-    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
