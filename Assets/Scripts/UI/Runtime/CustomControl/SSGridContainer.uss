@@ -1,0 +1,14 @@
+/*
+ * SSGridContainer.uss
+ * Base styles for the SSGridContainer custom control.
+ * Provides flexbox grid layout with wrap.
+ */
+
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+}
