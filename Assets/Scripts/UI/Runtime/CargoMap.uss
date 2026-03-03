@@ -1,0 +1,159 @@
+.cargo-map-root {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+/* Main title */
+.main-title {
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+/* Panels container */
+.panels-container {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Panel base styles */
+.panel {
+    margin: 10px;
+    background-size: 100% 100%;
+}
+
+/* Cargo panel */
+.cargo-panel {
+    width: 340px;
+    height: 700px;
+    padding: 100px 30px 60px 30px;
+    background-image: url("project://database/Assets/Images/UI/cargo.png");
+}
+
+.cargo-header {
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.cargo-title {
+    -unity-text-align: middle-center;
+    font-size: 20px;
+    color: rgb(90, 60, 40);
+    -unity-font-style: bold;
+}
+
+.gold-label {
+    -unity-text-align: middle-center;
+    font-size: 16px;
+    color: rgb(90, 60, 40);
+    margin-top: 2px;
+}
+
+/* Market panel */
+.market-panel {
+    width: 340px;
+    height: 600px;
+    padding: 150px 50px 120px 50px;
+    background-image: url("project://database/Assets/Images/UI/market.png");
+}
+
+.market-title {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    -unity-text-align: middle-center;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+}
+
+/* Grid container overrides for CargoMap */
+.cargo-grid {
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: rgba(80, 50, 30, 0.7);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-top-width: 0;
+    border-color: rgb(50, 30, 15);
+}
+
+.market-grid {
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: rgba(90, 55, 35, 0.5);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-top-width: 0;
+    border-color: rgb(50, 30, 15);
+}
+
+/* Buttons container */
+.buttons-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* Action buttons */
+.action-btn {
+    min-width: 160px;
+    height: 40px;
+    margin: 5px;
+    padding: 8px 20px;
+    font-size: 16px;
+    -unity-font-style: bold;
+    border-radius: 8px;
+    border-width: 2px;
+    background-color: rgb(230, 180, 80);
+    border-color: rgb(180, 130, 50);
+    color: rgb(60, 40, 20);
+}
+
+.action-btn:hover {
+    background-color: rgb(250, 200, 100);
+}
+
+.action-btn:active {
+    background-color: rgb(200, 150, 60);
+    scale: 0.98;
+}
+
+.settle-depart-btn {
+    background-color: rgb(230, 180, 80);
+}
+
+.depart-btn {
+    background-color: rgb(230, 180, 80);
+}
+
+/* Cell styles for cargo map */
+.cargo-map-root .icon-grid-cell {
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-color: rgb(50, 30, 15);
+    background-color: rgb(160, 120, 90);
+    border-radius: 0;
+}
+
+.cargo-map-root .icon-grid-cell:hover {
+    background-color: rgba(180, 140, 100, 0.8);
+}
+
+.cargo-map-root .icon-grid-cell:active {
+    scale: 0.95;
+    background-color: rgba(200, 160, 110, 0.9);
+}

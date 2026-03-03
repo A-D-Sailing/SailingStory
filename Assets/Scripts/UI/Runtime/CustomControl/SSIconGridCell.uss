@@ -1,0 +1,32 @@
+/*
+ * SSIconGridCell.uss
+ * Base styles for the SSIconGridCell custom control.
+ */
+
+.icon-grid-cell {
+    /* Padding around the icon */
+    padding: 4px;
+    
+    /* Center the icon within the cell */
+    justify-content: center;
+    align-items: center;
+    
+    /* Include padding/border in width calculations */
+    box-sizing: border-box;
+    
+    /* Smooth transitions for hover/active states */
+    transition-property: opacity, scale, background-color;
+    transition-duration: 0.1s;
+}
+
+.icon-grid-icon {
+    /* Icon fills the square cell */
+    width: 100%;
+    height: 100%;
+    
+    /* Allow icon to grow to fill available space */
+    flex-grow: 1;
+    
+    /* Scale icon to fit while maintaining aspect ratio */
+    -unity-background-scale-mode: scale-to-fit;
+}
