@@ -5,165 +5,177 @@ using UnityEngine.UIElements;
 namespace UI.Runtime.CustomControl
 {
     /// <summary>
-    /// A custom UI Toolkit container that arranges its children in a grid layout.
-    /// Children are displayed in rows with a configurable number of cells per row.
-    /// Uses flexbox with wrap to achieve the grid behavior.
-    /// Provides click callbacks with the index of the clicked cell.
+    /// A custom UI Toolkit container that arranges items in a grid layout using absolute positioning.
+    /// Supports multi-cell items that can span multiple columns and/or rows.
     /// </summary>
-    /// <remarks>
-    /// Flexbox styles are applied in the constructor, no external USS required.
-    /// Typically used with <see cref="SSIconGridCell"/> as children, but supports any VisualElement.
-    /// </remarks>
     [UxmlElement]
     public partial class SSGridContainer : VisualElement
     {
-        private int _cellPerRow = 4;
+        private int _columns = 5;
+        private int _rows = 4;
+        private float _cellSize;
 
         /// <summary>
-        /// Event fired when a SSIconGridCell is clicked.
-        /// Parameters: (index, clicked cell)
+        /// Event fired when a cell position is clicked.
+        /// Parameters: (gridX, gridY, clicked cell or null if empty)
         /// </summary>
-        public event Action<int, SSIconGridCell> onCellClicked;
+        public event Action<int, int, SSIconGridCell> onCellClicked;
 
         /// <summary>
-        /// The number of cells to display per row.
-        /// Each child's width is calculated as (100% / cellPerRow).
-        /// Minimum value is 1.
+        /// Number of columns in the grid.
         /// </summary>
         [UxmlAttribute]
-        public int CellPerRow
+        public int Columns
         {
-            get => _cellPerRow;
+            get => _columns;
             set
             {
-                _cellPerRow = Mathf.Max(1, value);
-                UpdateChildrenLayout();
+                _columns = Mathf.Max(1, value);
+                UpdateLayout();
             }
         }
 
         /// <summary>
-        /// Creates a new GridContainer with default settings (4 cells per row).
+        /// Number of rows in the grid.
         /// </summary>
+        [UxmlAttribute]
+        public int Rows
+        {
+            get => _rows;
+            set
+            {
+                _rows = Mathf.Max(1, value);
+                UpdateLayout();
+            }
+        }
+
+        /// <summary>
+        /// The calculated size of each cell in pixels.
+        /// </summary>
+        public float CellSize => _cellSize;
+
         public SSGridContainer()
         {
             AddToClassList("grid-container");
-            
+
             RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-            RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
             RegisterCallback<ClickEvent>(OnClick);
         }
 
-        /// <summary>
-        /// Called when the container is attached to a panel. Updates children layout.
-        /// </summary>
-        private void OnAttachToPanel(AttachToPanelEvent evt)
-        {
-            UpdateChildrenLayout();
-        }
-
-        /// <summary>
-        /// Called when the container's geometry changes. Updates children layout.
-        /// </summary>
         private void OnGeometryChanged(GeometryChangedEvent evt)
         {
-            UpdateChildrenLayout();
+            UpdateLayout();
         }
 
         /// <summary>
-        /// Called when a click event occurs within the container.
-        /// Only triggers the callback if the clicked element is a SSIconGridCell.
+        /// Updates the layout, calculating cell size and repositioning all items.
         /// </summary>
-        private void OnClick(ClickEvent evt)
+        public void UpdateLayout()
         {
-            // Find which child was clicked
-            var clickedElement = evt.target as VisualElement;
-            
-            // Walk up to find a SSIconGridCell
-            var cell = FindIconGridCell(clickedElement);
-            
-            if (cell != null)
+            float containerWidth = resolvedStyle.width;
+            if (float.IsNaN(containerWidth) || containerWidth <= 0 || _columns <= 0) return;
+
+            _cellSize = containerWidth / _columns;
+            float containerHeight = _cellSize * _rows;
+            style.height = containerHeight;
+
+            foreach (var child in Children())
             {
-                int index = IndexOf(cell);
-                if (index >= 0)
+                if (child is SSIconGridCell cell)
                 {
-                    onCellClicked?.Invoke(index, cell);
+                    UpdateCellLayout(cell);
                 }
             }
         }
 
         /// <summary>
-        /// Finds a SSIconGridCell in the hierarchy starting from the given element.
+        /// Updates a single cell's position and size based on its grid data.
         /// </summary>
-        /// <param name="element">The element to search from.</param>
-        /// <returns>The SSIconGridCell if found, or null if not found.</returns>
-        private SSIconGridCell FindIconGridCell(VisualElement element)
+        private void UpdateCellLayout(SSIconGridCell cell)
         {
-            while (element != null && element != this)
+            if (_cellSize <= 0) return;
+
+            int gridX = cell.GridX;
+            int gridY = cell.GridY;
+            int cellWidth = cell.CellWidth;
+            int cellHeight = cell.CellHeight;
+
+            cell.style.position = Position.Absolute;
+            cell.style.left = gridX * _cellSize;
+            cell.style.top = gridY * _cellSize;
+            cell.style.width = cellWidth * _cellSize;
+            cell.style.height = cellHeight * _cellSize;
+        }
+
+        private void OnClick(ClickEvent evt)
+        {
+            if (_cellSize <= 0) return;
+
+            var localPos = evt.localPosition;
+            int gridX = Mathf.FloorToInt(localPos.x / _cellSize);
+            int gridY = Mathf.FloorToInt(localPos.y / _cellSize);
+
+            gridX = Mathf.Clamp(gridX, 0, _columns - 1);
+            gridY = Mathf.Clamp(gridY, 0, _rows - 1);
+
+            var clickedCell = FindCellAt(gridX, gridY);
+            onCellClicked?.Invoke(gridX, gridY, clickedCell);
+        }
+
+        /// <summary>
+        /// Finds the cell that occupies the given grid position.
+        /// </summary>
+        public SSIconGridCell FindCellAt(int gridX, int gridY)
+        {
+            foreach (var child in Children())
             {
-                if (element is SSIconGridCell cell && element.parent == this)
+                if (child is SSIconGridCell cell)
                 {
-                    return cell;
+                    if (gridX >= cell.GridX && gridX < cell.GridX + cell.CellWidth &&
+                        gridY >= cell.GridY && gridY < cell.GridY + cell.CellHeight)
+                    {
+                        return cell;
+                    }
                 }
-                element = element.parent;
             }
             return null;
         }
 
         /// <summary>
-        /// Updates the width of all children based on the current cellPerRow value.
-        /// Call this method after modifying children directly without using Add().
+        /// Places a cell at the specified grid position.
         /// </summary>
-        public void UpdateChildrenLayout()
+        public void PlaceCell(SSIconGridCell cell, int gridX, int gridY, int cellWidth = 1, int cellHeight = 1)
         {
-            if (_cellPerRow <= 0) return;
+            cell.GridX = gridX;
+            cell.GridY = gridY;
+            cell.CellWidth = cellWidth;
+            cell.CellHeight = cellHeight;
 
-            float cellWidthPercent = 100f / _cellPerRow;
-
-            foreach (var child in Children())
+            if (!Contains(cell))
             {
-                child.style.width = new Length(cellWidthPercent, LengthUnit.Percent);
+                Add(cell);
+            }
+
+            UpdateCellLayout(cell);
+        }
+
+        /// <summary>
+        /// Removes a cell from the grid.
+        /// </summary>
+        public void RemoveCell(SSIconGridCell cell)
+        {
+            if (Contains(cell))
+            {
+                Remove(cell);
             }
         }
 
         /// <summary>
-        /// Adds a child element to the grid and automatically sets its width
-        /// based on the current cellPerRow value.
+        /// Clears all cells from the grid.
         /// </summary>
-        /// <param name="child">The child element to add.</param>
-        public new void Add(VisualElement child)
+        public void ClearAll()
         {
-            base.Add(child);
-
-            if (_cellPerRow > 0)
-            {
-                float cellWidthPercent = 100f / _cellPerRow;
-                child.style.width = new Length(cellWidthPercent, LengthUnit.Percent);
-            }
-        }
-
-        /// <summary>
-        /// Gets the cell at the specified index.
-        /// </summary>
-        /// <param name="index">The index of the cell (0-based).</param>
-        /// <returns>The cell at the index, or null if out of range.</returns>
-        public VisualElement GetCellAt(int index)
-        {
-            if (index < 0 || index >= childCount)
-            {
-                return null;
-            }
-            return ElementAt(index);
-        }
-
-        /// <summary>
-        /// Gets the cell at the specified index as the specified type.
-        /// </summary>
-        /// <typeparam name="T">The type to cast the cell to.</typeparam>
-        /// <param name="index">The index of the cell (0-based).</param>
-        /// <returns>The cell at the index cast to T, or null if out of range or wrong type.</returns>
-        public T GetCellAt<T>(int index) where T : VisualElement
-        {
-            return GetCellAt(index) as T;
+            Clear();
         }
     }
 }

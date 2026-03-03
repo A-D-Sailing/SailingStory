@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 1a3dfb4dc3b229c488343c03f8f0f944
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - toolkitIcon: {instanceID: 0}
+  - plankIcon: {instanceID: 0}
+  - shipwrightIcon: {instanceID: 0}
+  - crateIcon: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -33,7 +33,7 @@
 /* Cargo panel */
 .cargo-panel {
     width: 340px;
-    height: 700px;
+    height: 650px;
     padding: 100px 30px 60px 30px;
     background-image: url("project://database/Assets/Images/UI/cargo.png");
 }
@@ -78,24 +78,16 @@
 
 /* Grid container overrides for CargoMap */
 .cargo-grid {
-    flex-grow: 0;
-    flex-shrink: 0;
+    width: 100%;
     background-color: rgba(80, 50, 30, 0.7);
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 0;
-    border-top-width: 0;
+    border-width: 1px;
     border-color: rgb(50, 30, 15);
 }
 
 .market-grid {
-    flex-grow: 0;
-    flex-shrink: 0;
+    width: 100%;
     background-color: rgba(90, 55, 35, 0.5);
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 0;
-    border-top-width: 0;
+    border-width: 1px;
     border-color: rgb(50, 30, 15);
 }
 
@@ -134,10 +126,6 @@
     background-color: rgb(230, 180, 80);
 }
 
-.depart-btn {
-    background-color: rgb(230, 180, 80);
-}
-
 /* Cell styles for cargo map */
 .cargo-map-root .icon-grid-cell {
     border-left-width: 1px;
@@ -156,4 +144,25 @@
 .cargo-map-root .icon-grid-cell:active {
     scale: 0.95;
     background-color: rgba(200, 160, 110, 0.9);
+}
+
+/* Cargo item cell styles */
+.cargo-item .icon-grid-icon {
+    --unity-image-size: scale-to-fit;
+}
+
+.toolkit-cell .icon-grid-icon {
+    --unity-image: url("project://database/Assets/Images/UI/toolkit.svg");
+}
+
+.plank-cell .icon-grid-icon {
+    --unity-image: url("project://database/Assets/Images/UI/plank.svg");
+}
+
+.shipwright-cell .icon-grid-icon {
+    --unity-image: url("project://database/Assets/Images/UI/shipwright.svg");
+}
+
+.crate-cell .icon-grid-icon {
+    --unity-image: url("project://database/Assets/Images/UI/crate.svg");
 }
