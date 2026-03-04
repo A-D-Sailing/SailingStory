@@ -44,7 +44,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _TranslucencyOn
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -186,6 +186,7 @@ Material:
     - _FoamBubblesSpread: 1
     - _FoamBubblesStrength: 0
     - _FoamClipping: 0
+    - _FoamClippingDynamic: 0
     - _FoamDistanceOn: 0
     - _FoamDistortion: 0
     - _FoamOn: 1
@@ -240,6 +241,7 @@ Material:
     - _PlanarReflectionsParams: 0
     - _PointSpotLightReflectionDistortion: 0.5
     - _PointSpotLightReflectionExp: 64
+    - _PointSpotLightReflectionSharp: 0
     - _PointSpotLightReflectionSize: 0
     - _PointSpotLightReflectionStrength: 10
     - _QueueOffset: 0
@@ -284,6 +286,7 @@ Material:
     - _SrcBlend: 1
     - _SunReflectionDistortion: 0.762
     - _SunReflectionPerturbance: 0.386
+    - _SunReflectionSharp: 0
     - _SunReflectionSize: 0.932
     - _SunReflectionStrength: 10
     - _Surface: 0
@@ -297,6 +300,7 @@ Material:
     - _TranslucencyReflectionMask: 0
     - _TranslucencyStrength: 1
     - _TranslucencyStrengthDirect: 0.05
+    - _UnderwaterReflectionStrength: 0.5
     - _UnderwaterRefractionOffset: 0.2
     - _UnderwaterSurfaceSmoothness: 0.8
     - _VertexColorFoam: 0
