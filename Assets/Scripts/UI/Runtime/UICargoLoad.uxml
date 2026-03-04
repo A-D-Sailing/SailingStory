@@ -10,11 +10,11 @@
                     <ui:Label text="Cargo" class="cargo-title" />
                     <ui:Label name="gold-label" text="Gold: 0" class="gold-label" />
                 </ui:VisualElement>
-                <UI.Runtime.CustomControl.SSGridContainer name="cargo-container" Columns="5" Rows="7" class="grid-container cargo-grid" />
+                <UI.Runtime.CustomControl.UIGridContainer name="cargo-container" Columns="5" Rows="7" class="grid-container cargo-grid" />
             </ui:VisualElement>
             <ui:VisualElement name="market-panel" class="panel market-panel">
                 <ui:Label text="Port Market" class="market-title" />
-                <UI.Runtime.CustomControl.SSGridContainer name="market-container" Columns="5" Rows="5" class="grid-container market-grid" />
+                <UI.Runtime.CustomControl.UIGridContainer name="market-container" Columns="5" Rows="5" class="grid-container market-grid" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="buttons-container" class="buttons-container">

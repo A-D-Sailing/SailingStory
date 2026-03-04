@@ -9,7 +9,7 @@ namespace UI.Runtime.CustomControl
     /// Supports multi-cell items that can span multiple columns and/or rows.
     /// </summary>
     [UxmlElement]
-    public partial class SSGridContainer : VisualElement
+    public partial class UIGridContainer : VisualElement
     {
         private int _columns = 5;
         private int _rows = 4;
@@ -19,7 +19,7 @@ namespace UI.Runtime.CustomControl
         /// Event fired when a cell position is clicked.
         /// Parameters: (gridX, gridY, clicked cell or null if empty)
         /// </summary>
-        public event Action<int, int, SSIconGridCell> onCellClicked;
+        public event Action<int, int, UIIconGridCell> onCellClicked;
 
         /// <summary>
         /// Number of columns in the grid.
@@ -54,7 +54,7 @@ namespace UI.Runtime.CustomControl
         /// </summary>
         public float CellSize => _cellSize;
 
-        public SSGridContainer()
+        public UIGridContainer()
         {
             AddToClassList("grid-container");
 
@@ -81,7 +81,7 @@ namespace UI.Runtime.CustomControl
 
             foreach (var child in Children())
             {
-                if (child is SSIconGridCell cell)
+                if (child is UIIconGridCell cell)
                 {
                     UpdateCellLayout(cell);
                 }
@@ -91,7 +91,7 @@ namespace UI.Runtime.CustomControl
         /// <summary>
         /// Updates a single cell's position and size based on its grid data.
         /// </summary>
-        private void UpdateCellLayout(SSIconGridCell cell)
+        private void UpdateCellLayout(UIIconGridCell cell)
         {
             if (_cellSize <= 0) return;
 
@@ -125,11 +125,11 @@ namespace UI.Runtime.CustomControl
         /// <summary>
         /// Finds the cell that occupies the given grid position.
         /// </summary>
-        public SSIconGridCell FindCellAt(int gridX, int gridY)
+        public UIIconGridCell FindCellAt(int gridX, int gridY)
         {
             foreach (var child in Children())
             {
-                if (child is SSIconGridCell cell)
+                if (child is UIIconGridCell cell)
                 {
                     if (gridX >= cell.GridX && gridX < cell.GridX + cell.CellWidth &&
                         gridY >= cell.GridY && gridY < cell.GridY + cell.CellHeight)
@@ -144,7 +144,7 @@ namespace UI.Runtime.CustomControl
         /// <summary>
         /// Places a cell at the specified grid position.
         /// </summary>
-        public void PlaceCell(SSIconGridCell cell, int gridX, int gridY, int cellWidth = 1, int cellHeight = 1)
+        public void PlaceCell(UIIconGridCell cell, int gridX, int gridY, int cellWidth = 1, int cellHeight = 1)
         {
             cell.GridX = gridX;
             cell.GridY = gridY;
@@ -162,7 +162,7 @@ namespace UI.Runtime.CustomControl
         /// <summary>
         /// Removes a cell from the grid.
         /// </summary>
-        public void RemoveCell(SSIconGridCell cell)
+        public void RemoveCell(UIIconGridCell cell)
         {
             if (Contains(cell))
             {

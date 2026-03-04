@@ -6,10 +6,10 @@ namespace UI.Runtime.CustomControl
     /// <summary>
     /// A custom UI Toolkit element that displays an icon image within a grid cell.
     /// Supports multi-cell spanning via CellWidth and CellHeight properties.
-    /// Designed to be used with <see cref="SSGridContainer"/>.
+    /// Designed to be used with <see cref="UIGridContainer"/>.
     /// </summary>
     [UxmlElement]
-    public partial class SSIconGridCell : VisualElement
+    public partial class UIIconGridCell : VisualElement
     {
         private Image _icon;
         private Sprite _iconSprite;
@@ -51,12 +51,12 @@ namespace UI.Runtime.CustomControl
             }
         }
 
-        public SSIconGridCell()
+        public UIIconGridCell()
         {
             InitializeCell();
         }
 
-        public SSIconGridCell(Sprite icon)
+        public UIIconGridCell(Sprite icon)
         {
             InitializeCell();
             SetIcon(icon);

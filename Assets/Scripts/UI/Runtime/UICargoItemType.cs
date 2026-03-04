@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents the type of cargo item.
     /// </summary>
-    public enum CargoItemType
+    public enum UICargoItemType
     {
         None,
         Toolkit,
