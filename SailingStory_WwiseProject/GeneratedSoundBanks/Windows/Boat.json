@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{25DAB77C-74DB-4E52-B00A-E15163D2F37E}",
     "Language": "SFX",
-    "Hash": "{F194B776-7E2B-E999-F5D1-39E6C6051437}",
+    "Hash": "{B26A7912-5BA9-6F98-C947-07C448A47B6B}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Boat",
     "ShortName": "Boat",
     "Path": "Boat.bnk",
@@ -47,9 +47,17 @@
       "DurationMin": "0",
       "DurationMax": "0"
      }
+    ],
+    "GameParameters": [
+     {
+      "Id": "1259668694",
+      "Name": "Ocean_Amb_Control",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Ocean_Amb_Control",
+      "GUID": "{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"
+     }
     ]
    }
   ],
-  "FileHash": "{638F0113-BC06-AF79-2F68-56D32A550252}"
+  "FileHash": "{193C938F-EF7B-8326-ADF5-1633B4E7A0C3}"
  }
 }
