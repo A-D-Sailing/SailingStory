@@ -7,20 +7,20 @@ namespace UI.Runtime
     /// <summary>
     /// Static registry providing item information without creating cell instances.
     /// </summary>
-    public static class CargoItemRegistry
+    public static class UICargoItemRegistry
     {
-        private static readonly Dictionary<CargoItemType, (int width, int height, int goldValue)> _itemInfo = new()
+        private static readonly Dictionary<UICargoItemType, (int width, int height, int goldValue)> _itemInfo = new()
         {
-            { CargoItemType.Toolkit, (1, 1, 50) },
-            { CargoItemType.Plank, (2, 1, 100) },
-            { CargoItemType.Shipwright, (1, 2, 75) },
-            { CargoItemType.Crate, (1, 1, 10) }
+            { UICargoItemType.Toolkit, (1, 1, 50) },
+            { UICargoItemType.Plank, (2, 1, 100) },
+            { UICargoItemType.Shipwright, (1, 2, 75) },
+            { UICargoItemType.Crate, (1, 1, 10) }
         };
 
         /// <summary>
         /// Gets item dimensions and gold value for a given item type.
         /// </summary>
-        public static (int width, int height, int goldValue) GetItemInfo(CargoItemType itemType)
+        public static (int width, int height, int goldValue) GetItemInfo(UICargoItemType itemType)
         {
             return _itemInfo.TryGetValue(itemType, out var info) ? info : (1, 1, 0);
         }
@@ -28,14 +28,14 @@ namespace UI.Runtime
         /// <summary>
         /// Creates a cargo item cell for the specified item type.
         /// </summary>
-        public static CargoItemCell CreateCell(CargoItemType itemType)
+        public static UICargoItemCell CreateCell(UICargoItemType itemType)
         {
             return itemType switch
             {
-                CargoItemType.Toolkit => new ToolkitCell(),
-                CargoItemType.Plank => new PlankCell(),
-                CargoItemType.Shipwright => new ShipwrightCell(),
-                CargoItemType.Crate => new CrateCell(),
+                UICargoItemType.Toolkit => new ToolkitCell(),
+                UICargoItemType.Plank => new PlankCell(),
+                UICargoItemType.Shipwright => new ShipwrightCell(),
+                UICargoItemType.Crate => new CrateCell(),
                 _ => null
             };
         }
@@ -44,15 +44,15 @@ namespace UI.Runtime
     /// <summary>
     /// Base class for cargo item cells with specific item types.
     /// </summary>
-    public abstract class CargoItemCell : SSIconGridCell
+    public abstract class UICargoItemCell : UIIconGridCell
     {
-        public abstract CargoItemType ItemType { get; }
+        public abstract UICargoItemType ItemType { get; }
         
-        public int Width => CargoItemRegistry.GetItemInfo(ItemType).width;
-        public int Height => CargoItemRegistry.GetItemInfo(ItemType).height;
-        public int GoldValue => CargoItemRegistry.GetItemInfo(ItemType).goldValue;
+        public int Width => UICargoItemRegistry.GetItemInfo(ItemType).width;
+        public int Height => UICargoItemRegistry.GetItemInfo(ItemType).height;
+        public int GoldValue => UICargoItemRegistry.GetItemInfo(ItemType).goldValue;
 
-        protected CargoItemCell()
+        protected UICargoItemCell()
         {
             AddToClassList("cargo-item");
         }
@@ -68,9 +68,9 @@ namespace UI.Runtime
     /// Toolkit item cell (1x1, 50 gold)
     /// </summary>
     [UxmlElement]
-    public partial class ToolkitCell : CargoItemCell
+    public partial class ToolkitCell : UICargoItemCell
     {
-        public override CargoItemType ItemType => CargoItemType.Toolkit;
+        public override UICargoItemType ItemType => UICargoItemType.Toolkit;
 
         public ToolkitCell()
         {
@@ -83,9 +83,9 @@ namespace UI.Runtime
     /// Plank item cell (1x2, 100 gold)
     /// </summary>
     [UxmlElement]
-    public partial class PlankCell : CargoItemCell
+    public partial class PlankCell : UICargoItemCell
     {
-        public override CargoItemType ItemType => CargoItemType.Plank;
+        public override UICargoItemType ItemType => UICargoItemType.Plank;
 
         public PlankCell()
         {
@@ -98,9 +98,9 @@ namespace UI.Runtime
     /// Shipwright item cell (2x1, 75 gold)
     /// </summary>
     [UxmlElement]
-    public partial class ShipwrightCell : CargoItemCell
+    public partial class ShipwrightCell : UICargoItemCell
     {
-        public override CargoItemType ItemType => CargoItemType.Shipwright;
+        public override UICargoItemType ItemType => UICargoItemType.Shipwright;
 
         public ShipwrightCell()
         {
@@ -113,9 +113,9 @@ namespace UI.Runtime
     /// Crate item cell (1x1, 10 gold)
     /// </summary>
     [UxmlElement]
-    public partial class CrateCell : CargoItemCell
+    public partial class CrateCell : UICargoItemCell
     {
-        public override CargoItemType ItemType => CargoItemType.Crate;
+        public override UICargoItemType ItemType => UICargoItemType.Crate;
 
         public CrateCell()
         {

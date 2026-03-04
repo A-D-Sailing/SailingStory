@@ -1,28 +1,31 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
-public class CameraShakeFeedbacks : MonoBehaviour
+namespace Boat.Feedback
 {
-    private MMF_Player _feedbackPlayer;
-
-    private void Awake()
+    public class CameraShakeFeedbacks : MonoBehaviour
     {
-        _feedbackPlayer = GetComponent<MMF_Player>();
-    }
+        private MMF_Player _feedbackPlayer;
 
-    public void PlayFeedbacks(bool onlyWhenNotPlaying = false)
-    {
-        if (onlyWhenNotPlaying)
+        private void Awake()
         {
-            if (!_feedbackPlayer.IsPlaying)
+            _feedbackPlayer = GetComponent<MMF_Player>();
+        }
+
+        public void PlayFeedbacks(bool onlyWhenNotPlaying = false)
+        {
+            if (onlyWhenNotPlaying)
+            {
+                if (!_feedbackPlayer.IsPlaying)
+                {
+                    _feedbackPlayer.PlayFeedbacks();
+                }
+            }
+            else
             {
                 _feedbackPlayer.PlayFeedbacks();
             }
         }
-        else
-        {
-            _feedbackPlayer.PlayFeedbacks();
-        }
-    }
     
+    }
 }

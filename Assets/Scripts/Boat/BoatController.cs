@@ -1,9 +1,14 @@
+using Boat.Feedback;
 using KToolkit;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BoatController : MonoBehaviour
 {
+
+    #region PROPERTIES
+    
     [Header("Speed")] 
     [Tooltip("Maximum speed that a boat can achieve in velocity, with direction of local front")]
     public float maxForwardSpeed;
@@ -39,29 +44,36 @@ public class BoatController : MonoBehaviour
     [Tooltip("The distance limit when the boat should start auto docking"), Range(0f, 200f)]
     public float autoDockDistance = 50;
 
+    [Tooltip("The UI game object to present when finish docking")]
+    public GameObject cargoLoadUI;
+
     // Components
-    private Rigidbody rb;
+    private Rigidbody _rb;
     
     // Feel Feedbacks
-    private CameraShakeFeedbacks _cameraShakePlayer;
-    private DockingFeedbacks _dockingPlayer;
+    private CameraShakeFeedbacks _cameraShakePlayer; // the script component
+    private DockingFeedbacks _dockingPlayer; // the script component
+    private UndockingFeedbacks _undockingFeedbacks; // the script component
     
     // State Machine
     private KStateMachine<BoatController> _stateMachine;
     
     // Public accessors for states
-    public Rigidbody Rigidbody => rb;
+    public Rigidbody Rigidbody => _rb;
+    
+    #endregion
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
 
         // Cancel out the preset damping
-        rb.linearDamping = 0f;
-        rb.angularDamping = 0f;
+        _rb.linearDamping = 0f;
+        _rb.angularDamping = 0f;
         
         _cameraShakePlayer = transform.GetComponentInChildren<CameraShakeFeedbacks>();
         _dockingPlayer = transform.GetComponentInChildren<DockingFeedbacks>();
+        _undockingFeedbacks = transform.GetComponentInChildren<UndockingFeedbacks>();
         
         if (_dockingPlayer == null)
         {
@@ -114,9 +126,17 @@ public class BoatController : MonoBehaviour
     /// <summary>
     /// Transition to docking state
     /// </summary>
-    public void TransitionToDocking(Transform dockTransform)
+    public void TransitionToDocking(Transform dock)
     {
-        _stateMachine.TransitState<BoatDockingState>(_dockingPlayer, dockTransform);
+        _stateMachine.TransitState<BoatDockingState>(_dockingPlayer, dock, cargoLoadUI);
+    }
+    
+    /// <summary>
+    /// Transition to undocking state (triggered by UI event)
+    /// </summary>
+    public void TransitionToUndocking(Transform undockTarget)
+    {
+        _stateMachine.TransitState<BoatUndockingState>(_undockingFeedbacks, undockTarget);
     }
     
     #endregion

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UI.Runtime.CustomControl;
 using UnityEngine;
@@ -9,30 +8,33 @@ namespace UI.Runtime
     /// <summary>
     /// Manages the cargo map UI, allowing transfer of items between cargo and market.
     /// </summary>
-    public class CargoMap : MonoBehaviour
+    public class UICargoMap : MonoBehaviour
     {
         [Header("Grid Settings")]
         [SerializeField] private int columns = 5;
         [SerializeField] private int cargoRows = 7;
         [SerializeField] private int marketRows = 5;
 
-        private SSGridContainer _cargoContainer;
-        private SSGridContainer _marketContainer;
+        private UIGridContainer _cargoContainer;
+        private UIGridContainer _marketContainer;
         private Label _goldLabel;
         private Button _settleDepartBtn;
 
-        private CargoItemType[,] _cargoGrid;
-        private CargoItemType[,] _marketGrid;
+        private UICargoItemType[,] _cargoGrid;
+        private UICargoItemType[,] _marketGrid;
+        
+        [Header("Boat Behavior")]
+        public BoatController boatController;
 
-        public event Action OnSettleAndDepart;
+        public Transform undockTarget;
 
         void Awake()
         {
             var uiDocument = GetComponent<UIDocument>();
             var root = uiDocument.rootVisualElement;
 
-            _cargoContainer = root.Q<SSGridContainer>("cargo-container");
-            _marketContainer = root.Q<SSGridContainer>("market-container");
+            _cargoContainer = root.Q<UIGridContainer>("cargo-container");
+            _marketContainer = root.Q<UIGridContainer>("market-container");
             _goldLabel = root.Q<Label>("gold-label");
             _settleDepartBtn = root.Q<Button>("settle-depart-btn");
 
@@ -47,8 +49,8 @@ namespace UI.Runtime
 
         private void InitializeGridData()
         {
-            _cargoGrid = new CargoItemType[columns, cargoRows];
-            _marketGrid = new CargoItemType[columns, marketRows];
+            _cargoGrid = new UICargoItemType[columns, cargoRows];
+            _marketGrid = new UICargoItemType[columns, marketRows];
         }
 
         private void InitializeContainers()
@@ -73,48 +75,48 @@ namespace UI.Runtime
             // Item sizes: Toolkit(1x1), Plank(2x1), Shipwright(1x2), Crate(1x1)
 
             // Row 0: Crate, Plank (2x1), Crate, Crate
-            PlaceItemInMarket(CargoItemType.Crate, 0, 0);
-            PlaceItemInMarket(CargoItemType.Plank, 1, 0);    // spans (1,0)-(2,0)
-            PlaceItemInMarket(CargoItemType.Crate, 3, 0);
-            PlaceItemInMarket(CargoItemType.Crate, 4, 0);
+            PlaceItemInMarket(UICargoItemType.Crate, 0, 0);
+            PlaceItemInMarket(UICargoItemType.Plank, 1, 0);    // spans (1,0)-(2,0)
+            PlaceItemInMarket(UICargoItemType.Crate, 3, 0);
+            PlaceItemInMarket(UICargoItemType.Crate, 4, 0);
 
             // Row 1: Shipwright (1x2), Toolkit, Crate, Shipwright (1x2), Toolkit
-            PlaceItemInMarket(CargoItemType.Shipwright, 0, 1);  // spans (0,1)-(0,2)
-            PlaceItemInMarket(CargoItemType.Toolkit, 1, 1);
-            PlaceItemInMarket(CargoItemType.Crate, 2, 1);
-            PlaceItemInMarket(CargoItemType.Shipwright, 3, 1);  // spans (3,1)-(3,2)
-            PlaceItemInMarket(CargoItemType.Toolkit, 4, 1);
+            PlaceItemInMarket(UICargoItemType.Shipwright, 0, 1);  // spans (0,1)-(0,2)
+            PlaceItemInMarket(UICargoItemType.Toolkit, 1, 1);
+            PlaceItemInMarket(UICargoItemType.Crate, 2, 1);
+            PlaceItemInMarket(UICargoItemType.Shipwright, 3, 1);  // spans (3,1)-(3,2)
+            PlaceItemInMarket(UICargoItemType.Toolkit, 4, 1);
 
             // Row 2: (Shipwright continues), Plank (2x1), (Shipwright continues), Crate
-            PlaceItemInMarket(CargoItemType.Plank, 1, 2);    // spans (1,2)-(2,2)
-            PlaceItemInMarket(CargoItemType.Crate, 4, 2);
+            PlaceItemInMarket(UICargoItemType.Plank, 1, 2);    // spans (1,2)-(2,2)
+            PlaceItemInMarket(UICargoItemType.Crate, 4, 2);
 
             // Row 3: Toolkit, Crate, Shipwright (1x2), Plank (2x1)
-            PlaceItemInMarket(CargoItemType.Toolkit, 0, 3);
-            PlaceItemInMarket(CargoItemType.Crate, 1, 3);
-            PlaceItemInMarket(CargoItemType.Shipwright, 2, 3);  // spans (2,3)-(2,4)
-            PlaceItemInMarket(CargoItemType.Plank, 3, 3);    // spans (3,3)-(4,3)
+            PlaceItemInMarket(UICargoItemType.Toolkit, 0, 3);
+            PlaceItemInMarket(UICargoItemType.Crate, 1, 3);
+            PlaceItemInMarket(UICargoItemType.Shipwright, 2, 3);  // spans (2,3)-(2,4)
+            PlaceItemInMarket(UICargoItemType.Plank, 3, 3);    // spans (3,3)-(4,3)
 
             // Row 4: Crate, Toolkit, (Shipwright continues), Toolkit, Crate
-            PlaceItemInMarket(CargoItemType.Crate, 0, 4);
-            PlaceItemInMarket(CargoItemType.Toolkit, 1, 4);
-            PlaceItemInMarket(CargoItemType.Toolkit, 3, 4);
-            PlaceItemInMarket(CargoItemType.Crate, 4, 4);
+            PlaceItemInMarket(UICargoItemType.Crate, 0, 4);
+            PlaceItemInMarket(UICargoItemType.Toolkit, 1, 4);
+            PlaceItemInMarket(UICargoItemType.Toolkit, 3, 4);
+            PlaceItemInMarket(UICargoItemType.Crate, 4, 4);
         }
 
-        private void PlaceItemInMarket(CargoItemType itemType, int x, int y)
+        private void PlaceItemInMarket(UICargoItemType itemType, int x, int y)
         {
             PlaceItem(_marketContainer, _marketGrid, itemType, x, y);
         }
 
-        private void PlaceItemInCargo(CargoItemType itemType, int x, int y)
+        private void PlaceItemInCargo(UICargoItemType itemType, int x, int y)
         {
             PlaceItem(_cargoContainer, _cargoGrid, itemType, x, y);
         }
 
-        private bool PlaceItem(SSGridContainer container, CargoItemType[,] grid, CargoItemType itemType, int x, int y)
+        private bool PlaceItem(UIGridContainer container, UICargoItemType[,] grid, UICargoItemType itemType, int x, int y)
         {
-            var (width, height, _) = CargoItemRegistry.GetItemInfo(itemType);
+            var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
 
             if (!CanPlaceItem(grid, x, y, width, height)) return false;
 
@@ -128,7 +130,7 @@ namespace UI.Runtime
             }
 
             // Create and place the visual cell
-            var cell = CargoItemRegistry.CreateCell(itemType);
+            var cell = UICargoItemRegistry.CreateCell(itemType);
             if (cell != null)
             {
                 container.PlaceCell(cell, x, y, width, height);
@@ -137,7 +139,7 @@ namespace UI.Runtime
             return true;
         }
 
-        private bool CanPlaceItem(CargoItemType[,] grid, int x, int y, int width, int height)
+        private bool CanPlaceItem(UICargoItemType[,] grid, int x, int y, int width, int height)
         {
             int gridColumns = grid.GetLength(0);
             int gridRows = grid.GetLength(1);
@@ -149,18 +151,18 @@ namespace UI.Runtime
             {
                 for (int dx = 0; dx < width; dx++)
                 {
-                    if (grid[x + dx, y + dy] != CargoItemType.None) return false;
+                    if (grid[x + dx, y + dy] != UICargoItemType.None) return false;
                 }
             }
             return true;
         }
 
-        private void RemoveItem(SSGridContainer container, CargoItemType[,] grid, int x, int y)
+        private void RemoveItem(UIGridContainer container, UICargoItemType[,] grid, int x, int y)
         {
             var itemType = grid[x, y];
-            if (itemType == CargoItemType.None) return;
+            if (itemType == UICargoItemType.None) return;
 
-            var (width, height, _) = CargoItemRegistry.GetItemInfo(itemType);
+            var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
 
             // Find the primary (top-left) cell of this item
             var (primaryX, primaryY) = FindPrimaryCell(grid, x, y, itemType);
@@ -170,7 +172,7 @@ namespace UI.Runtime
             {
                 for (int dx = 0; dx < width; dx++)
                 {
-                    grid[primaryX + dx, primaryY + dy] = CargoItemType.None;
+                    grid[primaryX + dx, primaryY + dy] = UICargoItemType.None;
                 }
             }
 
@@ -182,7 +184,7 @@ namespace UI.Runtime
             }
         }
 
-        private (int x, int y) FindPrimaryCell(CargoItemType[,] grid, int startX, int startY, CargoItemType itemType)
+        private (int x, int y) FindPrimaryCell(UICargoItemType[,] grid, int startX, int startY, UICargoItemType itemType)
         {
             int x = startX;
             int y = startY;
@@ -193,9 +195,9 @@ namespace UI.Runtime
             return (x, y);
         }
 
-        private bool TryPlaceItemAnywhere(SSGridContainer container, CargoItemType[,] grid, CargoItemType itemType)
+        private bool TryPlaceItemAnywhere(UIGridContainer container, UICargoItemType[,] grid, UICargoItemType itemType)
         {
-            var (width, height, _) = CargoItemRegistry.GetItemInfo(itemType);
+            var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
             int gridColumns = grid.GetLength(0);
             int gridRows = grid.GetLength(1);
 
@@ -230,16 +232,21 @@ namespace UI.Runtime
         {
             if (_settleDepartBtn != null)
             {
-                _settleDepartBtn.clicked += () => OnSettleAndDepart?.Invoke();
+                _settleDepartBtn.clicked += () =>
+                {
+                    boatController?.TransitionToUndocking(undockTarget);
+                    gameObject.SetActive(false);
+                };
+                
             }
         }
 
-        private void OnCargoContainerClicked(int gridX, int gridY, SSIconGridCell cell)
+        private void OnCargoContainerClicked(int gridX, int gridY, UIIconGridCell cell)
         {
-            if (cell == null || !(cell is CargoItemCell)) return;
+            if (cell == null || !(cell is UICargoItemCell)) return;
 
             var itemType = _cargoGrid[gridX, gridY];
-            if (itemType == CargoItemType.None) return;
+            if (itemType == UICargoItemType.None) return;
 
             if (TryPlaceItemAnywhere(_marketContainer, _marketGrid, itemType))
             {
@@ -248,12 +255,12 @@ namespace UI.Runtime
             }
         }
 
-        private void OnMarketContainerClicked(int gridX, int gridY, SSIconGridCell cell)
+        private void OnMarketContainerClicked(int gridX, int gridY, UIIconGridCell cell)
         {
-            if (cell == null || !(cell is CargoItemCell)) return;
+            if (cell == null || !(cell is UICargoItemCell)) return;
 
             var itemType = _marketGrid[gridX, gridY];
-            if (itemType == CargoItemType.None) return;
+            if (itemType == UICargoItemType.None) return;
 
             if (TryPlaceItemAnywhere(_cargoContainer, _cargoGrid, itemType))
             {
@@ -272,13 +279,13 @@ namespace UI.Runtime
                 for (int x = 0; x < _cargoGrid.GetLength(0); x++)
                 {
                     var itemType = _cargoGrid[x, y];
-                    if (itemType == CargoItemType.None) continue;
+                    if (itemType == UICargoItemType.None) continue;
 
                     var primary = FindPrimaryCell(_cargoGrid, x, y, itemType);
                     if (counted.Contains(primary)) continue;
 
                     counted.Add(primary);
-                    var (_, _, goldValue) = CargoItemRegistry.GetItemInfo(itemType);
+                    var (_, _, goldValue) = UICargoItemRegistry.GetItemInfo(itemType);
                     totalValue += goldValue;
                 }
             }
