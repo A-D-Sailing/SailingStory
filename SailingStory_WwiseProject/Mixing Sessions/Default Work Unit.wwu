@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{06F0377E-3F56-442C-8D08-3C73637B3C3A}" SchemaVersion="123">
+	<MixingSessions>
+		<WorkUnit Name="Default Work Unit" ID="{06F0377E-3F56-442C-8D08-3C73637B3C3A}" PersistMode="Standalone">
+			<ChildrenList>
+				<MixingSession Name="Ocean Amb" ID="{34F7896F-0302-4F37-9A20-7E4E0DBC189B}">
+					<ObjectList>
+						<ObjectRef Name="Ocean_Wave" ID="{B4B76288-CD45-4E38-9926-E1FC744FFF77}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+						<ObjectRef Name="Ocean_Amb_Base" ID="{DDFBD44A-E676-40B7-A40F-6CF7B3412CE1}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+						<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+						<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+					</ObjectList>
+				</MixingSession>
+				<MixingSession Name="Boat" ID="{5EADA7C4-ACE0-4885-B9D2-6F7C7E9982E6}">
+					<ObjectList>
+						<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+					</ObjectList>
+				</MixingSession>
+			</ChildrenList>
+		</WorkUnit>
+	</MixingSessions>
+</WwiseDocument>

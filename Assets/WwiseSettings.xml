@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<WwiseSettings>
+    <CopySoundBanksAsPreBuildStep>true</CopySoundBanksAsPreBuildStep>
+    <GenerateSoundBanksAsPreBuildStep>false</GenerateSoundBanksAsPreBuildStep>
+    <SoundbankPath>Audio/GeneratedSoundBanks</SoundbankPath>
+    <CreatedPicker>true</CreatedPicker>
+    <CreateWwiseGlobal>true</CreateWwiseGlobal>
+    <CreateWwiseListener>true</CreateWwiseListener>
+    <ObjectReferenceAutoCleanup>true</ObjectReferenceAutoCleanup>
+    <LoadSoundEngineInEditMode>true</LoadSoundEngineInEditMode>
+    <ShowMissingRigidBodyWarning>true</ShowMissingRigidBodyWarning>
+    <ShowSpatialAudioWarningMsg>true</ShowSpatialAudioWarningMsg>
+    <WwiseInstallationPathMac></WwiseInstallationPathMac>
+    <WwiseInstallationPathWindows>D:\Wwise\Wwise2024.1.4.8780</WwiseInstallationPathWindows>
+    <WwiseProjectPath>../../SailingStory/SailingStory_WwiseProject/SailingStory_WwiseProject.wproj</WwiseProjectPath>
+    <UseWaapi>true</UseWaapi>
+    <WaapiPort>8081</WaapiPort>
+    <WaapiIP>127.0.0.1</WaapiIP>
+    <XMLTranslatorTimeout>0</XMLTranslatorTimeout>
+    <WaapiTranslatorTimeout>0</WaapiTranslatorTimeout>
+</WwiseSettings>

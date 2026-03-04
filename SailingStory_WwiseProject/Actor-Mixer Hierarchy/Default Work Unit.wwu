@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}" SchemaVersion="123">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" ShortID="328598082">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Lowpass" Type="int16">
+							<ValueList>
+								<Value>10</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Ship Sailing Slow Loop" ID="{D3DC8ADC-CDB7-42B4-A63D-B60539E1EBF4}">
+							<PropertyList>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>Ship Sailing Slow Loop.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="90781119"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Ship Sailing Slow Loop" ID="{D3DC8ADC-CDB7-42B4-A63D-B60539E1EBF4}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<BlendContainer Name="Ocean_Amb" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" ShortID="321953181">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="Ocean_Wave" ID="{B4B76288-CD45-4E38-9926-E1FC744FFF77}" ShortID="621906642">
+							<PropertyList>
+								<Property Name="InitialDelay" Type="Real64">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{65E78562-8D13-46F5-A2E9-D32D86C9672B}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="2"/>
+													<Property Name="Min" Type="Real64" Value="-1"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="Wave" ID="{C74B8AC1-EB64-451D-A28E-BFB3C164DE9C}" ShortID="764178846">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{7A249410-8AA0-4EAC-933A-D34FFB59AC7C}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="5"/>
+															<Property Name="Min" Type="Real64" Value="-5"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Ocean_Amb_Wave_Hit_Big-02" ID="{DCD3448B-7843-4938-8828-F4ADC7E2929D}" ShortID="627423420">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Ocean_Amb_Wave_Hit_Big-02" ID="{8B356BA6-9CF9-4A41-8BC7-5FEEF2D85F7C}">
+													<Language>SFX</Language>
+													<AudioFile>Ocean_Amb_Wave_Hit_Big-02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="400619858"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Ocean_Amb_Wave_Hit_Big-02" ID="{8B356BA6-9CF9-4A41-8BC7-5FEEF2D85F7C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Ocean_Amb_Wave_Hit_Big-03" ID="{48B8101C-B774-4292-A6FF-BC8411793439}" ShortID="368390589">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Ocean_Amb_Wave_Hit_Big-03" ID="{266B7B9D-0D5E-491D-B314-2F13D531233F}">
+													<Language>SFX</Language>
+													<AudioFile>Ocean_Amb_Wave_Hit_Big-03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="360802274"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Ocean_Amb_Wave_Hit_Big-03" ID="{266B7B9D-0D5E-491D-B314-2F13D531233F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Ocean_Amb_Wave_Hit_Big-01" ID="{4C2D99A1-DDDB-4BC9-8D4E-E70D47C359D1}" ShortID="244267066">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Ocean_Amb_Wave_Hit_Big-01" ID="{B9896AEC-CCE3-4CB7-9198-BA56C5C93341}">
+													<Language>SFX</Language>
+													<AudioFile>Ocean_Amb_Wave_Hit_Big-01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="822314929"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Ocean_Amb_Wave_Hit_Big-01" ID="{B9896AEC-CCE3-4CB7-9198-BA56C5C93341}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Ocean_Amb_Wave_Hit_Small-01" ID="{D2EA362F-44F8-497B-A1C2-5332D7298B09}" ShortID="777564373">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Ocean_Amb_Wave_Hit_Small-01" ID="{E92E660D-6566-47D5-8F68-7E21D6174F46}">
+													<Language>SFX</Language>
+													<AudioFile>Ocean_Amb_Wave_Hit_Small-01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="240420475"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Ocean_Amb_Wave_Hit_Small-01" ID="{E92E660D-6566-47D5-8F68-7E21D6174F46}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Ocean_Amb_Wave_Hit_Small-03" ID="{80BAD448-4AA9-4BA2-A969-62C1A737555E}" ShortID="958643794">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Ocean_Amb_Wave_Hit_Small-03" ID="{E5BD860E-F98C-42CA-ABBC-D0C708371D93}">
+													<Language>SFX</Language>
+													<AudioFile>Ocean_Amb_Wave_Hit_Small-03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="321921039"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Ocean_Amb_Wave_Hit_Small-03" ID="{E5BD860E-F98C-42CA-ABBC-D0C708371D93}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Ocean_Amb_Wave_Hit_Small-02" ID="{95A16B85-550F-4449-B466-9A40CB1FC9A9}" ShortID="493758419">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Ocean_Amb_Wave_Hit_Small-02" ID="{FC7302A4-354E-4991-B7BB-668F534DD01D}">
+													<Language>SFX</Language>
+													<AudioFile>Ocean_Amb_Wave_Hit_Small-02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="672192723"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Ocean_Amb_Wave_Hit_Small-02" ID="{FC7302A4-354E-4991-B7BB-668F534DD01D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<Sound Name="Slience" ID="{B44E2CDD-2515-4546-BCD0-0B47E5330618}" ShortID="429916481">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{27F302EF-81C5-474B-B818-943863EE49CA}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="1"/>
+															<Property Name="Min" Type="Real64" Value="-2"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<SourcePlugin Name="Silence" ID="{2B89A91F-0EE5-425F-B159-D08413510689}" ShortID="1043767212" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+											<PropertyList>
+												<Property Name="Length" Type="Real32" Value="6"/>
+												<Property Name="LengthMax" Type="Real32" Value="3"/>
+												<Property Name="LengthMin" Type="Real32" Value="-3"/>
+											</PropertyList>
+											<Language>SFX</Language>
+										</SourcePlugin>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Silence" ID="{2B89A91F-0EE5-425F-B159-D08413510689}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Playlist">
+									<Reference>
+										<ObjectRef Name="Wave" ID="{C74B8AC1-EB64-451D-A28E-BFB3C164DE9C}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+									</Reference>
+									<Reference>
+										<ObjectRef Name="Slience" ID="{B44E2CDD-2515-4546-BCD0-0B47E5330618}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</RandomSequenceContainer>
+						<Sound Name="Ocean_Amb_Base" ID="{DDFBD44A-E676-40B7-A40F-6CF7B3412CE1}" ShortID="269069584">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Ocean_Amb_Base" ID="{433A3D34-CED1-467F-ABD4-B0317F9F8487}">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="1.45617560383668"/>
+										<Property Name="TrimEnd" Type="Real64" Value="87.5092162641089"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Ocean_Amb_Base.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="705253284"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Ocean_Amb_Base" ID="{433A3D34-CED1-467F-ABD4-B0317F9F8487}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{08DBC65F-8C4D-4F3B-9EA5-60C514E97145}" ShortID="878048755">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="Ocean_Amb_Control" ID="{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}" WorkUnitID="{66349ADF-5418-4F74-AB0F-E1809A3A2EBC}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{D7F2E165-CC79-47BD-9384-9FBD4DB6A57E}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+																<SegmentShape>Log1</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>10</XPos>
+																<YPos>-8.59985</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</BlendContainer>
+				<Sound Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" ShortID="476953304">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-8</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DDE29CF7-8384-4CDC-9CD7-62FC89BCB9FF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F9267864-13E9-43D4-B3B0-7778D35FE288}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Ambient_Music" ID="{CDC22E21-354C-42C8-92ED-866AB5D886B3}">
+							<Language>SFX</Language>
+							<AudioFile>Ambient_Music.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="989565158"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Ambient_Music" ID="{CDC22E21-354C-42C8-92ED-866AB5D886B3}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

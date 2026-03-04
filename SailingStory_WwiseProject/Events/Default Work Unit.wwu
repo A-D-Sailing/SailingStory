@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_Boat_Sailing_Slow" ID="{8A7926DB-B7E9-4FDE-A025-1C081005F4A3}">
+					<ChildrenList>
+						<Action Name="" ID="{5A93E70B-72C7-4B23-84F8-2EDE6F09C494}" ShortID="505538342">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Boat_Sailing_Slow" ID="{85AA4BB0-303E-44A9-9B87-2B78711557A5}">
+					<ChildrenList>
+						<Action Name="" ID="{3C3B0205-3EB7-42E6-9D4E-F35E669C407F}" ShortID="98904156">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.005"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Ocean_Amb" ID="{877D5EE1-6FBC-46EF-868A-D413FBBB2AE9}">
+					<ChildrenList>
+						<Action Name="" ID="{E3005C5E-3A7A-4303-9E97-6704794B60AC}" ShortID="71794002">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ocean_Amb" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Ambient_Music" ID="{E8BFBB98-176D-4D44-AFBE-4B302E8BAAE6}">
+					<ChildrenList>
+						<Action Name="" ID="{9EBEBA30-C908-41F0-AF2E-ED80BEBFFCE7}" ShortID="624805734">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

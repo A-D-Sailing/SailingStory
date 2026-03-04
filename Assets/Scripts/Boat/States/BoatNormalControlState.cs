@@ -14,7 +14,21 @@ public class BoatNormalControlState : BoatBaseState
     private float lastDockCheckTime;
     
     private CameraShakeFeedbacks _cameraShakePlayer;
-    
+
+    // Add Audio Value
+    private AkAmbient _boatMoveSound;  
+    private bool _isMoving = false;
+    private const float MOVE_THRESHOLD = 0.1f;
+
+    //RTPC Control
+    private const string OCEAN_AMB_RTPC_NAME = "Ocean_Amb_Control";
+    private const float RTPC_UPDATE_INTERVAL = 0.1f; 
+    private float lastRtpcUpdateTime;
+    private float currentSpeed = 0f;
+
+    //Ambience Gameobject
+    private GameObject _oceanAmbObject;
+
     /// <summary>
     /// Enter the normal control state
     /// </summary>
@@ -26,13 +40,27 @@ public class BoatNormalControlState : BoatBaseState
     {
         targetYawRateRad = 0f;
         lastDockCheckTime = 0f;
-        
+        lastRtpcUpdateTime = 0f; 
+        currentSpeed = 0f;
+
         // args[0]: (Required) CameraShakeFeedbacks - camera shake feedback
         if (args.Length > 0 && args[0] is CameraShakeFeedbacks cameraShake)
         {
             _cameraShakePlayer = cameraShake;
         }
-        
+
+        // Get Boat Audio Component
+        _boatMoveSound = owner.GetComponent<AkAmbient>();
+        if (_boatMoveSound == null)
+        {
+            Debug.LogWarning("[BoatSound] AkAmbient component not found on boat!");
+        }
+
+        //Play Ambience Gameobject Check
+        if (_oceanAmbObject == null)
+        {
+            _oceanAmbObject = GameObject.Find("Ambience"); 
+        }
         Debug.Log("[BoatState] Entered Normal Control State");
     }
     
@@ -44,31 +72,98 @@ public class BoatNormalControlState : BoatBaseState
             lastDockCheckTime = Time.time;
             CheckForNearbyDock(owner);
         }
+
+        if (Time.time - lastRtpcUpdateTime > RTPC_UPDATE_INTERVAL)
+        {
+            lastRtpcUpdateTime = Time.time;
+            UpdateRTPCValue(owner);
+        }
     }
-    
+
     public override void HandleFixedUpdate(BoatController owner)
     {
         var dt = Time.fixedDeltaTime;
-        
+
         // Get input
         var (throttle, steer) = GetInput();
-        
+
         // Getting vectors for boat status
         var rb = owner.Rigidbody;
         var v = rb.linearVelocity;
         var forward = owner.transform.forward;
-        
+
         var forwardSpeed = Vector3.Dot(v, forward);
-        
+
         ApplyThrust(owner, throttle, forwardSpeed);
         ApplySteering(owner, steer, dt);
         ApplyWaterDrag(owner);
+
+        CheckMovementAndPlaySound(rb);
+
+        currentSpeed = rb.linearVelocity.magnitude;
     }
-    
+
+    private void UpdateRTPCValue(BoatController owner)
+    {
+        if (_boatMoveSound == null) return;
+
+        float clampedSpeed = Mathf.Clamp(currentSpeed, 0f, owner.maxForwardSpeed);
+
+        AKRESULT result = AkUnitySoundEngine.SetRTPCValue(OCEAN_AMB_RTPC_NAME, clampedSpeed, _oceanAmbObject);
+
+        if (result != AKRESULT.AK_Success)
+        {
+            Debug.LogError($"[BoatRTPC] Failed to set RTPC: {result}");
+        }
+        else
+        {
+            Debug.Log($"[BoatRTPC] Updated {OCEAN_AMB_RTPC_NAME} to {clampedSpeed:F2} (Speed: {currentSpeed:F2})");
+        }
+    }
+
+    private void CheckMovementAndPlaySound(Rigidbody rb)
+    {
+        if (_boatMoveSound == null) return;
+
+        float linearSpeed = rb.linearVelocity.magnitude;
+        float angularSpeed = rb.angularVelocity.magnitude;
+
+        bool isCurrentlyMoving = (linearSpeed > MOVE_THRESHOLD) || (angularSpeed > 0.1f);
+
+        if (isCurrentlyMoving && !_isMoving)
+        {
+            AkUnitySoundEngine.PostEvent("Play_Boat_Sailing_Slow", _boatMoveSound.gameObject);
+            Debug.Log("[BoatSound] Started moving - Playing Play_Boat_Sailing_Slow");
+        }
+        else if (!isCurrentlyMoving && _isMoving)
+        {
+            AkUnitySoundEngine.PostEvent("Stop_Boat_Sailing_Slow", _boatMoveSound.gameObject);
+            Debug.Log("[BoatSound] Stopped moving - Stopping Play_Boat_Sailing_Slow");
+        }
+
+        _isMoving = isCurrentlyMoving;
+    }
     public override void ExitState(BoatController owner)
     {
+        if (_boatMoveSound != null)
+        {
+            if (_isMoving)
+            {
+                AkUnitySoundEngine.PostEvent("Stop_Boat_Sailing_Slow", _boatMoveSound.gameObject);
+                _isMoving = false;
+            }
+
+        }
+
+        if (_oceanAmbObject != null)
+        {
+            AkUnitySoundEngine.SetRTPCValue(OCEAN_AMB_RTPC_NAME, 0f, _oceanAmbObject);
+        }
+
         Debug.Log("[BoatState] Exited Normal Control State");
         _cameraShakePlayer = null;
+        _boatMoveSound = null;
+        _oceanAmbObject = null;
     }
     
     public override void HandleCollisionEnter(BoatController owner, Collision collision)

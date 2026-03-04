@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C4535414-54EB-4819-81B5-86812A42FF7B}" SchemaVersion="123">
+	<SoundcasterSessions>
+		<WorkUnit Name="Default Work Unit" ID="{C4535414-54EB-4819-81B5-86812A42FF7B}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="Amb" ID="{623FEE7D-14DE-4CA2-8253-53D8EDD8DC89}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Ocean_Amb" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="Ocean_Amb_Control" ID="{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"/>
+							<Value>0</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundcasterSessions>
+</WwiseDocument>
