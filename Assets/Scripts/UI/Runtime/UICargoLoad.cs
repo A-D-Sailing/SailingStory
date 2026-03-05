@@ -298,7 +298,7 @@ namespace UI.Runtime
             if (_goldLabel != null)
             {
                 int cargoValue = CalculateCargoValue();
-                _goldLabel.text = $"Gold: {cargoValue}";
+                _goldLabel.text = $"Estimate Gold: {cargoValue}";
             }
         }
 

@@ -8,7 +8,7 @@
             <ui:VisualElement name="cargo-panel" class="panel cargo-panel">
                 <ui:VisualElement name="cargo-header" class="cargo-header">
                     <ui:Label text="Cargo" class="cargo-title" />
-                    <ui:Label name="gold-label" text="Gold: 0" class="gold-label" />
+                    <ui:Label name="gold-label" text="Estimate Gold: 0" class="gold-label" />
                 </ui:VisualElement>
                 <UI.Runtime.CustomControl.UIGridContainer name="cargo-container" Columns="5" Rows="7" class="grid-container cargo-grid" />
             </ui:VisualElement>
