@@ -39,7 +39,7 @@
 						<Action Name="" ID="{E3005C5E-3A7A-4303-9E97-6704794B60AC}" ShortID="71794002">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Ocean_Amb" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+									<ObjectRef Name="Ocean_Amb_Slow" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -51,6 +51,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Boat_Impact" ID="{5CE4E472-B1B2-41F9-B5F4-4E29F31837EF}">
+					<ChildrenList>
+						<Action Name="" ID="{A73F7E16-1D86-414F-A9C1-ECC2223B0971}" ShortID="391247588">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boat_Impact" ID="{B382A8E4-6103-466A-89CD-C4E69B4A61D7}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
