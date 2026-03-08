@@ -6,7 +6,7 @@
 				<SoundcasterSession Name="Amb" ID="{623FEE7D-14DE-4CA2-8253-53D8EDD8DC89}">
 					<ModuleList>
 						<Module>
-							<ObjectRef Name="Ocean_Amb" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<ObjectRef Name="Ocean_Amb_Slow" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
@@ -17,11 +17,15 @@
 							<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
 							<Position X="2" Y="0"/>
 						</Module>
+						<Module>
+							<ObjectRef Name="Ocean_Amb_Fast" ID="{41AE8247-6F03-48B4-994B-D0D8F1A39681}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="3" Y="0"/>
+						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
 							<GameParameterRef Name="Ocean_Amb_Control" ID="{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"/>
-							<Value>0</Value>
+							<Value>10</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true"/>

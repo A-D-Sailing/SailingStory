@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{25DAB77C-74DB-4E52-B00A-E15163D2F37E}",
     "Language": "SFX",
-    "Hash": "{F194B776-7E2B-E999-F5D1-39E6C6051437}",
+    "Hash": "{EE6F773F-04EE-320F-2B44-CBDD3064A261}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Boat",
     "ShortName": "Boat",
     "Path": "Boat.bnk",
@@ -22,9 +22,31 @@
       "Location": "Memory",
       "ShortName": "Ship Sailing Slow Loop.wav",
       "CachePath": "66/{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem"
+     },
+     {
+      "Id": "787803768",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Boat_Impact.wav",
+      "CachePath": "1C/{1C6E0881-B673-4E53-F6AE-397FF751C9FE}.wem"
      }
     ],
     "Events": [
+     {
+      "Id": "320405745",
+      "Name": "Play_Boat_Impact",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Boat_Impact",
+      "GUID": "{5CE4E472-B1B2-41F9-B5F4-4E29F31837EF}",
+      "DurationType": "OneShot",
+      "DurationMin": "1.1050811",
+      "DurationMax": "1.1050811",
+      "MediaRefs": [
+       {
+        "Id": "787803768"
+       }
+      ]
+     },
      {
       "Id": "3774150848",
       "Name": "Play_Boat_Sailing_Slow",
@@ -47,9 +69,17 @@
       "DurationMin": "0",
       "DurationMax": "0"
      }
+    ],
+    "GameParameters": [
+     {
+      "Id": "1259668694",
+      "Name": "Ocean_Amb_Control",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Ocean_Amb_Control",
+      "GUID": "{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"
+     }
     ]
    }
   ],
-  "FileHash": "{638F0113-BC06-AF79-2F68-56D32A550252}"
+  "FileHash": "{EF1213C0-CE5B-1840-0F4D-BC6DE18428B8}"
  }
 }

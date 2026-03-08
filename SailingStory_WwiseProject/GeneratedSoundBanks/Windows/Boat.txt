@@ -1,7 +1,12 @@
 Event	ID	Name			Wwise Object Path	Notes
+	320405745	Play_Boat_Impact			\Default Work Unit\Play_Boat_Impact	
 	602176938	Stop_Boat_Sailing_Slow			\Default Work Unit\Stop_Boat_Sailing_Slow	
 	3774150848	Play_Boat_Sailing_Slow			\Default Work Unit\Play_Boat_Sailing_Slow	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1259668694	Ocean_Amb_Control			\Default Work Unit\Ocean_Amb_Control	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	90781119	Boat_Sailing_Slow	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\66\{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat_Sailing_Slow		6138704
+	90781119	Boat_Sailing_Slow	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\66\{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat\Boat_Sailing_Slow		6138704
+	787803768	Boat_Impact	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\1C\{1C6E0881-B673-4E53-F6AE-397FF751C9FE}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat\Boat_Impact		195032
 
