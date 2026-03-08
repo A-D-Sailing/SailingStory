@@ -1,9 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/UI/Runtime/CargoMap.uss?fileID=7433441132597879392&amp;guid=0058d9952402ded47abc40f82f7b00ea&amp;type=3#CargoMap" />
-    <Style src="project://database/Assets/Scripts/UI/Runtime/CustomControl/SSGridContainer.uss?fileID=7433441132597879392&amp;guid=c4652659c812a4d428ee022d61842605&amp;type=3#SSGridContainer" />
-    <Style src="project://database/Assets/Scripts/UI/Runtime/CustomControl/SSIconGridCell.uss?fileID=7433441132597879392&amp;guid=a9eed600fa68e784faa17066f452ccfb&amp;type=3#SSIconGridCell" />
+    <Style src="project://database/Assets/Scripts/UI/Runtime/UICargoLoad.uss" />
+    <Style src="project://database/Assets/Scripts/UI/Runtime/CustomControl/UIGridContainer.uss" />
+    <Style src="project://database/Assets/Scripts/UI/Runtime/CustomControl/UIIconGridCell.uss" />
     <ui:VisualElement name="cargo-map-root" class="cargo-map-root">
-        <ui:Label text="Delivery" class="main-title" />
+        <ui:Label name="main-title" text="Loading Cargo" class="main-title" />
         <ui:VisualElement name="panels-container" class="panels-container">
             <ui:VisualElement name="cargo-panel" class="panel cargo-panel">
                 <ui:VisualElement name="cargo-header" class="cargo-header">
@@ -18,7 +18,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="buttons-container" class="buttons-container">
-            <ui:Button name="settle-depart-btn" text="Settle &amp; Depart" class="action-btn settle-depart-btn" />
+            <ui:Button name="settle-depart-btn" text="Load &amp; Depart" class="action-btn settle-depart-btn" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

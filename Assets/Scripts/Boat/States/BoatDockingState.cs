@@ -1,5 +1,5 @@
 using Boat.Feedback;
-using MoreMountains.Feedbacks;
+using UI.Runtime;
 using UnityEngine;
 
 /// <summary>
@@ -11,7 +11,7 @@ public class BoatDockingState : BoatBaseState
 {
     private DockingFeedbacks _dockingFeedback;
     
-    private GameObject _cargoLoadUI;
+    private UICargoLoad _cargoLoadUI;
     
     /// <summary>
     /// Enter the docking state
@@ -36,7 +36,7 @@ public class BoatDockingState : BoatBaseState
         }
         
         // args[2]: (Required) GameObject - cargo load ui
-        if (args.Length > 2 && args[2] is GameObject cargoLoadUI && cargoLoadUI != null)
+        if (args.Length > 2 && args[2] is UICargoLoad cargoLoadUI && cargoLoadUI != null)
         {
             _cargoLoadUI = cargoLoadUI;
         }
@@ -49,7 +49,7 @@ public class BoatDockingState : BoatBaseState
 
     private void OnDockingFeedbackPlayComplete()
     {
-        _cargoLoadUI.SetActive(true);
+        _cargoLoadUI.Show();
     }
 
     public override void HandleFixedUpdate(BoatController owner)
