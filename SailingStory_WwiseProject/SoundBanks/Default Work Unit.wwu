@@ -5,6 +5,7 @@
 			<ChildrenList>
 				<SoundBank Name="Boat" ID="{25DAB77C-74DB-4E52-B00A-E15163D2F37E}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Play_Boat_Impact" ID="{5CE4E472-B1B2-41F9-B5F4-4E29F31837EF}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Boat_Sailing_Slow" ID="{85AA4BB0-303E-44A9-9B87-2B78711557A5}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Boat_Sailing_Slow" ID="{8A7926DB-B7E9-4FDE-A025-1C081005F4A3}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>

@@ -169,6 +169,9 @@ public class BoatNormalControlState : BoatBaseState
     
     public override void HandleCollisionEnter(BoatController owner, Collision collision)
     {
+
+        AkUnitySoundEngine.PostEvent("Play_Boat_Impact", owner.gameObject);
+
         if (_cameraShakePlayer && collision.gameObject.CompareTag("Obstacle"))
         {
             _cameraShakePlayer.PlayFeedbacks(true);
