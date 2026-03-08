@@ -5,46 +5,182 @@ using UnityEngine.UIElements;
 
 namespace UI.Runtime
 {
+    public enum CargoUIState
+    {
+        Load,   // Player buying from market to cargo
+        Unload  // Player selling from cargo to market
+    }
+
     /// <summary>
     /// Manages the cargo map UI, allowing transfer of items between cargo and market.
+    /// Supports Load state (buying) and Unload state (selling).
     /// </summary>
-    public class UICargoMap : MonoBehaviour
+    public class UICargoLoad : MonoBehaviour
     {
         [Header("Grid Settings")]
         [SerializeField] private int columns = 5;
         [SerializeField] private int cargoRows = 7;
         [SerializeField] private int marketRows = 5;
 
+        private VisualElement _rootElement;
         private UIGridContainer _cargoContainer;
         private UIGridContainer _marketContainer;
         private Label _goldLabel;
+        private Label _mainTitle;
         private Button _settleDepartBtn;
 
         private UICargoItemType[,] _cargoGrid;
         private UICargoItemType[,] _marketGrid;
-        
+
+        private CargoUIState _currentState = CargoUIState.Load;
+        private int _earnedGold = 0;
+        private bool _initialized = false;
+
         [Header("Boat Behavior")]
         public BoatController boatController;
-
         public Transform undockTarget;
+
+        public CargoUIState CurrentState => _currentState;
+        public int EarnedGold => _earnedGold;
+        public int CargoValue => CalculateCargoValue();
 
         void Awake()
         {
             var uiDocument = GetComponent<UIDocument>();
-            var root = uiDocument.rootVisualElement;
+            _rootElement = uiDocument.rootVisualElement;
 
-            _cargoContainer = root.Q<UIGridContainer>("cargo-container");
-            _marketContainer = root.Q<UIGridContainer>("market-container");
-            _goldLabel = root.Q<Label>("gold-label");
-            _settleDepartBtn = root.Q<Button>("settle-depart-btn");
+            _cargoContainer = _rootElement.Q<UIGridContainer>("cargo-container");
+            _marketContainer = _rootElement.Q<UIGridContainer>("market-container");
+            _goldLabel = _rootElement.Q<Label>("gold-label");
+            _mainTitle = _rootElement.Q<Label>("main-title");
+            _settleDepartBtn = _rootElement.Q<Button>("settle-depart-btn");
 
             InitializeGridData();
             InitializeContainers();
             RegisterCallbacks();
             RegisterButtonCallbacks();
             
+            _initialized = true;
+        }
+
+        void OnEnable()
+        {
+            if (_initialized)
+            {
+                Show();
+            }
+        }
+
+        void Start()
+        {
+            Hide();
+        }
+
+        /// <summary>
+        /// Opens the UI in Load state (player buying from market).
+        /// </summary>
+        public void OpenLoadState()
+        {
+            _currentState = CargoUIState.Load;
+            _earnedGold = 0;
+            ClearAllGrids();
             PopulateMarketItems();
-            UpdateGoldDisplay();
+            ShowAndRefresh();
+        }
+
+        /// <summary>
+        /// Opens the UI in Unload state (player selling to market).
+        /// Cargo items are preserved from previous session.
+        /// </summary>
+        public void OpenUnloadState()
+        {
+            _currentState = CargoUIState.Unload;
+            _earnedGold = 0;
+            ClearMarketGrid();
+            ShowAndRefresh();
+        }
+
+        /// <summary>
+        /// Opens the UI in Unload state with specific cargo items.
+        /// </summary>
+        public void OpenUnloadState(List<UICargoItemType> cargoItems)
+        {
+            _currentState = CargoUIState.Unload;
+            _earnedGold = 0;
+            ClearAllGrids();
+            
+            foreach (var itemType in cargoItems)
+            {
+                TryPlaceItemAnywhere(_cargoContainer, _cargoGrid, itemType);
+            }
+            
+            ShowAndRefresh();
+        }
+
+        /// <summary>
+        /// Shows UI and refreshes display.
+        /// </summary>
+        private void ShowAndRefresh()
+        {
+            _rootElement.style.display = DisplayStyle.Flex;
+            UpdateUIForState();
+            _cargoContainer?.UpdateLayout();
+            _marketContainer?.UpdateLayout();
+        }
+
+        public void Hide()
+        {
+            _rootElement.style.display = DisplayStyle.None;
+        }
+
+        public void Show()
+        {
+            _rootElement.style.display = DisplayStyle.Flex;
+            
+            // Initialize based on current state if needed
+            if (_currentState == CargoUIState.Load && _marketContainer.childCount == 0)
+            {
+                ClearAllGrids();
+                PopulateMarketItems();
+            }
+            
+            UpdateUIForState();
+            _cargoContainer?.UpdateLayout();
+            _marketContainer?.UpdateLayout();
+        }
+
+        private void ClearAllGrids()
+        {
+            ClearCargoGrid();
+            ClearMarketGrid();
+        }
+
+        private void ClearCargoGrid()
+        {
+            _cargoContainer?.ClearAll();
+            _cargoGrid = new UICargoItemType[columns, cargoRows];
+        }
+
+        private void ClearMarketGrid()
+        {
+            _marketContainer?.ClearAll();
+            _marketGrid = new UICargoItemType[columns, marketRows];
+        }
+
+        private void UpdateUIForState()
+        {
+            if (_currentState == CargoUIState.Load)
+            {
+                if (_mainTitle != null) _mainTitle.text = "Loading Cargo";
+                if (_settleDepartBtn != null) _settleDepartBtn.text = "Load & Depart";
+                UpdateGoldDisplayLoad();
+            }
+            else
+            {
+                if (_mainTitle != null) _mainTitle.text = "Unloading Cargo";
+                if (_settleDepartBtn != null) _settleDepartBtn.text = "Settle & Depart";
+                UpdateGoldDisplayUnload();
+            }
         }
 
         private void InitializeGridData()
@@ -72,30 +208,28 @@ namespace UI.Runtime
         {
             if (_marketContainer == null) return;
 
-            // Item sizes: Toolkit(1x1), Plank(2x1), Shipwright(1x2), Crate(1x1)
-
             // Row 0: Crate, Plank (2x1), Crate, Crate
             PlaceItemInMarket(UICargoItemType.Crate, 0, 0);
-            PlaceItemInMarket(UICargoItemType.Plank, 1, 0);    // spans (1,0)-(2,0)
+            PlaceItemInMarket(UICargoItemType.Plank, 1, 0);
             PlaceItemInMarket(UICargoItemType.Crate, 3, 0);
             PlaceItemInMarket(UICargoItemType.Crate, 4, 0);
 
             // Row 1: Shipwright (1x2), Toolkit, Crate, Shipwright (1x2), Toolkit
-            PlaceItemInMarket(UICargoItemType.Shipwright, 0, 1);  // spans (0,1)-(0,2)
+            PlaceItemInMarket(UICargoItemType.Shipwright, 0, 1);
             PlaceItemInMarket(UICargoItemType.Toolkit, 1, 1);
             PlaceItemInMarket(UICargoItemType.Crate, 2, 1);
-            PlaceItemInMarket(UICargoItemType.Shipwright, 3, 1);  // spans (3,1)-(3,2)
+            PlaceItemInMarket(UICargoItemType.Shipwright, 3, 1);
             PlaceItemInMarket(UICargoItemType.Toolkit, 4, 1);
 
             // Row 2: (Shipwright continues), Plank (2x1), (Shipwright continues), Crate
-            PlaceItemInMarket(UICargoItemType.Plank, 1, 2);    // spans (1,2)-(2,2)
+            PlaceItemInMarket(UICargoItemType.Plank, 1, 2);
             PlaceItemInMarket(UICargoItemType.Crate, 4, 2);
 
             // Row 3: Toolkit, Crate, Shipwright (1x2), Plank (2x1)
             PlaceItemInMarket(UICargoItemType.Toolkit, 0, 3);
             PlaceItemInMarket(UICargoItemType.Crate, 1, 3);
-            PlaceItemInMarket(UICargoItemType.Shipwright, 2, 3);  // spans (2,3)-(2,4)
-            PlaceItemInMarket(UICargoItemType.Plank, 3, 3);    // spans (3,3)-(4,3)
+            PlaceItemInMarket(UICargoItemType.Shipwright, 2, 3);
+            PlaceItemInMarket(UICargoItemType.Plank, 3, 3);
 
             // Row 4: Crate, Toolkit, (Shipwright continues), Toolkit, Crate
             PlaceItemInMarket(UICargoItemType.Crate, 0, 4);
@@ -109,18 +243,12 @@ namespace UI.Runtime
             PlaceItem(_marketContainer, _marketGrid, itemType, x, y);
         }
 
-        private void PlaceItemInCargo(UICargoItemType itemType, int x, int y)
-        {
-            PlaceItem(_cargoContainer, _cargoGrid, itemType, x, y);
-        }
-
         private bool PlaceItem(UIGridContainer container, UICargoItemType[,] grid, UICargoItemType itemType, int x, int y)
         {
             var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
 
             if (!CanPlaceItem(grid, x, y, width, height)) return false;
 
-            // Mark grid cells as occupied
             for (int dy = 0; dy < height; dy++)
             {
                 for (int dx = 0; dx < width; dx++)
@@ -129,7 +257,6 @@ namespace UI.Runtime
                 }
             }
 
-            // Create and place the visual cell
             var cell = UICargoItemRegistry.CreateCell(itemType);
             if (cell != null)
             {
@@ -163,11 +290,8 @@ namespace UI.Runtime
             if (itemType == UICargoItemType.None) return;
 
             var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
-
-            // Find the primary (top-left) cell of this item
             var (primaryX, primaryY) = FindPrimaryCell(grid, x, y, itemType);
 
-            // Clear grid cells
             for (int dy = 0; dy < height; dy++)
             {
                 for (int dx = 0; dx < width; dx++)
@@ -176,7 +300,6 @@ namespace UI.Runtime
                 }
             }
 
-            // Remove the visual cell
             var cell = container.FindCellAt(primaryX, primaryY);
             if (cell != null)
             {
@@ -232,13 +355,27 @@ namespace UI.Runtime
         {
             if (_settleDepartBtn != null)
             {
-                _settleDepartBtn.clicked += () =>
-                {
-                    boatController?.TransitionToUndocking(undockTarget);
-                    gameObject.SetActive(false);
-                };
-                
+                _settleDepartBtn.clicked += OnSettleDepartClicked;
             }
+        }
+
+        private void OnSettleDepartClicked()
+        {
+            if (_currentState == CargoUIState.Load)
+            {
+                // Player loaded cargo and is departing
+                ClearMarketGrid();
+                _currentState = CargoUIState.Unload;
+            }
+            else
+            {
+                // Player unloaded cargo and is departing
+                ClearAllGrids();
+                _currentState = CargoUIState.Load;
+            }
+            
+            boatController?.TransitionToUndocking(undockTarget);
+            Hide();
         }
 
         private void OnCargoContainerClicked(int gridX, int gridY, UIIconGridCell cell)
@@ -248,10 +385,23 @@ namespace UI.Runtime
             var itemType = _cargoGrid[gridX, gridY];
             if (itemType == UICargoItemType.None) return;
 
-            if (TryPlaceItemAnywhere(_marketContainer, _marketGrid, itemType))
+            if (_currentState == CargoUIState.Load)
             {
-                RemoveItem(_cargoContainer, _cargoGrid, gridX, gridY);
-                UpdateGoldDisplay();
+                if (TryPlaceItemAnywhere(_marketContainer, _marketGrid, itemType))
+                {
+                    RemoveItem(_cargoContainer, _cargoGrid, gridX, gridY);
+                    UpdateGoldDisplayLoad();
+                }
+            }
+            else
+            {
+                var (_, _, goldValue) = UICargoItemRegistry.GetItemInfo(itemType);
+                if (TryPlaceItemAnywhere(_marketContainer, _marketGrid, itemType))
+                {
+                    RemoveItem(_cargoContainer, _cargoGrid, gridX, gridY);
+                    _earnedGold += goldValue;
+                    UpdateGoldDisplayUnload();
+                }
             }
         }
 
@@ -262,30 +412,52 @@ namespace UI.Runtime
             var itemType = _marketGrid[gridX, gridY];
             if (itemType == UICargoItemType.None) return;
 
-            if (TryPlaceItemAnywhere(_cargoContainer, _cargoGrid, itemType))
+            if (_currentState == CargoUIState.Load)
             {
-                RemoveItem(_marketContainer, _marketGrid, gridX, gridY);
-                UpdateGoldDisplay();
+                if (TryPlaceItemAnywhere(_cargoContainer, _cargoGrid, itemType))
+                {
+                    RemoveItem(_marketContainer, _marketGrid, gridX, gridY);
+                    UpdateGoldDisplayLoad();
+                }
+            }
+            else
+            {
+                var (_, _, goldValue) = UICargoItemRegistry.GetItemInfo(itemType);
+                if (TryPlaceItemAnywhere(_cargoContainer, _cargoGrid, itemType))
+                {
+                    RemoveItem(_marketContainer, _marketGrid, gridX, gridY);
+                    _earnedGold -= goldValue;
+                    if (_earnedGold < 0) _earnedGold = 0;
+                    UpdateGoldDisplayUnload();
+                }
             }
         }
 
         private int CalculateCargoValue()
         {
             int totalValue = 0;
-            var counted = new HashSet<(int, int)>();
+            int gridWidth = _cargoGrid.GetLength(0);
+            int gridHeight = _cargoGrid.GetLength(1);
+            var visited = new bool[gridWidth, gridHeight];
 
-            for (int y = 0; y < _cargoGrid.GetLength(1); y++)
+            for (int y = 0; y < gridHeight; y++)
             {
-                for (int x = 0; x < _cargoGrid.GetLength(0); x++)
+                for (int x = 0; x < gridWidth; x++)
                 {
+                    if (visited[x, y]) continue;
+                    
                     var itemType = _cargoGrid[x, y];
                     if (itemType == UICargoItemType.None) continue;
 
-                    var primary = FindPrimaryCell(_cargoGrid, x, y, itemType);
-                    if (counted.Contains(primary)) continue;
+                    var (width, height, goldValue) = UICargoItemRegistry.GetItemInfo(itemType);
+                    for (int dy = 0; dy < height && y + dy < gridHeight; dy++)
+                    {
+                        for (int dx = 0; dx < width && x + dx < gridWidth; dx++)
+                        {
+                            visited[x + dx, y + dy] = true;
+                        }
+                    }
 
-                    counted.Add(primary);
-                    var (_, _, goldValue) = UICargoItemRegistry.GetItemInfo(itemType);
                     totalValue += goldValue;
                 }
             }
@@ -293,15 +465,55 @@ namespace UI.Runtime
             return totalValue;
         }
 
-        private void UpdateGoldDisplay()
+        private void UpdateGoldDisplayLoad()
         {
             if (_goldLabel != null)
             {
-                int cargoValue = CalculateCargoValue();
-                _goldLabel.text = $"Estimate Gold: {cargoValue}";
+                _goldLabel.text = $"Estimate Gold: {CalculateCargoValue()}";
             }
         }
 
-        public int CargoValue => CalculateCargoValue();
+        private void UpdateGoldDisplayUnload()
+        {
+            if (_goldLabel != null)
+            {
+                _goldLabel.text = $"Earned Gold: {_earnedGold}";
+            }
+        }
+
+        /// <summary>
+        /// Gets list of all cargo item types currently in cargo.
+        /// </summary>
+        public List<UICargoItemType> GetCargoItems()
+        {
+            var items = new List<UICargoItemType>();
+            int gridWidth = _cargoGrid.GetLength(0);
+            int gridHeight = _cargoGrid.GetLength(1);
+            var visited = new bool[gridWidth, gridHeight];
+
+            for (int y = 0; y < gridHeight; y++)
+            {
+                for (int x = 0; x < gridWidth; x++)
+                {
+                    if (visited[x, y]) continue;
+                    
+                    var itemType = _cargoGrid[x, y];
+                    if (itemType == UICargoItemType.None) continue;
+
+                    var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
+                    for (int dy = 0; dy < height && y + dy < gridHeight; dy++)
+                    {
+                        for (int dx = 0; dx < width && x + dx < gridWidth; dx++)
+                        {
+                            visited[x + dx, y + dy] = true;
+                        }
+                    }
+
+                    items.Add(itemType);
+                }
+            }
+
+            return items;
+        }
     }
 }

@@ -1,7 +1,7 @@
 using Boat.Feedback;
 using KToolkit;
+using UI.Runtime;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BoatController : MonoBehaviour
@@ -44,8 +44,8 @@ public class BoatController : MonoBehaviour
     [Tooltip("The distance limit when the boat should start auto docking"), Range(0f, 200f)]
     public float autoDockDistance = 50;
 
-    [Tooltip("The UI game object to present when finish docking")]
-    public GameObject cargoLoadUI;
+    [Tooltip("The script controller of cargo load/unload UI to present when finish docking")]
+    public UICargoLoad cargoLoadUI;
 
     // Components
     private Rigidbody _rb;
