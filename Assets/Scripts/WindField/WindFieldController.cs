@@ -9,8 +9,6 @@ public class WindFieldController : MonoBehaviour
     [Tooltip("Wind Intensity")]
     private float forceIntensity;
     
-    [SerializeField] 
-    [Tooltip("Wind Direction")]
     private Vector3 forceDirection;
 
     private Transform windRoot;
@@ -25,6 +23,7 @@ public class WindFieldController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        forceDirection = transform.localToWorldMatrix.MultiplyVector(Vector3.forward);
         windRoot.rotation = Quaternion.LookRotation(forceDirection);
     }
 
