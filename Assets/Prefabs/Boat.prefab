@@ -280,7 +280,7 @@ MonoBehaviour:
           ImpulseType: 3
           DissipationRate: 0
           RawSignal: {fileID: 11400000, guid: bcf6524ce6451f34cb7106d0c00da9a5, type: 2}
-          AmplitudeGain: 1
+          AmplitudeGain: 0.3
           FrequencyGain: 1
           RepeatMode: 0
           Randomize: 1
@@ -302,11 +302,11 @@ MonoBehaviour:
             DecayTime: 0.2
             ScaleWithImpact: 1
             HoldForever: 0
-          ImpactRadius: 100
+          ImpactRadius: 999999
           DirectionMode: 0
           DissipationMode: 2
           DissipationDistance: 100
-          PropagationSpeed: 343
+          PropagationSpeed: 999999
         Velocity: {x: 5, y: 5, z: 5}
         ClearImpulseOnStop: 0
         DrawGizmos: 0
