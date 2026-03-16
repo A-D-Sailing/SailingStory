@@ -81,7 +81,7 @@ public class BoatController : MonoBehaviour
         }
         
         // Initialize state machine with Normal Control as the initial state
-        _stateMachine = new KStateMachine<BoatController>(this, new BoatNormalControlState(), _cameraShakePlayer);
+        _stateMachine = new KStateMachine<BoatController>(this, new BoatNormalControlState(), _cameraShakePlayer, cargoLoadUI);
     }
 
 
@@ -120,7 +120,7 @@ public class BoatController : MonoBehaviour
     /// </summary>
     public void TransitionToNormalControl()
     {
-        _stateMachine.TransitState<BoatNormalControlState>(_cameraShakePlayer);
+        _stateMachine.TransitState<BoatNormalControlState>(_cameraShakePlayer, cargoLoadUI);
     }
     
     /// <summary>

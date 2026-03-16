@@ -18,7 +18,11 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="buttons-container" class="buttons-container">
+            <ui:Button name="fix-hold-btn" text="Fix Hold" class="action-btn fix-hold-btn" />
             <ui:Button name="settle-depart-btn" text="Load &amp; Depart" class="action-btn settle-depart-btn" />
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-container" class="popup-container">
+            <ui:Label name="popup-label" text="" class="popup-label" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
