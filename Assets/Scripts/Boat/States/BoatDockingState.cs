@@ -35,7 +35,7 @@ public class BoatDockingState : BoatBaseState
             _dockingFeedback.SetDockTransform(dock);
         }
         
-        // args[2]: (Required) GameObject - cargo load ui
+        // args[2]: (Required) UICargoLoad - cargo load ui
         if (args.Length > 2 && args[2] is UICargoLoad cargoLoadUI && cargoLoadUI != null)
         {
             _cargoLoadUI = cargoLoadUI;

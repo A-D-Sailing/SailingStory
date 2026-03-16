@@ -28,12 +28,19 @@ namespace UI.Runtime
         private Label _goldLabel;
         private Label _mainTitle;
         private Button _settleDepartBtn;
+        private Button _fixHoldBtn;
+        private VisualElement _popupContainer;
+        private Label _popupLabel;
 
         private UICargoItemType[,] _cargoGrid;
         private UICargoItemType[,] _marketGrid;
+        private bool[,] _damagedCells;
 
         private CargoUIState _currentState = CargoUIState.Load;
         private int _earnedGold = 0;
+        [SerializeField] private int _playerGold = 0;
+        [SerializeField] private int fixHoldCost = 50;
+        private bool _repairMode = false;
         private bool _initialized = false;
 
         [Header("Boat Behavior")]
@@ -54,6 +61,12 @@ namespace UI.Runtime
             _goldLabel = _rootElement.Q<Label>("gold-label");
             _mainTitle = _rootElement.Q<Label>("main-title");
             _settleDepartBtn = _rootElement.Q<Button>("settle-depart-btn");
+            _fixHoldBtn = _rootElement.Q<Button>("fix-hold-btn");
+            _popupContainer = _rootElement.Q<VisualElement>("popup-container");
+            _popupLabel = _rootElement.Q<Label>("popup-label");
+
+            // Always start current run with zero total gold.
+            _playerGold = 0;
 
             InitializeGridData();
             InitializeContainers();
@@ -124,6 +137,8 @@ namespace UI.Runtime
         {
             _rootElement.style.display = DisplayStyle.Flex;
             UpdateUIForState();
+            ApplyDamageStylesToCargoItems();
+            UpdateFixHoldButtonVisibility();
             _cargoContainer?.UpdateLayout();
             _marketContainer?.UpdateLayout();
         }
@@ -145,6 +160,8 @@ namespace UI.Runtime
             }
             
             UpdateUIForState();
+            ApplyDamageStylesToCargoItems();
+            UpdateFixHoldButtonVisibility();
             _cargoContainer?.UpdateLayout();
             _marketContainer?.UpdateLayout();
         }
@@ -159,6 +176,82 @@ namespace UI.Runtime
         {
             _cargoContainer?.ClearAll();
             _cargoGrid = new UICargoItemType[columns, cargoRows];
+            RecreateCargoGridDamagedVisuals();
+        }
+
+        private void RecreateCargoGridDamagedVisuals()
+        {
+            if (_damagedCells == null) return;
+            
+            for (int y = 0; y < cargoRows; y++)
+            {
+                for (int x = 0; x < columns; x++)
+                {
+                    if (_damagedCells[x, y])
+                    {
+                        CreateDamagedCellVisual(x, y);
+                    }
+                }
+            }
+        }
+
+        private void ApplyDamageStylesToCargoItems()
+        {
+            if (_cargoContainer == null || _damagedCells == null) return;
+
+            foreach (var child in _cargoContainer.Children())
+            {
+                if (child is not UICargoItemCell cargoCell) continue;
+
+                bool isDamaged = false;
+                for (int dy = 0; dy < cargoCell.CellHeight && cargoCell.GridY + dy < cargoRows; dy++)
+                {
+                    for (int dx = 0; dx < cargoCell.CellWidth && cargoCell.GridX + dx < columns; dx++)
+                    {
+                        if (_damagedCells[cargoCell.GridX + dx, cargoCell.GridY + dy])
+                        {
+                            isDamaged = true;
+                            break;
+                        }
+                    }
+                    if (isDamaged) break;
+                }
+
+                if (isDamaged) cargoCell.AddToClassList("damaged-cell");
+                else cargoCell.RemoveFromClassList("damaged-cell");
+            }
+        }
+
+        private bool HasDamagedCells()
+        {
+            if (_damagedCells == null) return false;
+
+            for (int y = 0; y < cargoRows; y++)
+            {
+                for (int x = 0; x < columns; x++)
+                {
+                    if (_damagedCells[x, y]) return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void UpdateFixHoldButtonVisibility()
+        {
+            if (_fixHoldBtn == null) return;
+
+            bool hasDamage = HasDamagedCells();
+            _fixHoldBtn.style.display = hasDamage ? DisplayStyle.Flex : DisplayStyle.None;
+
+            if (!hasDamage)
+            {
+                _repairMode = false;
+            }
+
+            _fixHoldBtn.text = _repairMode ? "Cancel Fix Hold" : "Fix Hold";
+            if (_repairMode) _fixHoldBtn.AddToClassList("repair-mode");
+            else _fixHoldBtn.RemoveFromClassList("repair-mode");
         }
 
         private void ClearMarketGrid()
@@ -187,6 +280,7 @@ namespace UI.Runtime
         {
             _cargoGrid = new UICargoItemType[columns, cargoRows];
             _marketGrid = new UICargoItemType[columns, marketRows];
+            _damagedCells = new bool[columns, cargoRows];
         }
 
         private void InitializeContainers()
@@ -284,38 +378,69 @@ namespace UI.Runtime
             return true;
         }
 
+        private bool CanPlaceItemInCargo(int x, int y, int width, int height)
+        {
+            int gridColumns = _cargoGrid.GetLength(0);
+            int gridRows = _cargoGrid.GetLength(1);
+            if (x + width > gridColumns || y + height > gridRows) return false;
+            if (x < 0 || y < 0) return false;
+
+            for (int dy = 0; dy < height; dy++)
+            {
+                for (int dx = 0; dx < width; dx++)
+                {
+                    if (_cargoGrid[x + dx, y + dy] != UICargoItemType.None) return false;
+                    if (_damagedCells[x + dx, y + dy]) return false;
+                }
+            }
+            return true;
+        }
+
         private void RemoveItem(UIGridContainer container, UICargoItemType[,] grid, int x, int y)
         {
             var itemType = grid[x, y];
             if (itemType == UICargoItemType.None) return;
 
             var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
-            var (primaryX, primaryY) = FindPrimaryCell(grid, x, y, itemType);
+            var cell = container.FindCellAt(x, y);
+            int primaryX = cell?.GridX ?? x;
+            int primaryY = cell?.GridY ?? y;
 
             for (int dy = 0; dy < height; dy++)
             {
                 for (int dx = 0; dx < width; dx++)
                 {
-                    grid[primaryX + dx, primaryY + dy] = UICargoItemType.None;
+                    int clearX = primaryX + dx;
+                    int clearY = primaryY + dy;
+                    if (clearX >= 0 && clearX < grid.GetLength(0) && clearY >= 0 && clearY < grid.GetLength(1))
+                    {
+                        grid[clearX, clearY] = UICargoItemType.None;
+                    }
                 }
             }
 
-            var cell = container.FindCellAt(primaryX, primaryY);
             if (cell != null)
             {
                 container.RemoveCell(cell);
             }
-        }
 
-        private (int x, int y) FindPrimaryCell(UICargoItemType[,] grid, int startX, int startY, UICargoItemType itemType)
-        {
-            int x = startX;
-            int y = startY;
-
-            while (x > 0 && grid[x - 1, y] == itemType) x--;
-            while (y > 0 && grid[x, y - 1] == itemType) y--;
-
-            return (x, y);
+            if (container == _cargoContainer && _damagedCells != null)
+            {
+                for (int dy = 0; dy < height; dy++)
+                {
+                    for (int dx = 0; dx < width; dx++)
+                    {
+                        int damagedX = primaryX + dx;
+                        int damagedY = primaryY + dy;
+                        if (damagedX >= 0 && damagedX < columns &&
+                            damagedY >= 0 && damagedY < cargoRows &&
+                            _damagedCells[damagedX, damagedY])
+                        {
+                            CreateDamagedCellVisual(damagedX, damagedY);
+                        }
+                    }
+                }
+            }
         }
 
         private bool TryPlaceItemAnywhere(UIGridContainer container, UICargoItemType[,] grid, UICargoItemType itemType)
@@ -323,12 +448,17 @@ namespace UI.Runtime
             var (width, height, _) = UICargoItemRegistry.GetItemInfo(itemType);
             int gridColumns = grid.GetLength(0);
             int gridRows = grid.GetLength(1);
+            bool isCargoGrid = grid == _cargoGrid;
 
             for (int y = 0; y < gridRows; y++)
             {
                 for (int x = 0; x < gridColumns; x++)
                 {
-                    if (CanPlaceItem(grid, x, y, width, height))
+                    bool canPlace = isCargoGrid 
+                        ? CanPlaceItemInCargo(x, y, width, height) 
+                        : CanPlaceItem(grid, x, y, width, height);
+                    
+                    if (canPlace)
                     {
                         PlaceItem(container, grid, itemType, x, y);
                         return true;
@@ -357,10 +487,25 @@ namespace UI.Runtime
             {
                 _settleDepartBtn.clicked += OnSettleDepartClicked;
             }
+
+            if (_fixHoldBtn != null)
+            {
+                _fixHoldBtn.clicked += OnFixHoldClicked;
+            }
+        }
+
+        private void OnFixHoldClicked()
+        {
+            if (!HasDamagedCells()) return;
+
+            _repairMode = !_repairMode;
+            UpdateFixHoldButtonVisibility();
         }
 
         private void OnSettleDepartClicked()
         {
+            _repairMode = false;
+
             if (_currentState == CargoUIState.Load)
             {
                 // Player loaded cargo and is departing
@@ -380,6 +525,12 @@ namespace UI.Runtime
 
         private void OnCargoContainerClicked(int gridX, int gridY, UIIconGridCell cell)
         {
+            if (_repairMode)
+            {
+                TryRepairDamagedCell(gridX, gridY);
+                return;
+            }
+
             if (cell == null || !(cell is UICargoItemCell)) return;
 
             var itemType = _cargoGrid[gridX, gridY];
@@ -400,6 +551,7 @@ namespace UI.Runtime
                 {
                     RemoveItem(_cargoContainer, _cargoGrid, gridX, gridY);
                     _earnedGold += goldValue;
+                    _playerGold += goldValue;
                     UpdateGoldDisplayUnload();
                 }
             }
@@ -428,6 +580,8 @@ namespace UI.Runtime
                     RemoveItem(_marketContainer, _marketGrid, gridX, gridY);
                     _earnedGold -= goldValue;
                     if (_earnedGold < 0) _earnedGold = 0;
+                    _playerGold -= goldValue;
+                    if (_playerGold < 0) _playerGold = 0;
                     UpdateGoldDisplayUnload();
                 }
             }
@@ -469,7 +623,7 @@ namespace UI.Runtime
         {
             if (_goldLabel != null)
             {
-                _goldLabel.text = $"Estimate Gold: {CalculateCargoValue()}";
+                _goldLabel.text = $"Estimate Gold: {CalculateCargoValue()} | Gold: {_playerGold}";
             }
         }
 
@@ -477,8 +631,129 @@ namespace UI.Runtime
         {
             if (_goldLabel != null)
             {
-                _goldLabel.text = $"Earned Gold: {_earnedGold}";
+                _goldLabel.text = $"Earned Gold: {_earnedGold} | Gold: {_playerGold}";
             }
+        }
+
+        private void TryRepairDamagedCell(int gridX, int gridY)
+        {
+            if (!IsCellDamaged(gridX, gridY)) return;
+
+            if (_playerGold < fixHoldCost)
+            {
+                ShowPopup("Not enough gold to fix hold.");
+                return;
+            }
+
+            _playerGold -= fixHoldCost;
+            _damagedCells[gridX, gridY] = false;
+
+            var clickedCell = _cargoContainer.FindCellAt(gridX, gridY);
+            if (clickedCell != null && clickedCell.ClassListContains("damaged-cell") && clickedCell is not UICargoItemCell)
+            {
+                _cargoContainer.RemoveCell(clickedCell);
+            }
+
+            ApplyDamageStylesToCargoItems();
+            UpdateFixHoldButtonVisibility();
+            if (_currentState == CargoUIState.Load) UpdateGoldDisplayLoad();
+            else UpdateGoldDisplayUnload();
+        }
+
+        private void ShowPopup(string message)
+        {
+            if (_popupContainer == null || _popupLabel == null) return;
+
+            _popupLabel.text = message;
+            _popupContainer.style.display = DisplayStyle.Flex;
+            _popupContainer.schedule.Execute(() =>
+            {
+                _popupContainer.style.display = DisplayStyle.None;
+            }).ExecuteLater(1500);
+        }
+
+        /// <summary>
+        /// Responds to the boat hitting an obstacle by damaging all occupied cargo cells.
+        /// Damaged cells cannot hold cargo in future load states.
+        /// </summary>
+        public void ResponseToHittingObstacle()
+        {
+            if (_cargoGrid == null || _damagedCells == null)
+            {
+                return;
+            }
+
+            bool hasCargo = false;
+            for (int y = 0; y < cargoRows; y++)
+            {
+                for (int x = 0; x < columns; x++)
+                {
+                    if (_cargoGrid[x, y] == UICargoItemType.None) continue;
+                    _damagedCells[x, y] = true;
+                    hasCargo = true;
+                }
+            }
+
+            if (!hasCargo)
+            {
+                Debug.Log("[UICargoLoad] No cargo cells to mark as damaged.");
+                return;
+            }
+
+            ApplyDamageStylesToCargoItems();
+            UpdateFixHoldButtonVisibility();
+        }
+
+        private void CreateDamagedCellVisual(int x, int y)
+        {
+            if (_cargoContainer == null) return;
+            if (x < 0 || x >= columns || y < 0 || y >= cargoRows) return;
+            if (_cargoGrid[x, y] != UICargoItemType.None) return;
+            if (_cargoContainer.FindCellAt(x, y) != null) return;
+
+            var damagedCell = new UIIconGridCell();
+            damagedCell.AddToClassList("damaged-cell");
+            _cargoContainer.PlaceCell(damagedCell, x, y, 1, 1);
+        }
+
+        /// <summary>
+        /// Checks if a specific cargo cell is damaged.
+        /// </summary>
+        public bool IsCellDamaged(int x, int y)
+        {
+            if (x < 0 || x >= columns || y < 0 || y >= cargoRows) return false;
+            return _damagedCells[x, y];
+        }
+
+        /// <summary>
+        /// Resets all damaged cells. Use when starting a new voyage.
+        /// </summary>
+        public void RepairAllDamage()
+        {
+            for (int y = 0; y < cargoRows; y++)
+            {
+                for (int x = 0; x < columns; x++)
+                {
+                    if (_damagedCells[x, y])
+                    {
+                        _damagedCells[x, y] = false;
+                        var cell = _cargoContainer.FindCellAt(x, y);
+                        if (cell != null && cell.ClassListContains("damaged-cell"))
+                        {
+                            if (cell is UICargoItemCell cargoCell)
+                            {
+                                cargoCell.RemoveFromClassList("damaged-cell");
+                            }
+                            else
+                            {
+                                _cargoContainer.RemoveCell(cell);
+                            }
+                        }
+                    }
+                }
+            }
+
+            UpdateFixHoldButtonVisibility();
         }
 
         /// <summary>

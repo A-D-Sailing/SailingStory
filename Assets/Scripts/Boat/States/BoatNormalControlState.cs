@@ -1,4 +1,5 @@
 using Boat.Feedback;
+using UI.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,8 @@ public class BoatNormalControlState : BoatBaseState
 
     //Ambience Gameobject
     private GameObject _oceanAmbObject;
+    
+    private UICargoLoad _cargoLoadUI;
 
     /// <summary>
     /// Enter the normal control state
@@ -48,6 +51,12 @@ public class BoatNormalControlState : BoatBaseState
         if (args.Length > 0 && args[0] is CameraShakeFeedbacks cameraShake)
         {
             _cameraShakePlayer = cameraShake;
+        }
+        
+        // args[1]: (Required) UICargoLoad - cargo load ui
+        if (args.Length > 1 && args[1] is UICargoLoad cargoLoadUI && cargoLoadUI != null)
+        {
+            _cargoLoadUI = cargoLoadUI;
         }
 
         // Get Boat Audio Component
@@ -175,6 +184,7 @@ public class BoatNormalControlState : BoatBaseState
         if (_cameraShakePlayer && collision.gameObject.CompareTag("Obstacle"))
         {
             _cameraShakePlayer.PlayFeedbacks(true);
+            _cargoLoadUI?.ResponseToHittingObstacle();
         }
     }
     

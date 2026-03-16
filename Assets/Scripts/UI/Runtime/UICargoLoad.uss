@@ -36,6 +36,7 @@
     height: 650px;
     padding: 100px 30px 60px 30px;
     background-image: url("project://database/Assets/Images/UI/cargo.png");
+    flex-direction: column;
 }
 
 .cargo-header {
@@ -63,6 +64,7 @@
     height: 600px;
     padding: 150px 50px 120px 50px;
     background-image: url("project://database/Assets/Images/UI/market.png");
+    flex-direction: column;
 }
 
 .market-title {
@@ -79,6 +81,9 @@
 /* Grid container overrides for CargoMap */
 .cargo-grid {
     width: 100%;
+    flex-grow: 1;
+    min-height: 0;
+    align-self: center;
     background-color: rgba(80, 50, 30, 0.7);
     border-width: 1px;
     border-color: rgb(50, 30, 15);
@@ -86,6 +91,9 @@
 
 .market-grid {
     width: 100%;
+    flex-grow: 1;
+    min-height: 0;
+    align-self: center;
     background-color: rgba(90, 55, 35, 0.5);
     border-width: 1px;
     border-color: rgb(50, 30, 15);
@@ -124,6 +132,37 @@
 
 .settle-depart-btn {
     background-color: rgb(230, 180, 80);
+}
+
+.fix-hold-btn {
+    display: none;
+    background-color: rgb(205, 120, 90);
+    border-color: rgb(150, 80, 60);
+    color: rgb(255, 240, 230);
+}
+
+.fix-hold-btn.repair-mode {
+    background-color: rgb(170, 85, 65);
+}
+
+.popup-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 12%;
+    align-items: center;
+    display: none;
+}
+
+.popup-label {
+    padding: 10px 14px;
+    border-width: 1px;
+    border-color: rgb(135, 70, 55);
+    border-radius: 6px;
+    background-color: rgb(230, 190, 160);
+    color: rgb(80, 30, 20);
+    -unity-font-style: bold;
+    font-size: 14px;
 }
 
 /* Cell styles for cargo map */
@@ -165,4 +204,24 @@
 
 .crate-cell .icon-grid-icon {
     --unity-image: url("project://database/Assets/Images/UI/crate.svg");
+}
+
+/* Damaged cell styles (higher specificity to override base icon-grid-cell styles) */
+.cargo-map-root .icon-grid-cell.damaged-cell {
+    background-color: rgb(153, 74, 68);
+    border-color: rgb(176, 86, 78);
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    scale: 1;
+}
+
+.cargo-map-root .icon-grid-cell.damaged-cell:hover {
+    background-color: rgb(153, 74, 68);
+}
+
+.cargo-map-root .icon-grid-cell.damaged-cell:active {
+    background-color: rgb(153, 74, 68);
+    scale: 1;
 }

@@ -73,11 +73,22 @@ namespace UI.Runtime.CustomControl
         public void UpdateLayout()
         {
             float containerWidth = resolvedStyle.width;
+            float containerHeight = resolvedStyle.height;
             if (float.IsNaN(containerWidth) || containerWidth <= 0 || _columns <= 0) return;
 
-            _cellSize = containerWidth / _columns;
-            float containerHeight = _cellSize * _rows;
-            style.height = containerHeight;
+            float sizeByWidth = containerWidth / _columns;
+            if (_rows > 0 && !float.IsNaN(containerHeight) && containerHeight > 0)
+            {
+                float sizeByHeight = containerHeight / _rows;
+                _cellSize = Mathf.Min(sizeByWidth, sizeByHeight);
+            }
+            else
+            {
+                _cellSize = sizeByWidth;
+            }
+
+            style.width = _cellSize * _columns;
+            style.height = _cellSize * _rows;
 
             foreach (var child in Children())
             {
