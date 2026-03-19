@@ -336,6 +336,10 @@ GameObject:
   - component: {fileID: 5174473225615690256}
   - component: {fileID: 2871855371719217497}
   - component: {fileID: 3384653551440980698}
+  - component: {fileID: 8590864003424754941}
+  - component: {fileID: 4852063090685663}
+  - component: {fileID: 5219709573407206068}
+  - component: {fileID: 2367720432556235706}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Boat
@@ -353,7 +357,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 1}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7779260724950383544}
@@ -480,6 +484,132 @@ MonoBehaviour:
   - {fileID: 9008018620119185499}
   - {fileID: 628003619788805111}
   moveTrail: {fileID: 8282487815527773036}
+--- !u!114 &8590864003424754941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124682009380103867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27dc156b38f58a4cbc47468c321ba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: 
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1a151d6818fce6541b9119e3c646a655, type: 2}
+  useCallbacks: 0
+  stopSoundOnDestroy: 1
+  Callbacks: []
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  eventIdInternal: 0
+  valueGuidInternal: 
+  m_callbackDataInternal: {fileID: 0}
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
+  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
+  LargeModePositions: []
+  multiPositionArray: []
+--- !u!114 &4852063090685663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124682009380103867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27dc156b38f58a4cbc47468c321ba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: 
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 20e45b6145cecc44ea6e2a9ae074258d, type: 2}
+  useCallbacks: 0
+  stopSoundOnDestroy: 1
+  Callbacks: []
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  eventIdInternal: 0
+  valueGuidInternal: 
+  m_callbackDataInternal: {fileID: 0}
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
+  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
+  LargeModePositions: []
+  multiPositionArray: []
+--- !u!114 &5219709573407206068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124682009380103867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27dc156b38f58a4cbc47468c321ba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: 
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 376e3233d824c68469bc03d55ddd86c0, type: 2}
+  useCallbacks: 0
+  stopSoundOnDestroy: 1
+  Callbacks: []
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  eventIdInternal: 0
+  valueGuidInternal: 
+  m_callbackDataInternal: {fileID: 0}
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
+  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
+  LargeModePositions: []
+  multiPositionArray: []
+--- !u!114 &2367720432556235706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124682009380103867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f76af927154643a0aaecc3136ae24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &6826412817117597249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.716608
+      value: -30.974533
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1828,19 +1958,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98623645
+      value: 0.9934307
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.16098793
+      value: -0.07768116
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.008606777
+      value: -0.00866956
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.036696114
+      value: 0.083582796
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d69edd2c1300d0545b0a79149bccf91b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
