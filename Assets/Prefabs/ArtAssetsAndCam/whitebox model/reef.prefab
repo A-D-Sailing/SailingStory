@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4610539154143965205}
   - component: {fileID: 2243296165860384721}
   - component: {fileID: 6117745509538434289}
-  - component: {fileID: 2574068161128962795}
   - component: {fileID: 2590612282436060334}
+  - component: {fileID: 9188788113829092779}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6337174172031517978}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.11034037, y: -0, z: -0.1174245, w: 0.9869329}
-  m_LocalPosition: {x: 0, y: -2.7483704, z: 0}
+  m_LocalRotation: {x: -0.030186413, y: 0.017426172, z: 0.04574718, w: 0.99834484}
+  m_LocalPosition: {x: 0, y: -2.7497282, z: 0}
   m_LocalScale: {x: 7.809999, y: 7.810001, z: 7.8100004}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -88,27 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2574068161128962795
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6337174172031517978}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.7262443
-  m_Center: {x: 0.005989832, y: -9.2597714e-11, z: 1.5645887e-11}
 --- !u!114 &2590612282436060334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,11 +111,32 @@ MonoBehaviour:
   surfaceSize: {x: 1, y: 1}
   followTarget: {fileID: 5535622669152104202}
   heightOffset: -9.88
-  rollAmount: 0.48
-  rotation: 0
-  smoothing: 0.1
+  rollAmount: 0.13
+  rotation: 2
+  smoothing: 1.03
   heightValue: 0
   rigidbody: {fileID: 0}
+--- !u!65 &9188788113829092779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337174172031517978}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2.9956386, z: 1.0000002}
+  m_Center: {x: -0.00000032013688, y: -0.7356897, z: -0.00000015700287}
 --- !u!1 &7804844162341656683
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5535622669152104202}
   m_Layer: 0
   m_Name: reef
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
