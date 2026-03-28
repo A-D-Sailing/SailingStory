@@ -119,77 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &146858328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 146858331}
-  - component: {fileID: 146858330}
-  - component: {fileID: 146858329}
-  m_Layer: 5
-  m_Name: UICargoLoad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &146858329
+--- !u!114 &146858329 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8176343994804648667, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+  m_PrefabInstance: {fileID: 8697944147020152232}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146858328}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a3dfb4dc3b229c488343c03f8f0f944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 5
-  cargoRows: 7
-  marketRows: 5
-  _playerGold: 0
-  fixHoldCost: 50
-  boatController: {fileID: 534400702}
-  undockTarget: {fileID: 414095876}
---- !u!114 &146858330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146858328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 950b12b132dbf8341a61c97ad2b97776, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 0eb39c677ad4a3b478bef853ada75844, type: 3}
-  m_SortingOrder: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
---- !u!4 &146858331
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146858328}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414095872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +2040,7 @@ Transform:
   m_GameObject: {fileID: 710180166}
   serializedVersion: 2
   m_LocalRotation: {x: 0.28978416, y: 0, z: 0, w: 0.95709205}
-  m_LocalPosition: {x: 0.0037407177, y: 100.55465, z: -150.00542}
+  m_LocalPosition: {x: 0.004488861, y: 100.565575, z: -150.00652}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2320,15 +2260,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5034638362033620019, guid: f9651877fcd67cc4fb97bb0e05c0d8f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0037407177
+      value: 0.004488861
       objectReference: {fileID: 0}
     - target: {fileID: 5034638362033620019, guid: f9651877fcd67cc4fb97bb0e05c0d8f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.55465
+      value: 100.565575
       objectReference: {fileID: 0}
     - target: {fileID: 5034638362033620019, guid: f9651877fcd67cc4fb97bb0e05c0d8f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -150.00542
+      value: -150.00652
       objectReference: {fileID: 0}
     - target: {fileID: 5034638362033620019, guid: f9651877fcd67cc4fb97bb0e05c0d8f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2791,13 +2731,78 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &8697944147020152232
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2083413841529432625, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_Name
+      value: UICargoLoad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703695914526185942, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176343994804648667, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: undockTarget
+      value: 
+      objectReference: {fileID: 414095876}
+    - target: {fileID: 8176343994804648667, guid: 1be144680f486f6489788a697ff1325c, type: 3}
+      propertyPath: boatController
+      value: 
+      objectReference: {fileID: 534400702}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1be144680f486f6489788a697ff1325c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 710180169}
   - {fileID: 1532019338}
-  - {fileID: 146858331}
+  - {fileID: 8697944147020152232}
   - {fileID: 740517597}
   - {fileID: 662550987}
   - {fileID: 1780458906}
