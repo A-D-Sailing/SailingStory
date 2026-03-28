@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="UITaskPanel.uss" />
+    <ui:VisualElement name="task-panel-root" class="task-panel-root">
+        <ui:Label name="task-title" text="Task List" class="task-title" />
+        <ui:Label name="task-description" text="Head to the port" class="task-description" />
+    </ui:VisualElement>
+</ui:UXML>
