@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UI.Runtime.CustomControl;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Task;
 
 namespace UI.Runtime
 {
@@ -22,6 +23,7 @@ namespace UI.Runtime
         [SerializeField] private int cargoRows = 7;
         [SerializeField] private int marketRows = 5;
 
+        private Transform _currentDock;
         private VisualElement _rootElement;
         private UIGridContainer _cargoContainer;
         private UIGridContainer _marketContainer;
@@ -42,7 +44,8 @@ namespace UI.Runtime
         [SerializeField] private int fixHoldCost = 50;
         private bool _repairMode = false;
         private bool _initialized = false;
-
+        private bool _hasRepairedThisSession = false;
+        
         [Header("Boat Behavior")]
         public BoatController boatController;
         public Transform undockTarget;
@@ -146,10 +149,12 @@ namespace UI.Runtime
         public void Hide()
         {
             _rootElement.style.display = DisplayStyle.None;
+            _currentDock = null;
         }
 
         public void Show()
         {
+            _hasRepairedThisSession = false;
             _rootElement.style.display = DisplayStyle.Flex;
             
             // Initialize based on current state if needed
@@ -164,6 +169,14 @@ namespace UI.Runtime
             UpdateFixHoldButtonVisibility();
             _cargoContainer?.UpdateLayout();
             _marketContainer?.UpdateLayout();
+        }
+        
+        /// <summary>
+        /// Sets the current dock reference. Called by BoatDockingState when docking completes.
+        /// </summary>
+        public void SetCurrentDock(Transform dock)
+        {
+            _currentDock = dock;
         }
 
         private void ClearAllGrids()
@@ -521,6 +534,19 @@ namespace UI.Runtime
             
             boatController?.TransitionToUndocking(undockTarget);
             Hide();
+            
+            // Special handling for Upgrade phase
+            if (TaskManager.Instance != null && 
+                TaskManager.Instance.CurrentPhase == TaskPhase.Upgrade)
+            {
+                // Try to complete quest (only succeeds if repairs are done)
+                TaskManager.Instance.TryCompleteUpgrade();
+            }
+            else
+            {
+                // Normal phase advancement
+                TaskManager.Instance?.TryAdvanceAtDock(_currentDock);
+            }
         }
 
         private void OnCargoContainerClicked(int gridX, int gridY, UIIconGridCell cell)
@@ -647,6 +673,7 @@ namespace UI.Runtime
 
             _playerGold -= fixHoldCost;
             _damagedCells[gridX, gridY] = false;
+            _hasRepairedThisSession = true;
 
             var clickedCell = _cargoContainer.FindCellAt(gridX, gridY);
             if (clickedCell != null && clickedCell.ClassListContains("damaged-cell") && clickedCell is not UICargoItemCell)
@@ -756,6 +783,22 @@ namespace UI.Runtime
             UpdateFixHoldButtonVisibility();
         }
 
+        /// <summary>
+        /// Returns true if any cargo cells are damaged.
+        /// </summary>
+        public bool HasDamage()
+        {
+            return HasDamagedCells();
+        }
+        
+        /// <summary>
+        /// Returns true if player has repaired any damage this session.
+        /// </summary>
+        public bool HasRepairedThisSession()
+        {
+            return _hasRepairedThisSession;
+        }
+        
         /// <summary>
         /// Gets list of all cargo item types currently in cargo.
         /// </summary>
