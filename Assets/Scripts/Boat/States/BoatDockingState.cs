@@ -1,6 +1,7 @@
 using Boat.Feedback;
 using UI.Runtime;
 using UnityEngine;
+using Task;
 
 /// <summary>
 /// Docking state - handles boat behavior when docking/docked
@@ -12,6 +13,9 @@ public class BoatDockingState : BoatBaseState
     private DockingFeedbacks _dockingFeedback;
     
     private UICargoLoad _cargoLoadUI;
+    
+    // Reference to current activated dock for Task
+    private Transform _currentDock;
     
     /// <summary>
     /// Enter the docking state
@@ -32,6 +36,7 @@ public class BoatDockingState : BoatBaseState
         // args[1]: (Required) Transform - dock transform
         if (args.Length > 1 && args[1] is Transform dock && dock != null)
         {
+            _currentDock = dock;
             _dockingFeedback.SetDockTransform(dock);
         }
         
@@ -49,7 +54,11 @@ public class BoatDockingState : BoatBaseState
 
     private void OnDockingFeedbackPlayComplete()
     {
+        _cargoLoadUI.SetCurrentDock(_currentDock);
         _cargoLoadUI.Show();
+        
+        // Trigger The TaskManager to the next Task Phase
+        TaskManager.Instance?.TryAdvanceAtDock(_currentDock);
     }
 
     public override void HandleFixedUpdate(BoatController owner)
@@ -63,6 +72,7 @@ public class BoatDockingState : BoatBaseState
     public override void ExitState(BoatController owner)
     {
         _dockingFeedback.UnregisterOnFeedbackPlayComplete(OnDockingFeedbackPlayComplete);
+        _dockingFeedback = null;
         _dockingFeedback = null;
     }
 }

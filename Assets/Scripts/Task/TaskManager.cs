@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UI.Runtime;
 
 namespace Task
 {
@@ -19,6 +20,9 @@ namespace Task
         [Header("Scene References")]
         [Tooltip("Reference to player's boat for position calculations")]
         [SerializeField] private Transform playerBoat;
+
+        [Tooltip("Reference to cargo UI for damage check")]
+        [SerializeField] private UICargoLoad cargoLoadUI;
 
         [Header("Debug")]
         [SerializeField] private bool debugMode = true;
@@ -62,6 +66,12 @@ namespace Task
         /// </summary>
         public event Action<Transform> OnTargetChanged;
 
+        /// <summary>
+        /// Fired when the entire quest chain is completed.
+        /// Game manager subscribes to show "Thanks for playing" screen.
+        /// </summary>
+        public event Action OnQuestCompleted;
+
         #endregion
 
         #region Unity Lifecycle
@@ -103,7 +113,35 @@ namespace Task
         public void AdvanceToNextPhase()
         {
             var nextPhase = GetNextPhase(_currentPhase);
+            
+            // Check if we've completed the quest (looping back to start)
+            if (nextPhase == TaskPhase.Departure && _currentPhase == TaskPhase.Upgrade)
+            {
+                CompleteQuest();
+                return;
+            }
+            
             TransitionToPhase(nextPhase);
+        }
+
+        /// <summary>
+        /// Completes the entire quest chain.
+        /// Call this when player finishes the Upgrade phase.
+        /// </summary>
+        public void CompleteQuest()
+        {
+            Log("Quest completed!");
+            OnQuestCompleted?.Invoke();
+        }
+
+        /// <summary>
+        /// Skips the current phase and advances to the next.
+        /// Use when a phase is not applicable (e.g., no damage to repair).
+        /// </summary>
+        public void SkipCurrentPhase()
+        {
+            Log($"Skipping phase: {_currentPhase}");
+            AdvanceToNextPhase();
         }
 
         /// <summary>
@@ -162,6 +200,148 @@ namespace Task
             var offset = _currentTarget.position - playerBoat.position;
             offset.y = 0;
             return offset.magnitude;
+        }
+
+        /// <summary>
+        /// Checks if the given dock transform is the current task target.
+        /// Use this to validate before advancing phases.
+        /// </summary>
+        public bool IsCurrentTarget(Transform dock)
+        {
+            if (dock == null)
+                return false;
+
+            var taskData = CurrentTaskData;
+            if (taskData == null)
+                return false;
+
+            // For Departure/Loading phase: must be a Dock WITHOUT Shipyard child (warehouse port)
+            if (_currentPhase == TaskPhase.Departure || _currentPhase == TaskPhase.Loading)
+            {
+                bool hasShipyard = HasChildWithTag(dock, "Shipyard");
+                
+                if (hasShipyard)
+                {
+                    Log("This dock has Shipyard child, not valid for Departure/Loading phase");
+                    return false;
+                }
+                return dock.CompareTag("Dock");
+            }
+
+            // For Transport/Unloading phase: must be a Dock WITH Shipyard child
+            if (_currentPhase == TaskPhase.Transport || _currentPhase == TaskPhase.Unloading)
+            {
+                bool hasShipyard = HasChildWithTag(dock, "Shipyard");
+                
+                if (!hasShipyard)
+                {
+                    Log("This dock does not have Shipyard child, not valid for Transport/Unloading phase");
+                    return false;
+                }
+                return dock.CompareTag("Dock");
+            }
+
+            // For other phases: check against current target
+            if (_currentTarget == null)
+                return false;
+
+            return dock == _currentTarget 
+                || dock.IsChildOf(_currentTarget) 
+                || _currentTarget.IsChildOf(dock);
+        }
+
+        /// <summary>
+        /// Checks if a transform has any child with the specified tag.
+        /// </summary>
+        private bool HasChildWithTag(Transform parent, string tag)
+        {
+            foreach (Transform child in parent.GetComponentsInChildren<Transform>())
+            {
+                if (child != parent && child.CompareTag(tag))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Attempts to advance phase only if at the correct target.
+        /// Returns true if phase was advanced.
+        /// </summary>
+        public bool TryAdvanceAtDock(Transform dock)
+        {
+            var taskData = CurrentTaskData;
+            
+            // If current phase doesn't need a specific target, always advance
+            if (taskData == null || !taskData.showCompassMarker)
+            {
+                // Special case: Upgrade phase advances on depart, not on dock
+                if (_currentPhase == TaskPhase.Unloading)
+                {
+                    // After unloading, check if we need repair
+                    if (cargoLoadUI != null && cargoLoadUI.HasDamage())
+                    {
+                        // Go to Upgrade phase, but don't complete yet
+                        AdvanceToNextPhase();
+                        return true;
+                    }
+                    else
+                    {
+                        // No damage, complete quest
+                        CompleteQuest();
+                        return true;
+                    }
+                }
+                
+                // For Upgrade phase: don't advance on dock, wait for depart
+                if (_currentPhase == TaskPhase.Upgrade)
+                {
+                    Log("Upgrade phase: waiting for repair and depart");
+                    return false;
+                }
+                
+                AdvanceToNextPhase();
+                return true;
+            }
+
+            // Check if we're at the correct dock
+            if (IsCurrentTarget(dock))
+            {
+                AdvanceToNextPhase();
+                return true;
+            }
+
+            Log($"Docked at wrong location. Expected target: {_currentTarget?.name ?? "none"}");
+            return false;
+        }
+
+        /// <summary>
+        /// Called when player departs during Upgrade phase.
+        /// Completes quest if repairs were made.
+        /// </summary>
+        public bool TryCompleteUpgrade()
+        {
+            if (_currentPhase != TaskPhase.Upgrade)
+            {
+                Log("TryCompleteUpgrade called but not in Upgrade phase");
+                return false;
+            }
+
+            if (cargoLoadUI == null)
+            {
+                LogWarning("CargoLoadUI reference is null");
+                return false;
+            }
+
+            // Check if player has repaired at least once
+            if (!cargoLoadUI.HasRepairedThisSession())
+            {
+                Log("Cannot complete: player has not repaired anything yet");
+                return false;
+            }
+
+            // repairs done, complete quest
+            CompleteQuest();
+            return true;
         }
 
         #endregion
@@ -226,6 +406,43 @@ namespace Task
 
         private void FindAndSetTarget(string targetTag)
         {
+            // For Departure phase: find Dock WITHOUT Shipyard child
+            if (_currentPhase == TaskPhase.Departure)
+            {
+                var allDocks = GameObject.FindGameObjectsWithTag("Dock");
+                foreach (var dock in allDocks)
+                {
+                    if (!HasChildWithTag(dock.transform, "Shipyard"))
+                    {
+                        SetTarget(dock.transform);
+                        Log($"Found warehouse dock (no Shipyard): {dock.name}");
+                        return;
+                    }
+                }
+                LogWarning("No warehouse dock found (Dock without Shipyard child)");
+                SetTarget(null);
+                return;
+            }
+
+            // For Transport phase: find Dock WITH Shipyard child
+            if (_currentPhase == TaskPhase.Transport)
+            {
+                var allDocks = GameObject.FindGameObjectsWithTag("Dock");
+                foreach (var dock in allDocks)
+                {
+                    if (HasChildWithTag(dock.transform, "Shipyard"))
+                    {
+                        SetTarget(dock.transform);
+                        Log($"Found shipyard dock (has Shipyard): {dock.name}");
+                        return;
+                    }
+                }
+                LogWarning("No shipyard dock found (Dock with Shipyard child)");
+                SetTarget(null);
+                return;
+            }
+
+            // For other phases: use standard tag lookup
             var targetObj = GameObject.FindGameObjectWithTag(targetTag);
 
             if (targetObj != null)
