@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/mainmenu.unity
     guid: f9b9b7aeeef26ab4ea0cd54c9bae3d04
   - enabled: 1
-    path: Assets/Scenes/TestScenes/LevelWhitebox.unity
+    path: Assets/Scenes/TestScenes/LevelWhiteboxold.unity
     guid: da7eb8cbcb9b810468684690052048d7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
