@@ -2,25 +2,41 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 12px 16px;
-    background-color: rgba(40, 60, 80, 0.85);
-    border-radius: 8px;
-    border-width: 1px;
-    border-color: rgba(100, 150, 180, 0.5);
-    min-width: 160px;
+    padding: 16px 20px;
+
+    /* Aged parchment / nautical map style */
+    background-color: rgba(210, 180, 140, 0.92);
+
+    /* Weathered wooden frame border */
+    border-width: 3px;
+    border-color: rgb(101, 67, 33);
+    border-radius: 4px;
+
+    /* Inner shadow effect using multiple borders */
+    -unity-background-image-tint-color: rgb(245, 235, 220);
+
+    min-width: 180px;
+    max-width: 240px;
 }
 
 .task-title {
-    font-size: 14px;
-    color: rgb(180, 210, 230);
+    font-size: 16px;
+    /* Deep brown ink color */
+    color: rgb(61, 43, 31);
     -unity-font-style: bold;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    /* Underline separator */
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(101, 67, 33, 0.4);
 }
 
 .task-description {
-    font-size: 12px;
-    color: rgb(220, 230, 240);
+    font-size: 13px;
+    /* Faded ink color */
+    color: rgb(85, 60, 42);
     white-space: normal;
+    -unity-font-style: normal;
 }
 
 /* Fade animation for task updates */

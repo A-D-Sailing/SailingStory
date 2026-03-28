@@ -534,18 +534,20 @@ namespace UI.Runtime
             
             boatController?.TransitionToUndocking(undockTarget);
             Hide();
-            
-            // Special handling for Upgrade phase
-            if (TaskManager.Instance != null && 
-                TaskManager.Instance.CurrentPhase == TaskPhase.Upgrade)
+
+            if (TaskManager.Instance != null)
             {
-                // Try to complete quest (only succeeds if repairs are done)
-                TaskManager.Instance.TryCompleteUpgrade();
-            }
-            else
-            {
-                // Normal phase advancement
-                TaskManager.Instance?.TryAdvanceAtDock(_currentDock);
+                if (TaskManager.Instance.CurrentPhase != TaskPhase.Upgrade)
+                {
+                    // Normal phase advancement
+                    TaskManager.Instance?.TryAdvanceAtDock(_currentDock);
+                }
+                // Special handling for Upgrade phase
+                if (TaskManager.Instance.CurrentPhase == TaskPhase.Upgrade)
+                {
+                    // Try to complete quest (only succeeds if repairs are done)
+                    TaskManager.Instance.TryCompleteUpgrade();
+                }
             }
         }
 
