@@ -48,7 +48,13 @@ namespace UI.Runtime
         
         [Header("Boat Behavior")]
         public BoatController boatController;
-        public Transform undockTarget;
+        private Transform _undockTarget;
+
+        /// <summary>
+        /// Sets the undock target transform dynamically when the boat docks.
+        /// Called by BoatDockingState using the "Undock" child of the current dock.
+        /// </summary>
+        public void SetUndockTarget(Transform target) => _undockTarget = target;
 
         public CargoUIState CurrentState => _currentState;
         public int EarnedGold => _earnedGold;
@@ -532,7 +538,7 @@ namespace UI.Runtime
                 _currentState = CargoUIState.Load;
             }
             
-            boatController?.TransitionToUndocking(undockTarget);
+            boatController?.TransitionToUndocking(_undockTarget);
             Hide();
 
             if (TaskManager.Instance != null)

@@ -32,18 +32,29 @@ public class BoatDockingState : BoatBaseState
         {
             _dockingFeedback = feedback;
         }
-
-        // args[1]: (Required) Transform - dock transform
-        if (args.Length > 1 && args[1] is Transform dock && dock != null)
-        {
-            _currentDock = dock;
-            _dockingFeedback.SetDockTransform(dock);
-        }
         
         // args[2]: (Required) UICargoLoad - cargo load ui
         if (args.Length > 2 && args[2] is UICargoLoad cargoLoadUI && cargoLoadUI != null)
         {
             _cargoLoadUI = cargoLoadUI;
+        }
+
+        // args[1]: (Required) Transform - dock transform
+        // Also finds the "Undock" child to set on the cargo UI for the depart action
+        if (args.Length > 1 && args[1] is Transform dock && dock != null)
+        {
+            _currentDock = dock;
+            _dockingFeedback.SetDockTransform(dock);
+
+            var undockChild = dock.Find("Undock");
+            if (undockChild != null)
+            {
+                _cargoLoadUI?.SetUndockTarget(undockChild);
+            }
+            else
+            {
+                Debug.LogWarning($"[BoatDockingState] No 'Undock' child found under dock '{dock.name}'.");
+            }
         }
         
         _dockingFeedback.RegisterOnFeedbackPlayComplete(OnDockingFeedbackPlayComplete);
