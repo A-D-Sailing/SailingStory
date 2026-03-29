@@ -125,8 +125,8 @@ MonoBehaviour:
         guid: e15e7d87bc6fef46868ad413fbbb2ae9
       Path: Events\Default Work Unit\Ocean_Amb
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Play_Ambient_Music
       guid: 98bbbfe86d17444dafbe4b302e8baae6
       id: 1238538214
@@ -142,8 +142,8 @@ MonoBehaviour:
         guid: 98bbbfe86d17444dafbe4b302e8baae6
       Path: Events\Default Work Unit\Play_Ambient_Music
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 95.63233
+      minDuration: 95.63233
     - name: Play_Boat_Impact
       guid: 72e4e45cb2b1f941b5f44e29f31837ef
       id: 320405745
@@ -159,8 +159,8 @@ MonoBehaviour:
         guid: 72e4e45cb2b1f941b5f44e29f31837ef
       Path: Events\Default Work Unit\Play_Boat_Impact
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 1.1050811
+      minDuration: 1.1050811
     - name: Play_Boat_Sailing_Slow
       guid: db26798ae9b7de4fa0251c081005f4a3
       id: 3774150848
@@ -176,8 +176,8 @@ MonoBehaviour:
         guid: db26798ae9b7de4fa0251c081005f4a3
       Path: Events\Default Work Unit\Play_Boat_Sailing_Slow
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Stop_Boat_Sailing_Slow
       guid: b04baa853e30a9449b872b78711557a5
       id: 602176938
@@ -193,8 +193,8 @@ MonoBehaviour:
         guid: b04baa853e30a9449b872b78711557a5
       Path: Events\Default Work Unit\Stop_Boat_Sailing_Slow
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
