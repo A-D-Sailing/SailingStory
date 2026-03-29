@@ -1,0 +1,37 @@
+.main-menu-root {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu-btn {
+    min-width: 240px;
+    height: 60px;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgb(242, 232, 210);
+    background-color: rgba(18, 54, 84, 0.82);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-color: rgb(170, 136, 82);
+    border-radius: 12px;
+    letter-spacing: 1px;
+    transition-property: background-color, scale, border-color;
+    transition-duration: 0.12s;
+}
+
+.main-menu-btn:hover {
+    background-color: rgba(28, 76, 112, 0.9);
+    border-color: rgb(196, 158, 96);
+}
+
+.main-menu-btn:active {
+    background-color: rgba(15, 44, 70, 0.95);
+    border-color: rgb(148, 118, 72);
+    scale: 0.98;
+}
