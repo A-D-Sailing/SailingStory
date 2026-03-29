@@ -1,11 +1,8 @@
 ﻿// Stylized Water 3 by Staggart Creations (http://staggart.xyz)
-// COPYRIGHT PROTECTED UNDER THE UNITY ASSET STORE EULA (https://unity.com/legal/as-terms)
-//    • Copying or referencing source code for the production of new asset store, or public, content is strictly prohibited!
-//    • Uploading this file to a public repository will subject it to an automated DMCA takedown request.
+// Modified Version: Added Singleton pattern and smooth weather transition support.
 #if (ENABLE_INPUT_SYSTEM && INPUT_SYSTEM_INSTALLED)
 #define USE_INPUT_SYSTEM
 #endif
-
 
 using System;
 using UnityEngine;
@@ -22,6 +19,8 @@ namespace StylizedWater3.Demo
     [ExecuteAlways]
     public class DemoLightingController : MonoBehaviour
     {
+        public static DemoLightingController Instance { get; private set; }
+
         [Serializable]
         public class Preset
         {
@@ -29,7 +28,6 @@ namespace StylizedWater3.Demo
             public Material skybox;
 
             [Header("Direct light")]
-    
             [Range(0f, 90f)]
             public float sunAngle = 45;
             [Range(0f, 360f)]
@@ -55,6 +53,10 @@ namespace StylizedWater3.Demo
 
         public ReflectionProbe reflectionProbe;
         
+        [Header("Transition Settings")]
+        [Tooltip("Smooth transition duration in seconds when changing weather presets.")]
+        public float transitionDuration = 3f;
+
         [NonSerialized]
         private Material m_skybox;
         private Light sun;
@@ -62,21 +64,31 @@ namespace StylizedWater3.Demo
         [SerializeField]
         private bool realtimeReflectionProbesDisabled;
         
+        // --- Transition State Variables ---
+        private bool isTransitioning = false;
+        private float transitionProgress = 0f;
+        private Preset startTransitionState = new Preset();
+        // ----------------------------------
+
         #if USE_INPUT_SYSTEM
         private InputAction[] numberKeyActions;
         #endif  
         
+        private void Awake()
+        {
+            // Set up singleton for easy access by trigger scripts
+            if (Application.isPlaying)
+            {
+                if (Instance == null) Instance = this;
+                else Destroy(gameObject);
+            }
+        }
+
         private void OnEnable()
         {
             realtimeReflectionProbesDisabled = QualitySettings.realtimeReflectionProbes;
 
-            if (!realtimeReflectionProbesDisabled)
-            {
-                //Debug.LogWarning("Realtime Reflection Probes are disabled in your Quality Settings, this is by default in new Unity projects. To ensure the water looks correct, it has been enabled temporarily.");
-                //QualitySettings.realtimeReflectionProbes = true;
-            }
-
-            ApplyPreset(activeIndex);
+            ApplyPreset(activeIndex, true); // Apply instantly on startup
             
             #if UNITY_EDITOR
             UnityEditor.SceneView.duringSceneGui += OnSceneGUI;
@@ -108,7 +120,6 @@ namespace StylizedWater3.Demo
             UnityEditor.SceneView.duringSceneGui -= OnSceneGUI;
             #endif
             
-            //Do not meddle with project settings, restore changes
             if (realtimeReflectionProbesDisabled == false && QualitySettings.realtimeReflectionProbes == true) QualitySettings.realtimeReflectionProbes = false;
             
             #if USE_INPUT_SYSTEM
@@ -125,16 +136,29 @@ namespace StylizedWater3.Demo
         
         private readonly int SkyboxTexID = Shader.PropertyToID("_Tex");
 
-        public void ApplyPreset(int index = -1)
+        // Called by external triggers to switch weather by name
+        public void TransitionToPresetByName(string presetName, float overrideDuration = -1f)
+        {
+            for (int i = 0; i < presets.Length; i++)
+            {
+                if (presets[i].name == presetName)
+                {
+                    if (overrideDuration > 0) transitionDuration = overrideDuration;
+                    ApplyPreset(i, false);
+                    return;
+                }
+            }
+            Debug.LogWarning($"Could not find a weather preset named: {presetName}");
+        }
+
+        public void ApplyPreset(int index = -1, bool instant = false)
         {
             if (index < 0) index = activeIndex;
             
             if (this.gameObject.activeInHierarchy == false) return;
-            if (index > presets.Length) return;
+            if (index >= presets.Length) return;
 
-            activeIndex = index;
-            
-            Preset preset = presets[index];
+            Preset targetPreset = presets[index];
 
             Light[] lights = FindObjectsByType<Light>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
             for (int i = 0; i < lights.Length; i++)
@@ -142,35 +166,83 @@ namespace StylizedWater3.Demo
                 if (lights[i].type == LightType.Directional) sun = lights[i];
             }
 
-            if (m_skybox == null || preset.skybox.GetTexture(SkyboxTexID) != RenderSettings.skybox.GetTexture(SkyboxTexID))
-            {
-                CreateSkyboxMat(preset.skybox);
-            }
-            
-            sun.intensity = preset.intensity;
-            sun.color = preset.tint;
-            
-            m_skybox.CopyPropertiesFromMaterial(preset.skybox);
-            m_skybox.SetTexture(SkyboxTexID, preset.skybox.GetTexture(SkyboxTexID));
-            
-            sun.transform.eulerAngles = new Vector3(preset.sunAngle, preset.sunRotation, 0f);
-            m_skybox.SetFloat("_Rotation", -sun.transform.eulerAngles.y);
-            
-            RenderSettings.skybox = m_skybox;
-            RenderSettings.fogColor = preset.fogColor;
-            RenderSettings.fogDensity = preset.fogDensity;
-            
-            RenderSettings.ambientLight = preset.ambientColor;
+            if (sun == null) return;
 
-            if (reflectionProbe)
+            // Skybox material replacement (Texture changes instantly, but lighting/fog smooths out)
+            if (m_skybox == null || targetPreset.skybox.GetTexture(SkyboxTexID) != RenderSettings.skybox.GetTexture(SkyboxTexID))
             {
-                reflectionProbe.RenderProbe();
-                //RenderSettings.defaultReflectionMode = DefaultReflectionMode.Custom;
-                //RenderSettings.customReflectionTexture = reflectionProbe.texture;
+                CreateSkyboxMat(targetPreset.skybox);
             }
-            else
+            m_skybox.CopyPropertiesFromMaterial(targetPreset.skybox);
+            m_skybox.SetTexture(SkyboxTexID, targetPreset.skybox.GetTexture(SkyboxTexID));
+            RenderSettings.skybox = m_skybox;
+
+            // Apply immediately if in editor mode or instant transition is requested
+            if (instant || !Application.isPlaying)
             {
-                //RenderSettings.defaultReflectionMode = DefaultReflectionMode.Skybox;
+                sun.intensity = targetPreset.intensity;
+                sun.color = targetPreset.tint;
+                sun.transform.eulerAngles = new Vector3(targetPreset.sunAngle, targetPreset.sunRotation, 0f);
+                m_skybox.SetFloat("_Rotation", -sun.transform.eulerAngles.y);
+                
+                RenderSettings.fogColor = targetPreset.fogColor;
+                RenderSettings.fogDensity = targetPreset.fogDensity;
+                RenderSettings.ambientLight = targetPreset.ambientColor;
+
+                if (reflectionProbe) reflectionProbe.RenderProbe();
+                
+                activeIndex = index;
+                isTransitioning = false;
+                return;
+            }
+
+            // --- Start Smooth Transition ---
+            if (Application.isPlaying && index != activeIndex)
+            {
+                startTransitionState.sunAngle = sun.transform.eulerAngles.x;
+                startTransitionState.sunRotation = sun.transform.eulerAngles.y;
+                startTransitionState.intensity = sun.intensity;
+                startTransitionState.tint = sun.color;
+                startTransitionState.ambientColor = RenderSettings.ambientLight;
+                startTransitionState.fogColor = RenderSettings.fogColor;
+                startTransitionState.fogDensity = RenderSettings.fogDensity;
+
+                activeIndex = index;
+                transitionProgress = 0f;
+                isTransitioning = true;
+            }
+        }
+
+        private void Update()
+        {
+            if (isTransitioning && Application.isPlaying)
+            {
+                transitionProgress += Time.deltaTime / transitionDuration;
+                float t = Mathf.Clamp01(transitionProgress);
+                float smoothT = Mathf.SmoothStep(0f, 1f, t); // Use smoothstep for a more natural curve
+
+                Preset target = presets[activeIndex];
+
+                // Lighting transition
+                float currentAngle = Mathf.LerpAngle(startTransitionState.sunAngle, target.sunAngle, smoothT);
+                float currentRot = Mathf.LerpAngle(startTransitionState.sunRotation, target.sunRotation, smoothT);
+                sun.transform.eulerAngles = new Vector3(currentAngle, currentRot, 0f);
+                
+                sun.intensity = Mathf.Lerp(startTransitionState.intensity, target.intensity, smoothT);
+                sun.color = Color.Lerp(startTransitionState.tint, target.tint, smoothT);
+                m_skybox.SetFloat("_Rotation", -sun.transform.eulerAngles.y);
+
+                // Ambient light and fog transition
+                RenderSettings.ambientLight = Color.Lerp(startTransitionState.ambientColor, target.ambientColor, smoothT);
+                RenderSettings.fogColor = Color.Lerp(startTransitionState.fogColor, target.fogColor, smoothT);
+                RenderSettings.fogDensity = Mathf.Lerp(startTransitionState.fogDensity, target.fogDensity, smoothT);
+
+                // Transition finished
+                if (t >= 1f)
+                {
+                    isTransitioning = false;
+                    if (reflectionProbe) reflectionProbe.RenderProbe();
+                }
             }
         }
         
@@ -229,8 +301,8 @@ namespace StylizedWater3.Demo
     {
         private DemoLightingController component;
         private SerializedProperty presets;
-
         private SerializedProperty reflectionProbe;
+        private SerializedProperty transitionDuration; // Added property
         
         private string proSkinPrefix => EditorGUIUtility.isProSkin ? "d_" : "";
         
@@ -239,6 +311,7 @@ namespace StylizedWater3.Demo
             component = (DemoLightingController)target;
             presets = serializedObject.FindProperty("presets");
             reflectionProbe = serializedObject.FindProperty("reflectionProbe");
+            transitionDuration = serializedObject.FindProperty("transitionDuration"); // Property binding
         }
 
         public override void OnInspectorGUI()
@@ -249,8 +322,11 @@ namespace StylizedWater3.Demo
             EditorGUILayout.PropertyField(reflectionProbe);
             DemoLightingController.ShowGUI = EditorGUILayout.Toggle("Show GUI", DemoLightingController.ShowGUI);
             
+            // Display transition duration in the inspector
             EditorGUILayout.Space();
-            
+            EditorGUILayout.PropertyField(transitionDuration);
+
+            EditorGUILayout.Space();
             EditorGUILayout.LabelField("Presets", EditorStyles.boldLabel);
             
             for (int i = 0; i < presets.arraySize; i++)
@@ -258,8 +334,7 @@ namespace StylizedWater3.Demo
                 if (GUILayout.Button("Set Active"))
                 {
                     component.activeIndex = i;
-                    component.ApplyPreset(i);
-                    
+                    component.ApplyPreset(i, true); // Use instant transition for preview in editor
                     EditorUtility.SetDirty(component);
                 }
 
@@ -272,23 +347,19 @@ namespace StylizedWater3.Demo
                         using (new EditorGUILayout.VerticalScope())
                         {
                             GUILayout.Space(5f);
-
                             SerializedProperty param = presets.GetArrayElementAtIndex(i);
-                            
                             EditorGUILayout.PropertyField(param);
-
                             GUILayout.Space(5f);
                         }
 
                         if (GUILayout.Button(new GUIContent("", EditorGUIUtility.IconContent(proSkinPrefix + "TreeEditor.Trash").image, "Remove parameter"), EditorStyles.miniButton, GUILayout.Width(30f))) presets.DeleteArrayElementAtIndex(i);
-
                     }
                     
                     if (EditorGUI.EndChangeCheck())
                     {
                         if (component.activeIndex == i)
                         {
-                            component.ApplyPreset(i);
+                            component.ApplyPreset(i, true);
                         }
                     }
                 }
@@ -313,5 +384,4 @@ namespace StylizedWater3.Demo
         }
     }
     #endif
-    
 }
