@@ -70,6 +70,7 @@ public class BoatUndockingState : BoatBaseState
     
     public override void ExitState(BoatController owner)
     {
+        _undockingFeedback.SetUndockDestination(null);
         _undockingFeedback = null;
     }
 }
