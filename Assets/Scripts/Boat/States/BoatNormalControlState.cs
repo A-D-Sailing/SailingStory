@@ -1,3 +1,4 @@
+using Boat.Feedback;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -180,6 +181,7 @@ public class BoatNormalControlState : BoatBaseState
     private void CheckForNearbyDock(BoatController owner)
     {
         // Find all objects with Dock tag
+        // TODO: move find objects to EnterState
         var docks = GameObject.FindGameObjectsWithTag("Dock");
         
         foreach (var dock in docks)

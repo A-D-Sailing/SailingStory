@@ -1,0 +1,10 @@
+/*
+ * UIGridContainer.uss
+ * Base styles for the SSGridContainer custom control.
+ * Uses relative positioning as parent for absolutely positioned cells.
+ */
+
+.grid-container {
+    position: relative;
+    overflow: hidden;
+}

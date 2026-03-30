@@ -1,3 +1,4 @@
+using Boat.Feedback;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class BoatDockingState : BoatBaseState
 {
     private DockingFeedbacks _dockingFeedback;
     
+    private GameObject _cargoLoadUI;
+    
     /// <summary>
     /// Enter the docking state
     /// </summary>
@@ -20,8 +23,6 @@ public class BoatDockingState : BoatBaseState
     /// </param>
     public override void EnterState(BoatController owner, params object[] args)
     {
-        Debug.Log("[BoatState] Entered Docking State");
-        
         // args[0]: (Required) DockingFeedbacks - docking feedback
         if (args.Length > 0 && args[0] is DockingFeedbacks feedback)
         {
@@ -33,20 +34,24 @@ public class BoatDockingState : BoatBaseState
         {
             _dockingFeedback.SetDockTransform(dock);
         }
-
-        // Stop boat physics
-        var rb = owner.Rigidbody;
-        if (rb != null)
+        
+        // args[2]: (Required) GameObject - cargo load ui
+        if (args.Length > 2 && args[2] is GameObject cargoLoadUI && cargoLoadUI != null)
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            _cargoLoadUI = cargoLoadUI;
         }
+        
+        _dockingFeedback.RegisterOnFeedbackPlayComplete(OnDockingFeedbackPlayComplete);
         
         // Play docking feedback
         _dockingFeedback.PlayFeedbacks();
-        Debug.Log("[BoatState] Playing docking feedback");
     }
-    
+
+    private void OnDockingFeedbackPlayComplete()
+    {
+        _cargoLoadUI.SetActive(true);
+    }
+
     public override void HandleFixedUpdate(BoatController owner)
     {
         // Keep boat stationary while docked (Feel feedback handles the animation)
@@ -57,7 +62,7 @@ public class BoatDockingState : BoatBaseState
     
     public override void ExitState(BoatController owner)
     {
-        Debug.Log("[BoatState] Exited Docking State");
+        _dockingFeedback.UnregisterOnFeedbackPlayComplete(OnDockingFeedbackPlayComplete);
         _dockingFeedback = null;
     }
 }

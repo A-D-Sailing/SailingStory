@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 6992a87dc27da34c8ca45ce2f76e8ad3
     GuidInternal: 
-    m_lastTime: -8584317932732711105
+    m_lastTime: -8584289741658215820
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 647826f9e913d443b3b07778d35fe288
     GuidInternal: 
-    m_lastTime: -8584317932733077062
+    m_lastTime: -8584289741661410943
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 766ef3eb87186c44a702ae549ccfb9e3
     GuidInternal: 
-    m_lastTime: -8584278017583916033
+    m_lastTime: -8584289741658235815
     List:
     - name: Amb
       guid: 953894e42f7efc45a2af0292442a3a09
@@ -108,7 +108,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0a533d8fba77634fa38738b46a754f47
     GuidInternal: 
-    m_lastTime: -8584278017583873249
+    m_lastTime: -8584286967018964055
     List:
     - name: Ocean_Amb
       guid: e15e7d87bc6fef46868ad413fbbb2ae9
@@ -144,23 +144,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 95.63233
       minDuration: 95.63233
-    - name: Play_Boat_Impact
-      guid: 72e4e45cb2b1f941b5f44e29f31837ef
-      id: 320405745
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 0a533d8fba77634fa38738b46a754f47
-      - ElementName: Play_Boat_Impact
-        ObjectType: 3
-        guid: 72e4e45cb2b1f941b5f44e29f31837ef
-      Path: Events\Default Work Unit\Play_Boat_Impact
-      maxAttenuation: 0
-      maxDuration: 1.1050811
-      minDuration: 1.1050811
     - name: Play_Boat_Sailing_Slow
       guid: db26798ae9b7de4fa0251c081005f4a3
       id: 3774150848
@@ -178,23 +161,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
-    - name: Play_Wind_Slow
-      guid: ee3c5373044e044ba49ae77852a4934a
-      id: 548952156
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 0a533d8fba77634fa38738b46a754f47
-      - ElementName: Play_Wind_Slow
-        ObjectType: 3
-        guid: ee3c5373044e044ba49ae77852a4934a
-      Path: Events\Default Work Unit\Play_Wind_Slow
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
     - name: Stop_Boat_Sailing_Slow
       guid: b04baa853e30a9449b872b78711557a5
       id: 602176938
@@ -252,7 +218,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: d6c0b3be85d3b548bab25ebfd811ccf4
     GuidInternal: 
-    m_lastTime: -8584317932732690205
+    m_lastTime: -8584289741658225759
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -266,7 +232,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: f1c2be2c12164d4ea88832cab3bc31d8
     GuidInternal: 
-    m_lastTime: -8584317932732950144
+    m_lastTime: -8584289741658225759
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -280,7 +246,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: 0653c751e29baf4eb6b27f710e4639f0
     GuidInternal: 
-    m_lastTime: -8584317932732427245
+    m_lastTime: -8584289741658215820
     List: []
   ExpandedFileSystemItemIds: 
   ExpandedWaapiItemIds: 0500000006000000070000000d0000000e000000
