@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{25DAB77C-74DB-4E52-B00A-E15163D2F37E}",
     "Language": "SFX",
-    "Hash": "{EE6F773F-04EE-320F-2B44-CBDD3064A261}",
+    "Hash": "{EB127256-EDAC-4278-83D4-083762DBDC4D}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Boat",
     "ShortName": "Boat",
     "Path": "Boat.bnk",
@@ -29,7 +29,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Boat_Impact.wav",
-      "CachePath": "1C/{1C6E0881-B673-4E53-F6AE-397FF751C9FE}.wem"
+      "CachePath": "A4/{A4E26EE0-0C38-47FB-ECED-422591318184}.wem"
      }
     ],
     "Events": [
@@ -80,6 +80,6 @@
     ]
    }
   ],
-  "FileHash": "{EF1213C0-CE5B-1840-0F4D-BC6DE18428B8}"
+  "FileHash": "{D8C7DF93-689C-C00E-585D-98F8193805FD}"
  }
 }
