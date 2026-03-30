@@ -15,6 +15,7 @@
 				<SoundBank Name="Amb" ID="{E4943895-7E2F-45FC-A2AF-0292442A3A09}">
 					<ObjectInclusionList>
 						<ObjectRef Name="Ocean_Amb" ID="{877D5EE1-6FBC-46EF-868A-D413FBBB2AE9}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Wind_Slow" ID="{73533CEE-4E04-4B04-A49A-E77852A4934A}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Ambient_Music" ID="{E8BFBB98-176D-4D44-AFBE-4B302E8BAAE6}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

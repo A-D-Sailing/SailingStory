@@ -67,6 +67,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_Wind_Slow" ID="{73533CEE-4E04-4B04-A49A-E77852A4934A}">
+					<ChildrenList>
+						<Action Name="" ID="{697E5F19-1E94-41BD-B1E3-1B5ED26B67C1}" ShortID="140551444">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Wind_Slow" ID="{1A8F713E-B453-4400-8B01-93D1F7E241BF}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

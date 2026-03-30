@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 766ef3eb87186c44a702ae549ccfb9e3
     GuidInternal: 
-    m_lastTime: -8584317491605774495
+    m_lastTime: -8584278017583916033
     List:
     - name: Amb
       guid: 953894e42f7efc45a2af0292442a3a09
@@ -108,7 +108,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0a533d8fba77634fa38738b46a754f47
     GuidInternal: 
-    m_lastTime: -8584286967018964055
+    m_lastTime: -8584278017583873249
     List:
     - name: Ocean_Amb
       guid: e15e7d87bc6fef46868ad413fbbb2ae9
@@ -144,6 +144,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 95.63233
       minDuration: 95.63233
+    - name: Play_Boat_Impact
+      guid: 72e4e45cb2b1f941b5f44e29f31837ef
+      id: 320405745
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_Boat_Impact
+        ObjectType: 3
+        guid: 72e4e45cb2b1f941b5f44e29f31837ef
+      Path: Events\Default Work Unit\Play_Boat_Impact
+      maxAttenuation: 0
+      maxDuration: 1.1050811
+      minDuration: 1.1050811
     - name: Play_Boat_Sailing_Slow
       guid: db26798ae9b7de4fa0251c081005f4a3
       id: 3774150848
@@ -161,6 +178,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Play_Wind_Slow
+      guid: ee3c5373044e044ba49ae77852a4934a
+      id: 548952156
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_Wind_Slow
+        ObjectType: 3
+        guid: ee3c5373044e044ba49ae77852a4934a
+      Path: Events\Default Work Unit\Play_Wind_Slow
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Stop_Boat_Sailing_Slow
       guid: b04baa853e30a9449b872b78711557a5
       id: 602176938
