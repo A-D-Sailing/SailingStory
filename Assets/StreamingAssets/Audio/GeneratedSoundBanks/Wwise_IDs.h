@@ -17,12 +17,24 @@ namespace AK
         static const AkUniqueID PLAY_AMBIENT_MUSIC = 1238538214U;
         static const AkUniqueID PLAY_BOAT_IMPACT = 320405745U;
         static const AkUniqueID PLAY_BOAT_SAILING_SLOW = 3774150848U;
+        static const AkUniqueID PLAY_OCEAN_AMB_FAST = 1065863018U;
+        static const AkUniqueID PLAY_WIND_BASE_SNOW = 2966871266U;
+        static const AkUniqueID PLAY_WIND_DIRECITONAL = 420725131U;
         static const AkUniqueID STOP_BOAT_SAILING_SLOW = 602176938U;
+        static const AkUniqueID STOP_OCEAN_AMB_SLOW = 2173128633U;
+        static const AkUniqueID STOP_WIND_BASE_SNOW = 2196306176U;
+        static const AkUniqueID STOP_WIND_DIRECITONAL = 681092517U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID OCEAN_AMB_CONTROL = 1259668694U;
+        static const AkUniqueID WIND_FIELD_BLEND = 2447393534U;
+        static const AkUniqueID WIND_INTENSITY = 855296609U;
+        static const AkUniqueID WIND_LEFT_DB = 4098580606U;
+        static const AkUniqueID WIND_LPF = 542965992U;
+        static const AkUniqueID WIND_PITCH = 2818241024U;
+        static const AkUniqueID WIND_RIGHT_DB = 3398551177U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS

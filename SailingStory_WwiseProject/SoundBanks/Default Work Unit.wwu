@@ -14,7 +14,13 @@
 				</SoundBank>
 				<SoundBank Name="Amb" ID="{E4943895-7E2F-45FC-A2AF-0292442A3A09}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Wind_Base_Snow" ID="{933BCDCE-886B-44A6-8933-E70B3DBA059E}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Wind_Base_Snow" ID="{64AA1A6F-9257-44B7-A960-03F481B4166F}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ocean_Amb" ID="{877D5EE1-6FBC-46EF-868A-D413FBBB2AE9}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Wind_Direcitonal" ID="{55FBA8EC-7C27-48A4-97FE-0D0429A1855E}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Ocean_Amb_Slow" ID="{0B4D376F-7EEC-48D4-AC9A-84931EA766A0}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Ocean_Amb_Fast" ID="{11046AF7-B99F-4CAD-ADC6-8CBC13A88515}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Wind_Direcitonal" ID="{7A3CA911-1592-4D30-ADAE-2AFF3BF6C71A}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Ambient_Music" ID="{E8BFBB98-176D-4D44-AFBE-4B302E8BAAE6}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
