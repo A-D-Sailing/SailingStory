@@ -9,6 +9,40 @@
 						<Property Name="Max" Type="Real64" Value="10"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="Wind_Left_dB" ID="{D97EBA8D-782C-405E-A712-888922B51428}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="0"/>
+						<Property Name="Min" Type="Real64" Value="-96"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Wind_Right_dB" ID="{2A86F016-096E-4AA4-9A26-2989EC966E50}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="0"/>
+						<Property Name="Min" Type="Real64" Value="-96"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Wind_Intensity" ID="{AC1DF0F0-E7A6-4F7C-8D07-1791060936DE}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Wind_Pitch" ID="{74A87ADE-C483-436A-B5B7-F5E9AEE1A0C4}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Wind_LPF" ID="{F9967FF5-A5A6-4DA7-A1BD-3BB90E19ED04}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Wind_Field_Blend" ID="{732248C8-2956-4F27-A3DA-636129F5EE80}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

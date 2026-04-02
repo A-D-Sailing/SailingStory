@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{735FFEC2-945E-48C4-D72A-4A82A48AB4C6}",
+    "Hash": "{A7CC0829-0A02-422A-CB21-8B93167ABA2C}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -44,14 +44,50 @@
     ],
     "GameParameters": [
      {
+      "Id": "542965992",
+      "Name": "Wind_LPF",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_LPF",
+      "GUID": "{F9967FF5-A5A6-4DA7-A1BD-3BB90E19ED04}"
+     },
+     {
+      "Id": "855296609",
+      "Name": "Wind_Intensity",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Intensity",
+      "GUID": "{AC1DF0F0-E7A6-4F7C-8D07-1791060936DE}"
+     },
+     {
       "Id": "1259668694",
       "Name": "Ocean_Amb_Control",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\Ocean_Amb_Control",
       "GUID": "{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"
+     },
+     {
+      "Id": "2447393534",
+      "Name": "Wind_Field_Blend",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Field_Blend",
+      "GUID": "{732248C8-2956-4F27-A3DA-636129F5EE80}"
+     },
+     {
+      "Id": "2818241024",
+      "Name": "Wind_Pitch",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Pitch",
+      "GUID": "{74A87ADE-C483-436A-B5B7-F5E9AEE1A0C4}"
+     },
+     {
+      "Id": "3398551177",
+      "Name": "Wind_Right_dB",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Right_dB",
+      "GUID": "{2A86F016-096E-4AA4-9A26-2989EC966E50}"
+     },
+     {
+      "Id": "4098580606",
+      "Name": "Wind_Left_dB",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Left_dB",
+      "GUID": "{D97EBA8D-782C-405E-A712-888922B51428}"
      }
     ]
    }
   ],
-  "FileHash": "{D70C9FD8-431B-AF69-89AD-9FBCB4529EEF}"
+  "FileHash": "{79E47F1E-323B-3860-7673-20F7F213D97C}"
  }
 }

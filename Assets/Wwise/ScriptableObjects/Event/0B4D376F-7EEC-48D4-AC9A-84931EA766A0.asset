@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b70547aa3e5a94a8e2f3392a13787c, type: 3}
+  m_Name: 0B4D376F-7EEC-48D4-AC9A-84931EA766A0
+  m_EditorClassIdentifier: 
+  objectName: Stop_Ocean_Amb_Slow
+  id: 2173128633
+  guid: 0B4D376F-7EEC-48D4-AC9A-84931EA766A0
+  IsInUserDefinedSoundBank: 1

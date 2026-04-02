@@ -22,15 +22,33 @@ public class BoatNormalControlState : BoatBaseState
     private bool _isMoving = false;
     private const float MOVE_THRESHOLD = 0.1f;
 
-    //RTPC Control
+    //Ambience Gameobject
+    private GameObject _oceanAmbObject;
+
+    // Wind audio event names
+    private const string PLAY_WIND_BASE_EVENT = "Play_Wind_Base_2D";
+    private const string PLAY_WIND_DIRECTIONAL_EVENT = "Play_Wind_Directional";
+    private const string STOP_WIND_BASE_EVENT = "Stop_Wind_Base_2D";
+    private const string STOP_WIND_DIRECTIONAL_EVENT = "Stop_Wind_Directional";
+
+    //Ocean RTPC Control
     private const string OCEAN_AMB_RTPC_NAME = "Ocean_Amb_Control";
     private const float RTPC_UPDATE_INTERVAL = 0.1f; 
     private float lastRtpcUpdateTime;
     private float currentSpeed = 0f;
 
-    //Ambience Gameobject
-    private GameObject _oceanAmbObject;
-    
+    // Wind system RTPC names
+    private const string WIND_BLEND_RTPC = "Wind_Field_Blend";
+    private const string WIND_LEFT_DB_RTPC = "Wind_Left_dB";
+    private const string WIND_RIGHT_DB_RTPC = "Wind_Right_dB";
+    private const string WIND_INTENSITY_RTPC = "Wind_Intensity";
+    private const string WIND_PITCH_RTPC = "Wind_Pitch";
+    private const string WIND_LPF_RTPC = "Wind_LPF";
+
+    // Wind audio target object
+    private GameObject _windAudioObject;
+    private bool _windLoopStarted = false;
+
     private UICargoLoad _cargoLoadUI;
 
     /// <summary>
@@ -71,8 +89,16 @@ public class BoatNormalControlState : BoatBaseState
         {
             _oceanAmbObject = GameObject.Find("Ambience"); 
         }
-        Debug.Log("[BoatState] Entered Normal Control State");
+
+        // Wind directional layer is attached to the boat/player listening object
+        _windAudioObject = owner.gameObject;
+
+        StartWindLoopsIfNeeded();
+        ResetWindRTPCs();
+
     }
+
+
     
     public override void HandleUpdate(BoatController owner)
     {
@@ -87,6 +113,7 @@ public class BoatNormalControlState : BoatBaseState
         {
             lastRtpcUpdateTime = Time.time;
             UpdateRTPCValue(owner);
+            UpdateWindFieldAudio(owner);
         }
     }
 
@@ -131,6 +158,89 @@ public class BoatNormalControlState : BoatBaseState
         }
     }
 
+    private void StartWindLoopsIfNeeded()
+    {
+        if (_windLoopStarted) return;
+
+        if (_windAudioObject != null)
+        {
+            AkUnitySoundEngine.PostEvent(PLAY_WIND_DIRECTIONAL_EVENT, _windAudioObject);
+        }
+
+        _windLoopStarted = true;
+    }
+
+    private void UpdateWindFieldAudio(BoatController owner)
+    {
+        if (_windAudioObject == null) return;
+
+        WindFieldZone zone = owner.CurrentWindZone;
+
+        // Outside wind field: directional layer muted, fallback to normal 2D ambience only
+        if (zone == null)
+        {
+            AkUnitySoundEngine.SetRTPCValue(WIND_BLEND_RTPC, 0f, _windAudioObject);
+            AkUnitySoundEngine.SetRTPCValue(WIND_LEFT_DB_RTPC, -96f, _windAudioObject);
+            AkUnitySoundEngine.SetRTPCValue(WIND_RIGHT_DB_RTPC, -96f, _windAudioObject);
+            AkUnitySoundEngine.SetRTPCValue(WIND_INTENSITY_RTPC, 0f, _windAudioObject);
+            AkUnitySoundEngine.SetRTPCValue(WIND_PITCH_RTPC, 0f, _windAudioObject);
+            return;
+        }
+
+        Vector3 zoneDirection = zone.worldWindDirection.sqrMagnitude > 0.0001f
+            ? zone.worldWindDirection.normalized
+            : owner.transform.forward;
+
+        Vector3 worldWindVelocity = zoneDirection * zone.windSpeed;
+
+        // Relative wind = air velocity - boat velocity
+        Vector3 relativeWind = worldWindVelocity - owner.Rigidbody.linearVelocity;
+
+        // Convert to boat local space
+        Vector3 localWind = owner.transform.InverseTransformDirection(relativeWind);
+
+        float relativeSpeed = relativeWind.magnitude;
+
+        // Speed threshold based on design doc:
+        // low speed => nearly no perceived wind
+        // high speed => strong wind perception
+        float intensity01 = Mathf.InverseLerp(4.0f, 12.0f, relativeSpeed);
+        intensity01 = Mathf.Clamp01(intensity01);
+
+        // Pan logic:
+        // localWind.x > 0 means wind moves toward boat's local right in local space.
+        // We negate to make the "virtual wind source" feel like it wraps around the head.
+        float pan = 0f;
+        if (relativeSpeed > 0.001f)
+        {
+            pan = -localWind.x / relativeSpeed;
+            pan = Mathf.Clamp(pan, -1f, 1f);
+        }
+
+        // Equal-power panning -> more stable energy
+        float leftLinear = Mathf.Sqrt(0.5f * (1f - pan));
+        float rightLinear = Mathf.Sqrt(0.5f * (1f + pan));
+
+        float leftDb = LinearToDb(leftLinear);
+        float rightDb = LinearToDb(rightLinear);
+
+        // Blend:
+        // 0 = only base 2D ambience
+        // 100 = directional wind field layer fully active
+        float blend = Mathf.Clamp01(zone.directionalBlend) * 100f;
+
+        // Intensity and pitch are normalized control values for Wwise
+        float intensity = intensity01 * 100f;
+        float pitch = Mathf.Lerp(-50f, 100f, intensity01);
+
+        AkUnitySoundEngine.SetRTPCValue(WIND_BLEND_RTPC, blend, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_LEFT_DB_RTPC, leftDb, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_RIGHT_DB_RTPC, rightDb, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_INTENSITY_RTPC, intensity, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_PITCH_RTPC, pitch, _windAudioObject);
+
+    }
+
     private void CheckMovementAndPlaySound(Rigidbody rb)
     {
         if (_boatMoveSound == null) return;
@@ -153,6 +263,23 @@ public class BoatNormalControlState : BoatBaseState
 
         _isMoving = isCurrentlyMoving;
     }
+
+    private void ResetWindRTPCs()
+    {
+        if (_windAudioObject == null) return;
+
+        AkUnitySoundEngine.SetRTPCValue(WIND_BLEND_RTPC, 0f, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_LEFT_DB_RTPC, -96f, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_RIGHT_DB_RTPC, -96f, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_INTENSITY_RTPC, 0f, _windAudioObject);
+        AkUnitySoundEngine.SetRTPCValue(WIND_PITCH_RTPC, 0f, _windAudioObject);
+    }
+
+    private float LinearToDb(float linear)
+    {
+        return 20f * Mathf.Log10(Mathf.Max(linear, 0.0001f));
+    }
+
     public override void ExitState(BoatController owner)
     {
         if (_boatMoveSound != null)
@@ -168,12 +295,20 @@ public class BoatNormalControlState : BoatBaseState
         if (_oceanAmbObject != null)
         {
             AkUnitySoundEngine.SetRTPCValue(OCEAN_AMB_RTPC_NAME, 0f, _oceanAmbObject);
+            
         }
 
-        Debug.Log("[BoatState] Exited Normal Control State");
+        if (_windAudioObject != null)
+        {
+            ResetWindRTPCs();
+            AkUnitySoundEngine.PostEvent(STOP_WIND_DIRECTIONAL_EVENT, _windAudioObject);
+        }
+
+        _windLoopStarted = false;
         _cameraShakePlayer = null;
         _boatMoveSound = null;
         _oceanAmbObject = null;
+        _windAudioObject = null;
     }
     
     public override void HandleCollisionEnter(BoatController owner, Collision collision)
@@ -187,7 +322,8 @@ public class BoatNormalControlState : BoatBaseState
             _cargoLoadUI?.ResponseToHittingObstacle();
         }
     }
-    
+
+   
     private void CheckForNearbyDock(BoatController owner)
     {
         // Find all objects with Dock tag

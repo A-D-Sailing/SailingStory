@@ -67,6 +67,89 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_Wind_Base_Snow" ID="{1158CD82-22D1-4E1D-8577-33E5177C2F85}">
+					<ChildrenList>
+						<Action Name="" ID="{B9889C6D-DAEA-4AF6-A46D-D3CF89EFD080}" ShortID="219377546">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Wind_Base_Snow" ID="{933BCDCE-886B-44A6-8933-E70B3DBA059E}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Wind_Direcitonal" ID="{55FBA8EC-7C27-48A4-97FE-0D0429A1855E}">
+					<ChildrenList>
+						<Action Name="" ID="{067B2662-0969-4755-9545-637DF382286B}" ShortID="222021655">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Wind_Direcitonal" ID="{CC7E9AC0-5582-47CB-8C1E-A7DBB9E5DE64}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Wind_Direcitonal" ID="{7A3CA911-1592-4D30-ADAE-2AFF3BF6C71A}">
+					<ChildrenList>
+						<Action Name="" ID="{75EF14F2-E59D-43DA-A7BB-5BB064B73C7D}" ShortID="863389879">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Wind_Direcitonal" ID="{CC7E9AC0-5582-47CB-8C1E-A7DBB9E5DE64}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Ocean_Amb_Slow" ID="{0B4D376F-7EEC-48D4-AC9A-84931EA766A0}">
+					<ChildrenList>
+						<Action Name="" ID="{ABF4FCC0-66DA-4DF6-B4F0-DE4E54BD72D9}" ShortID="223325089">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ocean_Amb_Slow" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Ocean_Amb_Fast" ID="{11046AF7-B99F-4CAD-ADC6-8CBC13A88515}">
+					<ChildrenList>
+						<Action Name="" ID="{D77E4AC5-6AD1-4E7B-A589-9BF0E54C791D}" ShortID="1061533673">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ocean_Amb_Fast" ID="{41AE8247-6F03-48B4-994B-D0D8F1A39681}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Wind_Base_Snow" ID="{64AA1A6F-9257-44B7-A960-03F481B4166F}">
+					<ChildrenList>
+						<Action Name="" ID="{7DBD3022-5A78-4873-8A43-FC7752C0B846}" ShortID="750519916">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Wind_Base_Snow" ID="{933BCDCE-886B-44A6-8933-E70B3DBA059E}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

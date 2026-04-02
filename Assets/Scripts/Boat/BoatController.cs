@@ -60,8 +60,10 @@ public class BoatController : MonoBehaviour
     
     // Public accessors for states
     public Rigidbody Rigidbody => _rb;
-    
+
     #endregion
+
+    public WindFieldZone CurrentWindZone { get; private set; }
 
     private void Awake()
     {
@@ -106,15 +108,33 @@ public class BoatController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        if (other.TryGetComponent(out WindFieldZone zone))
+        {
+            CurrentWindZone = zone;
+        }
+
         // Forward trigger to current state
         if (_stateMachine.currentState is BoatBaseState baseState)
         {
             baseState.HandleTriggerEnter(this, other);
         }
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out WindFieldZone zone) && CurrentWindZone == zone)
+        {
+            CurrentWindZone = null;
+        }
+
+        if (_stateMachine.currentState is BoatBaseState baseState)
+        {
+            baseState.HandleTriggerExit(this, other);
+        }
+    }
+
     #region State Transitions
-    
+
     /// <summary>
     /// Transition to normal sailing control state
     /// </summary>

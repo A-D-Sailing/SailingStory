@@ -1,20 +1,39 @@
 Event	ID	Name			Wwise Object Path	Notes
+	420725131	Play_Wind_Direcitonal			\Default Work Unit\Play_Wind_Direcitonal	
+	681092517	Stop_Wind_Direcitonal			\Default Work Unit\Stop_Wind_Direcitonal	
+	1065863018	Play_Ocean_Amb_Fast			\Default Work Unit\Play_Ocean_Amb_Fast	
 	1238538214	Play_Ambient_Music			\Default Work Unit\Play_Ambient_Music	
+	2173128633	Stop_Ocean_Amb_Slow			\Default Work Unit\Stop_Ocean_Amb_Slow	
+	2196306176	Stop_Wind_Base_Snow			\Default Work Unit\Stop_Wind_Base_Snow	
+	2966871266	Play_Wind_Base_Snow			\Default Work Unit\Play_Wind_Base_Snow	
 	3171782980	Ocean_Amb			\Default Work Unit\Ocean_Amb	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1259668694	Ocean_Amb_Control			\Default Work Unit\Ocean_Amb_Control	
+	2447393534	Wind_Field_Blend			\Default Work Unit\Wind_Field_Blend	
+	3398551177	Wind_Right_dB			\Default Work Unit\Wind_Right_dB	
+	4098580606	Wind_Left_dB			\Default Work Unit\Wind_Left_dB	
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	33411079	Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Storm_Lightning\Slience\Silence	
+	734683902	Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Ocean_Wave\Slience\Silence	
 	1043767212	Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Slience\Silence	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	156430339	Ocean_Amb_Base_02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\0B\{0B90125B-D7C1-81AB-E91D-0D7710739FED}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Ocean_Amb_Base_02		15399816
+	163735436	Storm_Lightning_03	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\95\{958109A9-F14C-04FF-F0FA-E0C1ACCC6933}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Storm_Lightning\Lightning_Pre\Storm_Lightning_03		1791168
+	239311978	Wind_Base_Snow	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\90\{9052AE6E-DBA5-F68D-1C9D-5EF0177715AB}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Wind\Wind_Base_Snow		4080674
 	240420475	Ocean_Amb_Wave_Hit_Small-01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\7F\{7F50FA6C-3221-DA72-3E77-D180356A16E2}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Small-01		690800
 	321921039	Ocean_Amb_Wave_Hit_Small-03	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\5C\{5C5E0B72-1676-1F7D-40F9-FFA0AA319E57}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Small-03		677832
 	360802274	Ocean_Amb_Wave_Hit_Big-03	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\DD\{DDD9FDD8-9585-9E98-E563-9581149D606E}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-03		603676
-	400619858	Ocean_Amb_Wave_Hit_Big-02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\75\{75DBD20F-9043-9CD8-0A45-E0FA83263AFD}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-02		739008
+	400619858	Ocean_Amb_Wave_Hit_Big-02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\75\{75DBD20F-9043-9CD8-0A45-E0FA83263AFD}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-02		739008
+	460539693	Storm_Lightning_01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\B6\{B6398DED-CFBA-9434-B394-4D5973A900C0}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Storm_Lightning\Lightning\Storm_Lightning_01		745380
+	507773560	Storm_Rain	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\87\{8734953D-4CFF-0542-F136-1634EFF49BF8}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Storm_Rain		13258220
+	588130272	Storm_Lightning_02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\6C\{6C6E480F-7903-7996-3885-DA241FD912E2}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Storm_Lightning\Lightning\Storm_Lightning_02		1796076
 	672192723	Ocean_Amb_Wave_Hit_Small-02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\03\{03281BC7-F057-507E-7216-903E2A8EC421}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Small-02		679736
 	705253284	Ocean_Amb_Base_01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\BB\{BBD70E0C-DBE4-4197-64C6-DA1995FB8FE9}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Amb_Base_01		15179852
-	822314929	Ocean_Amb_Wave_Hit_Big-01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\D2\{D2F0BDF7-8BD1-5B5C-E21D-CFAB7D37D796}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Slow\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-01		548832
+	737521110	Storm_Lightning_04	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\5D\{5DBD1CF6-34E3-D6E3-CF9D-DE2B10EF38AE}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Storm_Lightning\Lightning_Pre\Storm_Lightning_04		1361684
+	822314929	Ocean_Amb_Wave_Hit_Big-01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\D2\{D2F0BDF7-8BD1-5B5C-E21D-CFAB7D37D796}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Fast\Ocean_Wave\Wave\Ocean_Amb_Wave_Hit_Big-01		548832
+	938389026	Wind_Slow_L	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\87\{875A5BF7-97FA-9F3C-6057-83C7F704BB9A}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Wind\Wind_Direcitonal\Wind_Slow_L		4796224
 	989565158	Ocean_Amb_Music	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\F0\{F0568BDA-364C-7551-5E19-99A9124D041B}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ocean\Ocean_Amb_Music		18361664
 

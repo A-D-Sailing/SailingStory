@@ -31,6 +31,50 @@
 					<CurrentStateList ShowAll="true"/>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>
+				<SoundcasterSession Name="test" ID="{78DFF55D-7F75-4A46-A576-AD0D9ECD8675}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Boat_Sailing_Slow" ID="{EE5DB807-CC9C-4932-896B-F04BB41773D8}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Ocean_Amb_Slow" ID="{F786E7B2-07E4-412F-854E-2EC978CEEC51}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Wind_Base_Snow" ID="{933BCDCE-886B-44A6-8933-E70B3DBA059E}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="Wind_Left_dB" ID="{D97EBA8D-782C-405E-A712-888922B51428}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Ocean_Amb_Control" ID="{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Wind_Pitch" ID="{74A87ADE-C483-436A-B5B7-F5E9AEE1A0C4}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Wind_LPF" ID="{F9967FF5-A5A6-4DA7-A1BD-3BB90E19ED04}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Wind_Field_Blend" ID="{732248C8-2956-4F27-A3DA-636129F5EE80}"/>
+							<Value>100</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Wind_Intensity" ID="{AC1DF0F0-E7A6-4F7C-8D07-1791060936DE}"/>
+							<Value>2.21008563208443E-312</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundcasterSessions>

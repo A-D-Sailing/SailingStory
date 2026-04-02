@@ -29,4 +29,6 @@ public abstract class BoatBaseState : KIBaseState<BoatController>
     public virtual void HandleCollisionEnter(BoatController owner, Collision collision) { }
     
     public virtual void HandleTriggerEnter(BoatController owner, Collider other) { }
+
+    public virtual void HandleTriggerExit(BoatController owner, Collider other) { }
 }

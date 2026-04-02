@@ -10,11 +10,35 @@
     "Type": "User",
     "GUID": "{E4943895-7E2F-45FC-A2AF-0292442A3A09}",
     "Language": "SFX",
-    "Hash": "{3E0C4608-82C7-199A-4F86-68B8EED592BA}",
+    "Hash": "{1E14F540-D27F-78B5-C5E0-148C4BCC74F6}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
     "Media": [
+     {
+      "Id": "156430339",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ocean_Amb_Base_02.wav",
+      "CachePath": "0B/{0B90125B-D7C1-81AB-E91D-0D7710739FED}.wem"
+     },
+     {
+      "Id": "163735436",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Storm_Lighting_03.wav",
+      "CachePath": "95/{958109A9-F14C-04FF-F0FA-E0C1ACCC6933}.wem"
+     },
+     {
+      "Id": "239311978",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Wind_Base_Snow.wav",
+      "CachePath": "90/{9052AE6E-DBA5-F68D-1C9D-5EF0177715AB}.wem"
+     },
      {
       "Id": "240420475",
       "Language": "SFX",
@@ -48,6 +72,30 @@
       "CachePath": "75/{75DBD20F-9043-9CD8-0A45-E0FA83263AFD}.wem"
      },
      {
+      "Id": "460539693",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Storm_Lightning_01.wav",
+      "CachePath": "B6/{B6398DED-CFBA-9434-B394-4D5973A900C0}.wem"
+     },
+     {
+      "Id": "507773560",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Storm_Rain.wav",
+      "CachePath": "87/{8734953D-4CFF-0542-F136-1634EFF49BF8}.wem"
+     },
+     {
+      "Id": "588130272",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Storm_Lightning_02.wav",
+      "CachePath": "6C/{6C6E480F-7903-7996-3885-DA241FD912E2}.wem"
+     },
+     {
       "Id": "672192723",
       "Language": "SFX",
       "Streaming": "false",
@@ -64,12 +112,28 @@
       "CachePath": "BB/{BBD70E0C-DBE4-4197-64C6-DA1995FB8FE9}.wem"
      },
      {
+      "Id": "737521110",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Storm_Lighting_04.wav",
+      "CachePath": "5D/{5DBD1CF6-34E3-D6E3-CF9D-DE2B10EF38AE}.wem"
+     },
+     {
       "Id": "822314929",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Ocean_Amb_Wave_Hit_Big-01.wav",
       "CachePath": "D2/{D2F0BDF7-8BD1-5B5C-E21D-CFAB7D37D796}.wem"
+     },
+     {
+      "Id": "938389026",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Wind_Slow_L.wav",
+      "CachePath": "87/{875A5BF7-97FA-9F3C-6057-83C7F704BB9A}.wem"
      },
      {
       "Id": "989565158",
@@ -82,6 +146,22 @@
     ],
     "Plugins": {
      "Custom": [
+      {
+       "Id": "33411079",
+       "Name": "Silence",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\Ocean\\Ocean_Amb_Fast\\Storm_Lightning\\Slience\\Silence",
+       "GUID": "{0C390301-41AD-4028-97F3-F5C36F805E35}",
+       "LibName": "Wwise Silence",
+       "LibId": "6619138"
+      },
+      {
+       "Id": "734683902",
+       "Name": "Silence",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\Ocean\\Ocean_Amb_Fast\\Ocean_Wave\\Slience\\Silence",
+       "GUID": "{054476C5-DBC0-4401-8007-4A1069CBD314}",
+       "LibName": "Wwise Silence",
+       "LibId": "6619138"
+      },
       {
        "Id": "1043767212",
        "Name": "Silence",
@@ -143,6 +223,111 @@
         "Id": "989565158"
        }
       ]
+     },
+     {
+      "Id": "1065863018",
+      "Name": "Play_Ocean_Amb_Fast",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Ocean_Amb_Fast",
+      "GUID": "{11046AF7-B99F-4CAD-ADC6-8CBC13A88515}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "156430339"
+       },
+       {
+        "Id": "163735436"
+       },
+       {
+        "Id": "360802274"
+       },
+       {
+        "Id": "400619858"
+       },
+       {
+        "Id": "460539693"
+       },
+       {
+        "Id": "507773560"
+       },
+       {
+        "Id": "588130272"
+       },
+       {
+        "Id": "737521110"
+       },
+       {
+        "Id": "822314929"
+       }
+      ],
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "33411079"
+        },
+        {
+         "Id": "734683902"
+        }
+       ]
+      }
+     },
+     {
+      "Id": "2966871266",
+      "Name": "Play_Wind_Base_Snow",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Wind_Base_Snow",
+      "GUID": "{1158CD82-22D1-4E1D-8577-33E5177C2F85}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "239311978"
+       }
+      ]
+     },
+     {
+      "Id": "420725131",
+      "Name": "Play_Wind_Direcitonal",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Wind_Direcitonal",
+      "GUID": "{55FBA8EC-7C27-48A4-97FE-0D0429A1855E}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "938389026"
+       }
+      ]
+     },
+     {
+      "Id": "2173128633",
+      "Name": "Stop_Ocean_Amb_Slow",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Ocean_Amb_Slow",
+      "GUID": "{0B4D376F-7EEC-48D4-AC9A-84931EA766A0}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
+      "Id": "2196306176",
+      "Name": "Stop_Wind_Base_Snow",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Wind_Base_Snow",
+      "GUID": "{64AA1A6F-9257-44B7-A960-03F481B4166F}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "MediaRefs": [
+       {
+        "Id": "239311978"
+       }
+      ]
+     },
+     {
+      "Id": "681092517",
+      "Name": "Stop_Wind_Direcitonal",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Wind_Direcitonal",
+      "GUID": "{7A3CA911-1592-4D30-ADAE-2AFF3BF6C71A}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
      }
     ],
     "GameParameters": [
@@ -151,10 +336,28 @@
       "Name": "Ocean_Amb_Control",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\Ocean_Amb_Control",
       "GUID": "{0CC05A7E-92FF-42D5-81DE-EA4BC9C8884F}"
+     },
+     {
+      "Id": "2447393534",
+      "Name": "Wind_Field_Blend",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Field_Blend",
+      "GUID": "{732248C8-2956-4F27-A3DA-636129F5EE80}"
+     },
+     {
+      "Id": "3398551177",
+      "Name": "Wind_Right_dB",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Right_dB",
+      "GUID": "{2A86F016-096E-4AA4-9A26-2989EC966E50}"
+     },
+     {
+      "Id": "4098580606",
+      "Name": "Wind_Left_dB",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wind_Left_dB",
+      "GUID": "{D97EBA8D-782C-405E-A712-888922B51428}"
      }
     ]
    }
   ],
-  "FileHash": "{8FB00D22-5961-4FAB-396B-C9281A0EA54B}"
+  "FileHash": "{6A6F73F1-91D7-C1D6-9CFA-82CEC488B8CA}"
  }
 }
