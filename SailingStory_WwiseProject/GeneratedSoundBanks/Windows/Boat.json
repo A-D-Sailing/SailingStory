@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{25DAB77C-74DB-4E52-B00A-E15163D2F37E}",
     "Language": "SFX",
-    "Hash": "{EB127256-EDAC-4278-83D4-083762DBDC4D}",
+    "Hash": "{4363A447-5D7A-88F5-8A28-918146061809}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Boat",
     "ShortName": "Boat",
     "Path": "Boat.bnk",
@@ -24,15 +24,77 @@
       "CachePath": "66/{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem"
      },
      {
+      "Id": "201161573",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Mobile Buff 003.wav",
+      "CachePath": "F1/{F1C19F71-7629-11E9-C344-C19250C13A48}.wem"
+     },
+     {
+      "Id": "253385751",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Task_UI_01.wav",
+      "CachePath": "31/{31C08EA3-52F9-1B61-F8AF-6B48B992EDEB}.wem"
+     },
+     {
+      "Id": "289914240",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Task_UI_03.wav",
+      "CachePath": "89/{89EC994E-43CC-C3BE-B590-DADA3519EAFB}.wem"
+     },
+     {
+      "Id": "619114028",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Task_UI_04.wav",
+      "CachePath": "05/{056D8F24-1630-7404-6EE6-F76B39DFE8BE}.wem"
+     },
+     {
       "Id": "787803768",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Boat_Impact.wav",
       "CachePath": "A4/{A4E26EE0-0C38-47FB-ECED-422591318184}.wem"
+     },
+     {
+      "Id": "843878071",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Boat_Docking.wav",
+      "CachePath": "D5/{D520D03F-23A3-BA54-3EFA-2FF5D2770D04}.wem"
+     },
+     {
+      "Id": "1008095404",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Task_UI_02.wav",
+      "CachePath": "0D/{0D56AD16-0033-7CBA-959D-74992A018708}.wem"
      }
     ],
     "Events": [
+     {
+      "Id": "2996537902",
+      "Name": "Play_Boat_Docking",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Boat_Docking",
+      "GUID": "{8930F434-71CE-4F9B-9991-5C8CC1CE75D8}",
+      "DurationType": "OneShot",
+      "DurationMin": "6.095578",
+      "DurationMax": "6.095578",
+      "MediaRefs": [
+       {
+        "Id": "843878071"
+       }
+      ]
+     },
      {
       "Id": "320405745",
       "Name": "Play_Boat_Impact",
@@ -60,6 +122,43 @@
       ]
      },
      {
+      "Id": "2430632606",
+      "Name": "Play_LP",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_LP",
+      "GUID": "{2C397A4C-B1C5-49C7-98D2-93AF2B2C1915}",
+      "DurationType": "OneShot",
+      "DurationMin": "3",
+      "DurationMax": "3",
+      "MediaRefs": [
+       {
+        "Id": "201161573"
+       }
+      ]
+     },
+     {
+      "Id": "2044747472",
+      "Name": "Play_UI",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI",
+      "GUID": "{9EF6DEC3-3CFE-4E7E-B531-6F197EFCBC27}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.23029561",
+      "DurationMax": "0.45221728",
+      "MediaRefs": [
+       {
+        "Id": "253385751"
+       },
+       {
+        "Id": "289914240"
+       },
+       {
+        "Id": "619114028"
+       },
+       {
+        "Id": "1008095404"
+       }
+      ]
+     },
+     {
       "Id": "602176938",
       "Name": "Stop_Boat_Sailing_Slow",
       "ObjectPath": "\\Events\\Default Work Unit\\Stop_Boat_Sailing_Slow",
@@ -80,6 +179,6 @@
     ]
    }
   ],
-  "FileHash": "{D8C7DF93-689C-C00E-585D-98F8193805FD}"
+  "FileHash": "{65EABED5-1C32-090D-5609-E1B862F49D8A}"
  }
 }
