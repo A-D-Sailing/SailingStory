@@ -48,6 +48,10 @@
 				<Event Name="Play_Ambient_Music" ID="{E8BFBB98-176D-4D44-AFBE-4B302E8BAAE6}">
 					<ChildrenList>
 						<Action Name="" ID="{9EBEBA30-C908-41F0-AF2E-ED80BEBFFCE7}" ShortID="624805734">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Ocean_Amb_Music" ID="{44F661CB-0984-47CF-B7A9-FCAABDC79548}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
@@ -145,6 +149,54 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Wind_Base_Snow" ID="{933BCDCE-886B-44A6-8933-E70B3DBA059E}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Boat_Docking" ID="{8930F434-71CE-4F9B-9991-5C8CC1CE75D8}">
+					<ChildrenList>
+						<Action Name="" ID="{092DF22F-DAF0-4A44-BA94-93D02BD89C8B}" ShortID="560037315">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boat_Docking" ID="{B2E6C568-7634-435C-89B2-A5007EED7B10}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_UI" ID="{9EF6DEC3-3CFE-4E7E-B531-6F197EFCBC27}">
+					<ChildrenList>
+						<Action Name="" ID="{C7875069-9584-4C83-8438-763065CC11BD}" ShortID="80634201">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UI" ID="{2F6AD6DD-FED8-4FF7-A453-9393851B37E4}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_LP" ID="{2C397A4C-B1C5-49C7-98D2-93AF2B2C1915}">
+					<ChildrenList>
+						<Action Name="" ID="{D4F0A524-F527-4EA3-8308-C3858F46D225}" ShortID="311040490">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LP" ID="{24B0066B-01A1-4AD1-A8F5-C11056EB531A}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Ocean_Amb_Music2" ID="{42B5CF49-4ED3-4077-870B-0E1BB0DFF125}">
+					<ChildrenList>
+						<Action Name="" ID="{22E70950-5F19-481F-896A-4A503BC8A236}" ShortID="667123643">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ocean_Amb_Music2" ID="{968F7030-5085-4A92-B9FE-6D3E435283E6}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

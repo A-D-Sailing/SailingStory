@@ -1,6 +1,9 @@
 Event	ID	Name			Wwise Object Path	Notes
 	320405745	Play_Boat_Impact			\Default Work Unit\Play_Boat_Impact	
 	602176938	Stop_Boat_Sailing_Slow			\Default Work Unit\Stop_Boat_Sailing_Slow	
+	2044747472	Play_UI			\Default Work Unit\Play_UI	
+	2430632606	Play_LP			\Default Work Unit\Play_LP	
+	2996537902	Play_Boat_Docking			\Default Work Unit\Play_Boat_Docking	
 	3774150848	Play_Boat_Sailing_Slow			\Default Work Unit\Play_Boat_Sailing_Slow	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -8,5 +11,11 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	90781119	Boat_Sailing_Slow	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\66\{66D40AB9-7612-1F74-A796-83EA5148AFFF}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat\Boat_Sailing_Slow		6138704
+	201161573	LP	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\F1\{F1C19F71-7629-11E9-C344-C19250C13A48}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Task\LP		529296
+	253385751	Task_UI_01	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\31\{31C08EA3-52F9-1B61-F8AF-6B48B992EDEB}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Task\UI\Task_UI_01		35630
+	289914240	Task_UI_03	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\89\{89EC994E-43CC-C3BE-B590-DADA3519EAFB}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Task\UI\Task_UI_03		24132
+	619114028	Task_UI_04	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\05\{056D8F24-1630-7404-6EE6-F76B39DFE8BE}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Task\UI\Task_UI_04		24852
 	787803768	Boat_Impact	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\A4\{A4E26EE0-0C38-47FB-ECED-422591318184}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat\Boat_Impact		195032
+	843878071	Boat_Docking	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\D5\{D520D03F-23A3-BA54-3EFA-2FF5D2770D04}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boat\Boat_Docking		537726
+	1008095404	Task_UI_02	D:\Github\SailingStory\SailingStory_WwiseProject\.cache\0D\{0D56AD16-0033-7CBA-959D-74992A018708}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Task\UI\Task_UI_02		18192
 

@@ -16,7 +16,10 @@ public class BoatDockingState : BoatBaseState
     
     // Reference to current activated dock for Task
     private Transform _currentDock;
-    
+
+    private const string DockingWwiseEvent = "Play_Boat_Docking";
+    private GameObject _ownerGameObject;
+
     /// <summary>
     /// Enter the docking state
     /// </summary>
@@ -27,6 +30,8 @@ public class BoatDockingState : BoatBaseState
     /// </param>
     public override void EnterState(BoatController owner, params object[] args)
     {
+        _ownerGameObject = owner.gameObject;
+
         // args[0]: (Required) DockingFeedbacks - docking feedback
         if (args.Length > 0 && args[0] is DockingFeedbacks feedback)
         {
@@ -58,7 +63,11 @@ public class BoatDockingState : BoatBaseState
         }
         
         _dockingFeedback.RegisterOnFeedbackPlayComplete(OnDockingFeedbackPlayComplete);
-        
+
+        _dockingFeedback.PlayFeedbacks();
+        AkUnitySoundEngine.PostEvent(DockingWwiseEvent, _ownerGameObject);
+        AkUnitySoundEngine.PostEvent("Stop_Boat_Sailing_Slow", _ownerGameObject);
+
         // Play docking feedback
         _dockingFeedback.PlayFeedbacks();
     }
@@ -85,5 +94,7 @@ public class BoatDockingState : BoatBaseState
         _dockingFeedback.UnregisterOnFeedbackPlayComplete(OnDockingFeedbackPlayComplete);
         _dockingFeedback = null;
         _dockingFeedback = null;
+        AkUnitySoundEngine.PostEvent(DockingWwiseEvent, _ownerGameObject);
+        _ownerGameObject = null;
     }
 }

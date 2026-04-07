@@ -15,9 +15,13 @@ namespace AK
     {
         static const AkUniqueID OCEAN_AMB = 3171782980U;
         static const AkUniqueID PLAY_AMBIENT_MUSIC = 1238538214U;
+        static const AkUniqueID PLAY_BOAT_DOCKING = 2996537902U;
         static const AkUniqueID PLAY_BOAT_IMPACT = 320405745U;
         static const AkUniqueID PLAY_BOAT_SAILING_SLOW = 3774150848U;
+        static const AkUniqueID PLAY_LP = 2430632606U;
         static const AkUniqueID PLAY_OCEAN_AMB_FAST = 1065863018U;
+        static const AkUniqueID PLAY_OCEAN_AMB_MUSIC2 = 3879675265U;
+        static const AkUniqueID PLAY_UI = 2044747472U;
         static const AkUniqueID PLAY_WIND_BASE_SNOW = 2966871266U;
         static const AkUniqueID PLAY_WIND_DIRECITONAL = 420725131U;
         static const AkUniqueID STOP_BOAT_SAILING_SLOW = 602176938U;
