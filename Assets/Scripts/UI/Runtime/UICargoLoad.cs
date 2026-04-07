@@ -45,7 +45,10 @@ namespace UI.Runtime
         private bool _repairMode = false;
         private bool _initialized = false;
         private bool _hasRepairedThisSession = false;
-        
+
+        private const string UIWwiseEvent = "Play_UI";
+        private const string LPWwiseEvent = "Play_LP";
+
         [Header("Boat Behavior")]
         public BoatController boatController;
         private Transform _undockTarget;
@@ -529,12 +532,14 @@ namespace UI.Runtime
             {
                 // Player loaded cargo and is departing
                 ClearMarketGrid();
+                AkUnitySoundEngine.PostEvent(LPWwiseEvent, gameObject);
                 _currentState = CargoUIState.Unload;
             }
             else
             {
                 // Player unloaded cargo and is departing
                 ClearAllGrids();
+                AkUnitySoundEngine.PostEvent(LPWwiseEvent, gameObject);
                 _currentState = CargoUIState.Load;
             }
             
@@ -575,6 +580,7 @@ namespace UI.Runtime
                 if (TryPlaceItemAnywhere(_marketContainer, _marketGrid, itemType))
                 {
                     RemoveItem(_cargoContainer, _cargoGrid, gridX, gridY);
+                    AkUnitySoundEngine.PostEvent(UIWwiseEvent, gameObject);
                     UpdateGoldDisplayLoad();
                 }
             }
@@ -586,6 +592,7 @@ namespace UI.Runtime
                     RemoveItem(_cargoContainer, _cargoGrid, gridX, gridY);
                     _earnedGold += goldValue;
                     _playerGold += goldValue;
+                    AkUnitySoundEngine.PostEvent(UIWwiseEvent, gameObject);
                     UpdateGoldDisplayUnload();
                 }
             }
@@ -603,6 +610,7 @@ namespace UI.Runtime
                 if (TryPlaceItemAnywhere(_cargoContainer, _cargoGrid, itemType))
                 {
                     RemoveItem(_marketContainer, _marketGrid, gridX, gridY);
+                    AkUnitySoundEngine.PostEvent(UIWwiseEvent, gameObject);
                     UpdateGoldDisplayLoad();
                 }
             }
@@ -616,6 +624,7 @@ namespace UI.Runtime
                     if (_earnedGold < 0) _earnedGold = 0;
                     _playerGold -= goldValue;
                     if (_playerGold < 0) _playerGold = 0;
+                    AkUnitySoundEngine.PostEvent(UIWwiseEvent, gameObject);
                     UpdateGoldDisplayUnload();
                 }
             }

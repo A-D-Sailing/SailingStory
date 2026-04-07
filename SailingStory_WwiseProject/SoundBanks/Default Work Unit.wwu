@@ -7,6 +7,9 @@
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_Boat_Impact" ID="{5CE4E472-B1B2-41F9-B5F4-4E29F31837EF}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Boat_Sailing_Slow" ID="{85AA4BB0-303E-44A9-9B87-2B78711557A5}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_LP" ID="{2C397A4C-B1C5-49C7-98D2-93AF2B2C1915}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI" ID="{9EF6DEC3-3CFE-4E7E-B531-6F197EFCBC27}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Boat_Docking" ID="{8930F434-71CE-4F9B-9991-5C8CC1CE75D8}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Boat_Sailing_Slow" ID="{8A7926DB-B7E9-4FDE-A025-1C081005F4A3}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
@@ -14,6 +17,7 @@
 				</SoundBank>
 				<SoundBank Name="Amb" ID="{E4943895-7E2F-45FC-A2AF-0292442A3A09}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Play_Ocean_Amb_Music2" ID="{42B5CF49-4ED3-4077-870B-0E1BB0DFF125}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Wind_Base_Snow" ID="{933BCDCE-886B-44A6-8933-E70B3DBA059E}" WorkUnitID="{15CD28FB-84CF-49EC-95EE-5BB1C9F80E29}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Wind_Base_Snow" ID="{64AA1A6F-9257-44B7-A960-03F481B4166F}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ocean_Amb" ID="{877D5EE1-6FBC-46EF-868A-D413FBBB2AE9}" WorkUnitID="{8F3D530A-77BA-4F63-A387-38B46A754F47}" Origin="Manual" Filter="7"/>

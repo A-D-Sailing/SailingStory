@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E4943895-7E2F-45FC-A2AF-0292442A3A09}",
     "Language": "SFX",
-    "Hash": "{1E14F540-D27F-78B5-C5E0-148C4BCC74F6}",
+    "Hash": "{1B40B603-6288-50E3-DEA7-D231E40FDEE9}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -46,6 +46,14 @@
       "Location": "Memory",
       "ShortName": "Ocean_Amb_Wave_Hit_Small-01.wav",
       "CachePath": "7F/{7F50FA6C-3221-DA72-3E77-D180356A16E2}.wem"
+     },
+     {
+      "Id": "284891314",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Ambient Vol6 Into The Sun Intensity 1.wav",
+      "CachePath": "11/{11880E08-5FEB-BF44-FDC6-9CF0053C3148}.wem"
      },
      {
       "Id": "321921039",
@@ -141,7 +149,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Ambient_Music.wav",
-      "CachePath": "F0/{F0568BDA-364C-7551-5E19-99A9124D041B}.wem"
+      "CachePath": "4E/{4EBC9719-EB34-3D45-7E4C-58CBFBDF78BA}.wem"
      }
     ],
     "Plugins": {
@@ -271,6 +279,20 @@
       }
      },
      {
+      "Id": "3879675265",
+      "Name": "Play_Ocean_Amb_Music2",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Ocean_Amb_Music2",
+      "GUID": "{42B5CF49-4ED3-4077-870B-0E1BB0DFF125}",
+      "DurationType": "OneShot",
+      "DurationMin": "92.09304",
+      "DurationMax": "92.09304",
+      "MediaRefs": [
+       {
+        "Id": "284891314"
+       }
+      ]
+     },
+     {
       "Id": "2966871266",
       "Name": "Play_Wind_Base_Snow",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Wind_Base_Snow",
@@ -358,6 +380,6 @@
     ]
    }
   ],
-  "FileHash": "{6A6F73F1-91D7-C1D6-9CFA-82CEC488B8CA}"
+  "FileHash": "{4F8D9061-D5B8-75E0-E8B8-0849082036A6}"
  }
 }

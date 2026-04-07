@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 766ef3eb87186c44a702ae549ccfb9e3
     GuidInternal: 
-    m_lastTime: -8584265260792213010
+    m_lastTime: -8584262087474474586
     List:
     - name: Amb
       guid: 953894e42f7efc45a2af0292442a3a09
@@ -108,7 +108,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0a533d8fba77634fa38738b46a754f47
     GuidInternal: 
-    m_lastTime: -8584265260792467737
+    m_lastTime: -8584262087484500767
     List:
     - name: Ocean_Amb
       guid: e15e7d87bc6fef46868ad413fbbb2ae9
@@ -144,6 +144,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 95.63233
       minDuration: 95.63233
+    - name: Play_Boat_Docking
+      guid: 34f43089ce719b4f99915c8cc1ce75d8
+      id: 2996537902
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_Boat_Docking
+        ObjectType: 3
+        guid: 34f43089ce719b4f99915c8cc1ce75d8
+      Path: Events\Default Work Unit\Play_Boat_Docking
+      maxAttenuation: 0
+      maxDuration: 6.095578
+      minDuration: 6.095578
     - name: Play_Boat_Impact
       guid: 72e4e45cb2b1f941b5f44e29f31837ef
       id: 320405745
@@ -178,6 +195,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Play_LP
+      guid: 4c7a392cc5b1c74998d293af2b2c1915
+      id: 2430632606
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_LP
+        ObjectType: 3
+        guid: 4c7a392cc5b1c74998d293af2b2c1915
+      Path: Events\Default Work Unit\Play_LP
+      maxAttenuation: 0
+      maxDuration: 3
+      minDuration: 3
     - name: Play_Ocean_Amb_Fast
       guid: f76a04119fb9ad4cadc68cbc13a88515
       id: 1065863018
@@ -195,6 +229,40 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Play_Ocean_Amb_Music2
+      guid: 49cfb542d34e7740870b0e1bb0dff125
+      id: 3879675265
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_Ocean_Amb_Music2
+        ObjectType: 3
+        guid: 49cfb542d34e7740870b0e1bb0dff125
+      Path: Events\Default Work Unit\Play_Ocean_Amb_Music2
+      maxAttenuation: 0
+      maxDuration: 92.09304
+      minDuration: 92.09304
+    - name: Play_UI
+      guid: c3def69efe3c7e4eb5316f197efcbc27
+      id: 2044747472
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0a533d8fba77634fa38738b46a754f47
+      - ElementName: Play_UI
+        ObjectType: 3
+        guid: c3def69efe3c7e4eb5316f197efcbc27
+      Path: Events\Default Work Unit\Play_UI
+      maxAttenuation: 0
+      maxDuration: 0.45221728
+      minDuration: 0.23029561
     - name: Play_Wind_Base_Snow
       guid: 82cd5811d1221d4e857733e5177c2f85
       id: 2966871266
